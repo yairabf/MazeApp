@@ -3,23 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Priority_Queue;
 
 namespace ClassLibrary1
 {
-    public abstract class Searcher : ISearcher
+    public abstract class Searcher<T> : ISearcher<T>
     {
-        private MyPriorityQueue<State> openList;
+        private SimplePriorityQueue<State<T> > openList;
         private int evaluatedNodes;
 
         public Searcher()
         {
-            openList = new MyPriorityQueue<State>();
+            openList = new SimplePriorityQueue<State<T> >();
             evaluatedNodes = 0;
         }
-        protected State popOpenList() { evaluatedNodes++; return openList.poll(); }
-        // a property of openList public int OpenListSize { // it is a read-only property :) get { return openList.Count; } }
+
+        /*protected State<T> popOpenList()
+        {
+            evaluatedNodes++; return openList.poll();
+        }*/
+        
+        // a property of openList 
+        public int OpenListSize { // it is a read-only property :) 
+            get { return openList.Count; }
+        }
+        
         // ISearcher’s methods:
-        public virtual int getNumberOfNodesEvaluated() { return evaluatedNodes; }
-        public abstract Solution search(ISearchable searchable);
+        public int getNumberOfNodesEvaluated()
+        {
+            return evaluatedNodes;
+        }
+
+        public abstract Solution search(ISearchable<T> searchable);
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1
 {
-    public interface ISearchable <T>
+    public interface ISearchable<T>
     {
         State<T> getInitialState();
 
