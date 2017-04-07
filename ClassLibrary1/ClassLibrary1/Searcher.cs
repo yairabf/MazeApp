@@ -18,10 +18,10 @@ namespace ClassLibrary1
             evaluatedNodes = 0;
         }
 
-        /*protected State<T> popOpenList()
+        protected State<T> popOpenList()
         {
             evaluatedNodes++; return openList.poll();
-        }*/
+        }
         
         // a property of openList 
         public int OpenListSize { // it is a read-only property :) 
