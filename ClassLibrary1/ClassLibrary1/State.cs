@@ -20,13 +20,21 @@ namespace ClassLibrary1
         public bool Equals(State<T> s) // we override Object's Equals method 
         {
             return state.Equals(s.state);
-        }
+        } // ...
 
-
-        public double getCost()
+        public double getCost() 
         {
-            return cost;
+            return this.cost;
         }
-    }
+
+        public void setCost(double c)
+        {
+            this.cost = c;
+        }
+
+        public State<T> getCameFrom() 
+        {
+            return this.cameFrom;
+        }
 
 }
