@@ -40,6 +40,13 @@ namespace ClassLibrary1
             return evaluatedNodes;
         }
 
+        protected bool openContains(State<T> s)
+        {
+            return openList.Contains(s);
+        }
+
+        protected abstract Solution backTrace(); 
+
         public abstract Solution search(ISearchable<T> searchable);
     }
 }

@@ -22,7 +22,7 @@ namespace ClassLibrary1
             return state.Equals(s.state);
         } // ...
 
-        public double getCost() 
+        public double getCost()
         {
             return this.cost;
         }
@@ -32,9 +32,10 @@ namespace ClassLibrary1
             this.cost = c;
         }
 
-        public State<T> getCameFrom() 
+        public State<T> getCameFrom()
         {
             return this.cameFrom;
         }
 
+    }
 }

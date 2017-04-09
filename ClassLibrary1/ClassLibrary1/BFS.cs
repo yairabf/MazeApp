@@ -16,30 +16,35 @@ namespace ClassLibrary1
             while (OpenListSize > 0) {
                     State<T> n = popOpenList();  // inherited from Searcher, removes the best state
                 closed.Add(n);
-                if (n.Equals(searchable.getIGoallState()))
+                if (n.Equals(searchable.getGoalState() ))
                     return backTrace(); // private method, back traces through the parents
                                         // calling the delegated method, returns a list of states with n as a parent
                 List<State<T> > succerssors = searchable.getAllPossibleStates(n);
                 foreach (State<T> s in succerssors) {
-                    if (!closed.Contains(s) && !openContaines(s))
+                    if (!closed.Contains(s) && !openContains(s))
                     {
                         // s.setCameFrom(n);  // already done by getSuccessors
                         addToOpenList(s);
                     }
-                    State<T> cameFrom = s.getCameFrom;
+                    State<T> cameFrom = s.getCameFrom();
                     if(!openContains(s))
                     {
                         addToOpenList(s);
                     }
-                    if((n.getCost + s.getCost) < (cameFrom.getCost + s.getCost));
+                    if((n.getCost() + s.getCost()) < (cameFrom.getCost() + s.getCost()));
                     {
-                       s.setCost(n.getCost + s.getCost);
+                       s.setCost(n.getCost() + s.getCost());
                     }
                     
                 } 
             }
             Console.WriteLine("have not reached the goal");
-            return;
+            return ;
         }
     }
+
+    public override Solution backTrace()
+    {
+        return 
+    } 
 }
