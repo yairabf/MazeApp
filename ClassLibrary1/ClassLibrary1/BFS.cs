@@ -26,9 +26,20 @@ namespace ClassLibrary1
                         // s.setCameFrom(n);  // already done by getSuccessors
                         addToOpenList(s);
                     }
-                    else
-                    { //...
+                    State<T> cameFrom = s.getCameFrom;
+                    if(!openContains(s))
+                    {
+                        addToOpenList(s);
                     }
-                    return
-        } 
+                    if((n.getCost + s.getCost) < (cameFrom.getCost + s.getCost));
+                    {
+                       s.setCost(n.getCost + s.getCost);
+                    }
+                    
+                } 
+            }
+            Console.WriteLine("have not reached the goal");
+            return;
+        }
+    }
 }

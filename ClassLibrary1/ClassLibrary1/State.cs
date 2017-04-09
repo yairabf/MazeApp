@@ -21,6 +21,20 @@ namespace ClassLibrary1
         {
             return state.Equals(s.state);
         } // ...
-}
+
+        public double getCost() 
+        {
+            return this.cost;
+        }
+
+        public void setCost(double c)
+        {
+            this.cost = c;
+        }
+
+        public State<T> getCameFrom() 
+        {
+            return this.cameFrom;
+        }
 
 }
