@@ -9,18 +9,24 @@ namespace ClassLibrary1
 {
     public abstract class Searcher<T> : ISearcher<T>
     {
-        private SimplePriorityQueue<State<T> > openList;
+        private SimplePriorityQueue<State<T>, double> openList;
         private int evaluatedNodes;
 
         public Searcher()
         {
-            openList = new SimplePriorityQueue<State<T> >();
+            openList = new SimplePriorityQueue<State<T>, double>();
             evaluatedNodes = 0;
         }
 
         protected State<T> popOpenList()
         {
-            evaluatedNodes++; return openList.poll();
+            evaluatedNodes++;
+            return openList.Dequeue();
+        }
+
+        protected void addToOpenList(State<T> s)
+        {
+            openList.Enqueue(s, s.getCost());
         }
         
         // a property of openList 
