@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1
 {
-    public interface Solution
+    public abstract class Solution <T>
     {
-        String toString();
+        private Stack<T> route;
+
+        public String toString();
     }
 }
