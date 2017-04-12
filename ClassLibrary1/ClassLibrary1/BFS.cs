@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1
 {
-    public class BFS<T> : Searcher<T>
+    public class BFS : Pr
     {
         public override Solution search(ISearchable<T> searchable)
         { 
@@ -14,37 +14,41 @@ namespace ClassLibrary1
             addToOpenList(searchable.getInitialState()); // inherited from Searcher
             HashSet<State<T> > closed = new HashSet<State<T> >();
             while (OpenListSize > 0) {
-                    State<T> n = popOpenList();  // inherited from Searcher, removes the best state
+                State<T> n = popOpenList();  // inherited from Searcher, removes the best state
                 closed.Add(n);
                 if (n.Equals(searchable.getGoalState() ))
-                    return backTrace(); // private method, back traces through the parents
+                    return backTrace(n); // private method, back traces through the parents
                                         // calling the delegated method, returns a list of states with n as a parent
                 List<State<T> > succerssors = searchable.getAllPossibleStates(n);
                 foreach (State<T> s in succerssors) {
+                    State<T> cameFrom = s.getCameFrom();
                     if (!closed.Contains(s) && !openContains(s))
                     {
                         // s.setCameFrom(n);  // already done by getSuccessors
                         addToOpenList(s);
                     }
-                    State<T> cameFrom = s.getCameFrom();
-                    if(!openContains(s))
+                    else if(!openContains(s))
                     {
                         addToOpenList(s);
                     }
-                    if((n.getCost() + s.getCost()) < (cameFrom.getCost() + s.getCost()));
+                    //openList.UpdatePriority(s, 5);
+                    if((n.getCost() + 1) < (s.getCost()))
                     {
-                       s.setCost(n.getCost() + s.getCost());
+                       s.setCost(n.getCost() + 1);
+                       open
+                       
                     }
-                    
                 } 
             }
             Console.WriteLine("have not reached the goal");
-            return ;
+            return null;
         }
     }
 
-    public override Solution backTrace()
+    private override Solution backTrace(State<T> n)
     {
-        return 
+        Solution solution = new Solution();
+        solution.buildSolution(n);
+        return solution;
     } 
 }

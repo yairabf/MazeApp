@@ -12,7 +12,9 @@ namespace ClassLibrary1
 
         State<T> getGoalState();
 
-        List<State<T> > getAllPossibleStates(State<T> s);
+        List<State<T>> getAllPossibleStates(State<T> s);
+
+        Solution getSolution();
     }
 
 }

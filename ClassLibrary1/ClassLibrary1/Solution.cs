@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1
 {
-    public class Solution<T>
+    public class Solution<State>
     {
         private Stack<State<T>> solutionStack;
 
