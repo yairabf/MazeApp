@@ -16,6 +16,7 @@ namespace ClassLibrary1
             while(stack.Count() > 0)
             {
                 State<T> current = stack.Pop();
+                evaluatedNodes++;
                 if(current.Equals(searchable.getGoalState()))
                 {
                     return backTrace(current);
@@ -26,19 +27,21 @@ namespace ClassLibrary1
                     List<State<T>> succerssors = searchable.getAllPossibleStates(current);
                     foreach (State<T> s in succerssors)
                     {
-                        if (!closed.Contains(s) && !openContains(s))
+                        if (!stack.Contains(s) && finished.Contains(s))
                         {
-                            // s.setCameFrom(n);  // already done by getSuccessors
-                            addToOpenList(s);
+                           s.setCameFrom(current);
+                           stack.Push(s);
                         }
-                        State<T> cameFrom = s.getCameFrom();
                     }
+                }
             }
         }
 
         protected override Solution<T> backTrace(State<T> s)
         {
-            
+            Solution<State<T> > sol = new Solution<State<T>>();
+            sol.buildSolution(s);
+            return sol;
         }
     }
 }

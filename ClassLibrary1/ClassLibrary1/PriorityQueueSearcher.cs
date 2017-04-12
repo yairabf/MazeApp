@@ -9,7 +9,13 @@ namespace ClassLibrary1
 {
     public abstract class PriorityQueueSearcher : Searcher<T>
     {
-        private SimplePriorityQueue<State<T>, double> openList = new SimplePriorityQueue<State<T>, double>();
+        SimplePriorityQueue<State<T>, double> openList;
+
+        public PriorityQueueSearcher()
+        {
+            openList = new SimplePriorityQueue<State<T>, double>();
+            evaluatedNodes = 0;
+        }
 
         protected State<T> popOpenList()
         {

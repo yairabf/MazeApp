@@ -2,7 +2,8 @@
 
 public abstract class Searcher<T> : ISearcher<T>
 {
-    private int evaluatedNodes = 0;
+    private int evaluatedNodes;
+
     // ISearcher’s methods:
         int getNumberOfNodesEvaluated()
         {

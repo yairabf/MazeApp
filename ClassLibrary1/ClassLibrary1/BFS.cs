@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1
 {
-    public class BFS : Pr
+    public class BFS : PriorityQueueSearcher
     {
         public override Solution search(ISearchable<T> searchable)
         { 

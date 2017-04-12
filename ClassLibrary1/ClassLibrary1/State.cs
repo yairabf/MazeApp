@@ -37,5 +37,10 @@ namespace ClassLibrary1
             return this.cameFrom;
         }
 
+        public void setCameFrom(State<T> s)
+{
+            this.cameFrom = s;
+
+}
     }
 }
