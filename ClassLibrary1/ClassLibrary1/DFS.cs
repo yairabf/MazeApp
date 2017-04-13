@@ -27,7 +27,7 @@ namespace ClassLibrary1
                     List<State<T>> succerssors = searchable.getAllPossibleStates(current);
                     foreach (State<T> s in succerssors)
                     {
-                        if (!stack.Contains(s) && finished.Contains(s))
+                        if (!stack.Contains(s) && !finished.Contains(s))
                         {
                             s.setCameFrom(current);
                             stack.Push(s);
