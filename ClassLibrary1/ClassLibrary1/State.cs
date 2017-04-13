@@ -37,10 +37,30 @@ namespace ClassLibrary1
             return this.cameFrom;
         }
 
+        public void setCameFrom(State<T> s)
+        {
+            this.cameFrom = s;
+        }
+
         public String ToString()
         {
             return state.ToString();
         }
+
+        public T getState()
+        {
+            return this.state;
+        }
+
+        /*public static class StatePool
+        {
+            private static HashSet<State<T>> references = new HashSet<State<T>>();
+
+            public static State<T> getState(State<T> s)
+            {
+                if(references.Contains(s))
+            }
+        }*/
 
     }
 }

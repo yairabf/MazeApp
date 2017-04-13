@@ -9,7 +9,7 @@ namespace ClassLibrary1
 {
     public abstract class PriorityQueueSearcher<T> : Searcher<T>
     {
-        private SimplePriorityQueue<State<T>, double> openList;
+        protected SimplePriorityQueue<State<T>, double> openList;
 
         public PriorityQueueSearcher()
         {

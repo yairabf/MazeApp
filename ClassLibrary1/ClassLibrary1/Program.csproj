@@ -34,10 +34,10 @@
       <HintPath>..\packages\PriorityQueue.0.1.0\lib\net45\ConcurrentPriorityQueue.dll</HintPath>
     </Reference>
     <Reference Include="MazeGeneratorLib">
-      <HintPath>..\..\..\..\לימודים\שנה ב\תכנות מתקדם 2\MazeGeneratorLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Downloads\MazeGeneratorLib.dll</HintPath>
     </Reference>
     <Reference Include="MazeLib">
-      <HintPath>..\..\..\..\לימודים\שנה ב\תכנות מתקדם 2\MazeLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Downloads\MazeLib.dll</HintPath>
     </Reference>
     <Reference Include="Priority Queue, Version=4.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OptimizedPriorityQueue.4.0.4\lib\net45\Priority Queue.dll</HintPath>
@@ -53,8 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BFS.cs" />
-    <Compile Include="MazeToSearchableAdapter.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="PriorityQueueSearcher.cs" />
     <Compile Include="Solution.cs" />
     <Compile Include="Searcher.cs" />

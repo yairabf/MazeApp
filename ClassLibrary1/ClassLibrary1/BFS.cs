@@ -34,19 +34,21 @@ namespace ClassLibrary1
                     //openList.UpdatePriority(s, 5);
                     if((n.getCost() + 1) < (s.getCost()))
                     {
-                       s.setCost(n.getCost() + 1);
-                   
+                        s.setCameFrom(n);
+                        s.setCost(n.getCost() + 1);
+                        openList.UpdatePriority(s, s.getCost());
                     }
                 } 
             }
             Console.WriteLine("have not reached the goal");
             return null;
         }
-    }
-        private override Solution<T> backTrace(State<T> n)
+        protected override Solution<T> backTrace(State<T> n)
         {
             Solution<T> solution = new Solution<T>();
             solution.buildSolution(n);
             return solution;
         }
+    }
+        
 }
