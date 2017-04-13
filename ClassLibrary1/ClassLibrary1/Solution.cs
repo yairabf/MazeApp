@@ -8,11 +8,11 @@ namespace ClassLibrary1
 {
     public class Solution<T>
     {
-        private Stack<State<T>> solutionList;
+        private List<State<T>> solutionList;
 
         public Solution()
         {
-            solutionList = new Stack<State<T>>();       
+            solutionList = new List<State<T>>();       
         }
         /**
          * receives a goal state and builds the solution
@@ -22,7 +22,7 @@ namespace ClassLibrary1
         {
             while(goal != null)
             {
-                solutionList.Push(goal);
+                solutionList.Add(goal);
                 goal = goal.getCameFrom();
             }
         }

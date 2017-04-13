@@ -11,6 +11,11 @@ namespace ClassLibrary1
     {
         private Maze maze;
 
+        public MazeToSearchableAdapter(Maze m)
+        {
+            this.maze = m;
+        }
+
         public State<Position> getInitialState()
         {
             State<Position> state = new State<Position>(maze.InitialPos);
@@ -56,11 +61,5 @@ namespace ClassLibrary1
             return list;
 
         }
-
-        public Solution<T> getSolution()
-        {
-
-        }
-
     }
 }

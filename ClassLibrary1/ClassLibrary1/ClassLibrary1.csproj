@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ConcurrentPriorityQueue, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\PriorityQueue.0.1.0\lib\net45\ConcurrentPriorityQueue.dll</HintPath>
@@ -54,8 +57,8 @@
   <ItemGroup>
     <Compile Include="BFS.cs" />
     <Compile Include="MazeToSearchableAdapter.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="PriorityQueueSearcher.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Solution.cs" />
     <Compile Include="Searcher.cs" />
     <Compile Include="ISearcher.cs" />
