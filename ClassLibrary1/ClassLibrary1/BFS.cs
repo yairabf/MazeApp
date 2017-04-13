@@ -9,44 +9,47 @@ namespace ClassLibrary1
     public class BFS<T> : PriorityQueueSearcher<T>
     {
         public override Solution<T> Search(ISearchable<T> searchable)
-        { 
+        {
             // Searcher's abstract method overriding
             addToOpenList(searchable.getInitialState()); // inherited from Searcher
-            HashSet<State<T> > closed = new HashSet<State<T> >();
-            while (OpenListSize > 0) {
+            HashSet<State<T>> closed = new HashSet<State<T>>();
+            while (OpenListSize > 0)
+            {
                 State<T> n = popOpenList();  // inherited from Searcher, removes the best state
                 closed.Add(n);
-                if (n.Equals(searchable.getGoalState() ))
+                if (n.Equals(searchable.getGoalState()))
                     return backTrace(n); // private method, back traces through the parents
-                                        // calling the delegated method, returns a list of states with n as a parent
-                List<State<T> > succerssors = searchable.getAllPossibleStates(n);
-                foreach (State<T> s in succerssors) {
+                                         // calling the delegated method, returns a list of states with n as a parent
+                List<State<T>> succerssors = searchable.getAllPossibleStates(n);
+                foreach (State<T> s in succerssors)
+                {
                     State<T> cameFrom = s.getCameFrom();
                     if (!closed.Contains(s) && !openContains(s))
                     {
                         // s.setCameFrom(n);  // already done by getSuccessors
                         addToOpenList(s);
                     }
-                    else if(!openContains(s))
+                    else if (!openContains(s))
                     {
                         addToOpenList(s);
                     }
                     //openList.UpdatePriority(s, 5);
-                    if((n.getCost() + 1) < (s.getCost()))
+                    if ((n.getCost() + 1) < (s.getCost()))
                     {
-                       s.setCost(n.getCost() + 1);
-                   
+                        s.setCost(n.getCost() + 1);
+
                     }
-                } 
+                }
             }
             Console.WriteLine("have not reached the goal");
             return null;
         }
-    }
-        private override Solution<T> backTrace(State<T> n)
+
+        protected override Solution<T> backTrace(State<T> n)
         {
             Solution<T> solution = new Solution<T>();
             solution.buildSolution(n);
             return solution;
         }
+    }
 }
