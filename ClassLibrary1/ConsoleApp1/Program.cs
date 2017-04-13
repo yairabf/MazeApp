@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using SearchAlgorithmLib;
+using  ClassLibrary1;
 class Program
 {
     static void Main(string[] args)
     {
-        ISearcher<int> ser = new DFSSearcher<int>();
+        ISearcher<int> ser = new DFS<int>();
 
         Dictionary<State<int>, List<State<int>>> Adj = new Dictionary<State<int>, List<State<int>>>();
         State<int> one = new State<int>(1);
@@ -37,11 +37,7 @@ class Program
 
     static void printSol<T>(Solution<T> s)
     {
-        for (int i = 0; i < s.Count; i++)
-        {
-            Console.Write(s[i].ToString() + ",");
-        }
-        Console.WriteLine();
+        s.ToString();
     }
 }
 

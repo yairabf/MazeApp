@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1
 {
-    class DFS<T> : Searcher<T>
+    public class DFS<T> : Searcher<T>
     {
         public override Solution<T> Search(ISearchable<T> searchable)
         {

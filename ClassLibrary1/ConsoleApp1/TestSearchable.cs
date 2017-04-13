@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SearchAlgorithmLib;
+using ClassLibrary1;
 
 class TestSearchable<T> : ISearchable<T>
 {
@@ -17,17 +17,17 @@ class TestSearchable<T> : ISearchable<T>
         this.Adj = Adj;
     }
 
-    public State<T> GetInitialState()
+    public State<T> getInitialState()
     {
         return from;
     }
 
-    public State<T> GetGoalState()
+    public State<T> getGoalState()
     {
         return to;
     }
 
-    public List<State<T>> GetAllPossibleStates(State<T> s)
+    public List<State<T>> getAllPossibleStates(State<T> s)
     {
         List<State<T>> states = null;
         // if found the vertex
@@ -42,5 +42,10 @@ class TestSearchable<T> : ISearchable<T>
             states = new List<State<T>>();
         }
         return states;
+    }
+
+    public Solution<T> getSolution()
+    {
+        throw new NotImplementedException();
     }
 }
