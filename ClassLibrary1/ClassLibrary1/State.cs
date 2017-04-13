@@ -41,6 +41,9 @@ namespace ClassLibrary1
         {
             return state.ToString();
         }
-
+        public void setCameFrom(State<T> s)
+        {
+            this.cameFrom = s;
+        }
     }
 }

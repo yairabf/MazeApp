@@ -11,8 +11,9 @@ namespace ClassLibrary1
         {
             return evaluatedNodes;
         }
-        protected abstract Solution<T> backTrace(State<T> n);
 
         public abstract Solution<T> Search(ISearchable<T> searchable);
+
+        protected abstract Solution<T> backTrace(State<T> n);
     }
 }

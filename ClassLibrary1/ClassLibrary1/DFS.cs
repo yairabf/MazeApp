@@ -8,16 +8,16 @@ namespace ClassLibrary1
 {
     class DFS<T> : Searcher<T>
     {
-        public override Solution<T> search(ISearchable<T> searchable)
+        public override Solution<T> Search(ISearchable<T> searchable)
         {
-            Stack<State<T> > stack = new Stack<State<T>>();
+            Stack<State<T>> stack = new Stack<State<T>>();
             HashSet<State<T>> finished = new HashSet<State<T>>();
             stack.Push(searchable.getInitialState());
-            while(stack.Count() > 0)
+            while (stack.Count() > 0)
             {
                 State<T> current = stack.Pop();
                 evaluatedNodes++;
-                if(current.Equals(searchable.getGoalState()))
+                if (current.Equals(searchable.getGoalState()))
                 {
                     return backTrace(current);
                 }
@@ -29,18 +29,20 @@ namespace ClassLibrary1
                     {
                         if (!stack.Contains(s) && finished.Contains(s))
                         {
-                           s.setCameFrom(current);
-                           stack.Push(s);
+                            s.setCameFrom(current);
+                            stack.Push(s);
                         }
                     }
                 }
             }
+            Console.WriteLine("have not reached the goal");
+            return null;
         }
 
-        protected override Solution<T> backTrace(State<T> s)
+        protected override Solution<T> backTrace(State<T> n)
         {
-            Solution<State<T> > sol = new Solution<State<T>>();
-            sol.buildSolution(s);
+            Solution<T> sol = new Solution<T>();
+            sol.buildSolution(n);
             return sol;
         }
     }
