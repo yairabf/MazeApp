@@ -9,7 +9,7 @@ namespace ClassLibrary1
     public interface ISearcher<T>
     {
         // the search method 
-        Solution search (ISearchable<T> searchable);
+        Solution<T> Search (ISearchable<T> searchable);
         
         // get how many nodes were evaluated by the algorithm 
         int getNumberOfNodesEvaluated();

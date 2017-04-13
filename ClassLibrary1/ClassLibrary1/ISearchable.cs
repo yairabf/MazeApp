@@ -14,7 +14,7 @@ namespace ClassLibrary1
 
         List<State<T>> getAllPossibleStates(State<T> s);
 
-        Solution getSolution();
+        Solution<T> getSolution();
     }
 
 }

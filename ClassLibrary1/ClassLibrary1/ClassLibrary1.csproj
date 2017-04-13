@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BFS.cs" />
-    <Compile Include="Priority.cs" />
+    <Compile Include="PriorityQueueSearcher.cs" />
     <Compile Include="Solution.cs" />
     <Compile Include="Searcher.cs" />
     <Compile Include="ISearcher.cs" />

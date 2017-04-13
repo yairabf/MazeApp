@@ -37,5 +37,10 @@ namespace ClassLibrary1
             return this.cameFrom;
         }
 
+        public String ToString()
+        {
+            return state.ToString();
+        }
+
     }
 }

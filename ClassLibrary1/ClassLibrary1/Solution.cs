@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1
 {
-    public class Solution<State>
+    public class Solution<T>
     {
-        private Stack<State<T>> solutionStack;
+        private List<State<T>> solutionList;
 
         public Solution()
         {
-            solutionStack = new Stack<State<T>>();       
+            solutionList = new List<State<T>>();       
         }
         /**
          * receives a goal state and builds the solution
@@ -22,24 +22,16 @@ namespace ClassLibrary1
         {
             while(goal != null)
             {
-                solutionStack.Push(goal);
+                solutionList.Add(goal);
                 goal = goal.getCameFrom();
             }
         }
 
-        public String toString()
+        public void printSolution()
         {
-            if(solutionStack)
+            foreach (State<T> s in solutionList)
             {
-                while(solutionStack.Count > 0)
-                {
-                    State state = solutionStack.Pop();
-                    Console.WriteLine(state.ToString);
-                }
-            }
-            else
-            {
-                Console.WriteLine("stack has not been initialized");
+                Console.WriteLine(s.ToString());
             }
         }
     }

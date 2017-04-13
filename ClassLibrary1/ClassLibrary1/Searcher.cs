@@ -1,14 +1,18 @@
-﻿using System;
-
-public abstract class Searcher<T> : ISearcher<T>
+﻿using ClassLibrary1;
+using System;
+namespace ClassLibrary1
 {
-    private int evaluatedNodes = 0;
-    // ISearcher’s methods:
-        int getNumberOfNodesEvaluated()
+    public abstract class Searcher<T> : ISearcher<T>
+    {
+        protected int evaluatedNodes = 0;
+        
+        // ISearcher’s methods:
+        public int getNumberOfNodesEvaluated()
         {
             return evaluatedNodes;
         }
-        protected abstract Solution backTrace(State<T> n); 
+        protected abstract Solution<T> backTrace(State<T> n);
 
-        public abstract Solution search(ISearchable<T> searchable);
+        public abstract Solution<T> Search(ISearchable<T> searchable);
+    }
 }

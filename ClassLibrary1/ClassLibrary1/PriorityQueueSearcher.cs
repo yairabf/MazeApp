@@ -7,10 +7,14 @@ using Priority_Queue;
 
 namespace ClassLibrary1
 {
-    public abstract class PriorityQueueSearcher : Searcher<T>
+    public abstract class PriorityQueueSearcher<T> : Searcher<T>
     {
-        private SimplePriorityQueue<State<T>, double> openList = new SimplePriorityQueue<State<T>, double>();
+        private SimplePriorityQueue<State<T>, double> openList;
 
+        public PriorityQueueSearcher()
+        {
+            openList = new SimplePriorityQueue<State<T>, double>();
+        }
         protected State<T> popOpenList()
         {
             evaluatedNodes++;
@@ -26,20 +30,14 @@ namespace ClassLibrary1
         public int OpenListSize { // it is a read-only property :) 
             get { return openList.Count; }
         }
-        
-        // ISearcher’s methods:
-        public int getNumberOfNodesEvaluated()
-        {
-            return evaluatedNodes;
-        }
 
         protected bool openContains(State<T> s)
         {
             return openList.Contains(s);
         }
 
-        protected abstract Solution backTrace(); 
+        //protected abstract Solution<T> backTrace(State<T> n); 
 
-        public abstract Solution search(ISearchable<T> searchable);
+        //public abstract Solution<T> Search(ISearchable<T> searchable);
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1
 {
-    public class BFS : Pr
+    public class BFS<T> : PriorityQueueSearcher<T>
     {
-        public override Solution search(ISearchable<T> searchable)
+        public override Solution<T> Search(ISearchable<T> searchable)
         { 
             // Searcher's abstract method overriding
             addToOpenList(searchable.getInitialState()); // inherited from Searcher
@@ -35,8 +35,7 @@ namespace ClassLibrary1
                     if((n.getCost() + 1) < (s.getCost()))
                     {
                        s.setCost(n.getCost() + 1);
-                       open
-                       
+                   
                     }
                 } 
             }
@@ -44,11 +43,10 @@ namespace ClassLibrary1
             return null;
         }
     }
-
-    private override Solution backTrace(State<T> n)
-    {
-        Solution solution = new Solution();
-        solution.buildSolution(n);
-        return solution;
-    } 
+        private override Solution<T> backTrace(State<T> n)
+        {
+            Solution<T> solution = new Solution<T>();
+            solution.buildSolution(n);
+            return solution;
+        }
 }
