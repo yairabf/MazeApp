@@ -8,6 +8,7 @@ namespace ClassLibrary1
 {
     public class Solution<T>
     {
+        
         private Stack<State<T>> solutionList;
 
         public Solution()
