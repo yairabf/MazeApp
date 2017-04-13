@@ -8,8 +8,8 @@ namespace ClassLibrary1
 {
     public class State<T>
     {
-        private T state;    // the state represented by a string 
-        private double cost;     // cost to reach this state (set by a setter) 
+        private T state;    // the state represented by a string
+        private double cost;     // cost to reach this state (set by a setter)
         private State<T> cameFrom;  // the state we came from to this state (setter)
 
         public State(T state)    // CTOR 
@@ -41,6 +41,7 @@ namespace ClassLibrary1
         {
             return state.ToString();
         }
+
         public void setCameFrom(State<T> s)
         {
             this.cameFrom = s;
