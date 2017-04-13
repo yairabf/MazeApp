@@ -16,11 +16,22 @@ namespace ClassLibrary1
         {
             this.state = state;
         }
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as State<T>);
+        }
 
         public bool Equals(State<T> s) // we override Object's Equals method 
         {
+            if (s == null)
+                return false;
             return state.Equals(s.state);
         } // ...
+
+        public override int GetHashCode()
+        {
+            return state.GetHashCode();
+        }
 
         public double getCost()
         {

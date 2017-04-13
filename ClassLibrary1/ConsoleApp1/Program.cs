@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using MazeLib;
 using MazeGeneratorLib;
-namespace ClassLibrary1
-{
-    class Program
+using ClassLibrary1;
+
+class Program
     {
-        public static void main(string[] args)
+        public static void Main(string[] args)
         {
             compareSolvers();
         }
@@ -19,7 +19,7 @@ namespace ClassLibrary1
             DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
             Maze maze = mazeGenerator.Generate(10, 10);
             Console.WriteLine(maze.ToString());
-            BFS<Position> bfs = new BFS<Position>();
+            DFS<Position> bfs = new DFS<Position>();
             MazeToSearchableAdapter adapter = new MazeToSearchableAdapter(maze);
             Solution<Position> bfsSolution = bfs.Search(adapter);
             bfsSolution.printSolution();
@@ -29,4 +29,3 @@ namespace ClassLibrary1
 
 
     }
-}

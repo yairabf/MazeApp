@@ -59,7 +59,6 @@
     <Compile Include="DFS.cs" />
     <Compile Include="MazeToSearchableAdapter.cs" />
     <Compile Include="PriorityQueueSearcher.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Solution.cs" />
     <Compile Include="Searcher.cs" />
     <Compile Include="ISearcher.cs" />

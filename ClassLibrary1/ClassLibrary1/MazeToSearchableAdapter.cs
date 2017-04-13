@@ -7,7 +7,7 @@ using MazeLib;
 
 namespace ClassLibrary1
 {
-    class MazeToSearchableAdapter : ISearchable<Position>
+    public class MazeToSearchableAdapter : ISearchable<Position>
     {
         private Maze maze;
 
