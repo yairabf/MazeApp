@@ -14,13 +14,13 @@ namespace ClassLibrary1
             // Searcher's abstract method overriding
             AddToOpenList(searchable.GetInitialState()); // inherited from Searcher
             HashSet<State<T>> closed = new HashSet<State<T>>();
-            while (OpenListSize > 0)
+            while (this.OpenListSize > 0)
             {
                 State<T> n = PopOpenList();  // inherited from Searcher, removes the best state
                 closed.Add(n);
                 if (n.Equals(searchable.GetGoalState()))
                 {
-                    return this.BackTrace(n); // private method, back traces through the parents
+                    return BackTrace(n); // private method, back traces through the parents
                     // calling the delegated method, returns a list of states with n as a parent
                 }
 
@@ -30,19 +30,19 @@ namespace ClassLibrary1
                     //State<T> cameFrom = s.getCameFrom();
                     if (!closed.Contains(s) && !OpenContains(s))
                     {
-                        s.SetCameFrom(n);  // already done by getSuccessors
+                        s.SetCameFrom(n); // already done by getSuccessors
                         AddToOpenList(s);
                     }
                     else if (!OpenContains(s))
                     {
-                        AddToOpenList(s);
-                    }
-                    //openList.UpdatePriority(s, 5);
-                    if ((n.GetCost() + 1) < (s.GetCost()))
-                    {
-                        s.SetCameFrom(n);
-                        s.SetCost(n.GetCost() + 1);
-                        openList.UpdatePriority(s, s.GetCost());
+
+                        //openList.UpdatePriority(s, 5);
+                        if ((n.GetCost() + 1) < (s.GetCost()))
+                        {
+                            s.SetCameFrom(n);
+                            //s.SetCost(n.GetCost() + 1);
+                            openList.UpdatePriority(s, s.GetCost());
+                        }
                     }
                 }
             }
