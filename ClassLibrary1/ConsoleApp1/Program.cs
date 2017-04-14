@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MazeLib;
-using MazeGeneratorLib;
 using ClassLibrary1;
+using MazeGeneratorLib;
+using MazeLib;
 
-class Program
+namespace ConsoleApp1
+{
+    class Program
     {
         public static void Main(string[] args)
         {
-            compareSolvers();
+            CompareSolvers();
         }
 
-        public static void compareSolvers()
+        public static void CompareSolvers()
         {
             DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
             Maze maze = mazeGenerator.Generate(10, 10);
@@ -28,8 +26,9 @@ class Program
             Solution<Position> dfsSolution = dfs.Search(adapter);
             dfsSolution.printSolution();
             Console.WriteLine(dfs.getNumberOfNodesEvaluated());
-        //the same for dfs
-    }
+            //the same for dfs
+        }
 
 
     }
+}
