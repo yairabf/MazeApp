@@ -1,5 +1,5 @@
 ﻿
-namespace ConsoleApp2
+namespace ServerConsole
 {
     using System;
     using System.Collections.Generic;
@@ -15,11 +15,13 @@ namespace ConsoleApp2
         private int port;
         private TcpListener listener;
         private IClientHandler ch;
+
         public Server(int port, IClientHandler ch)
         {
             this.port = port;
             this.ch = ch;
         }
+
         public void Start()
         {
             IPEndPoint ep = new
@@ -35,17 +37,19 @@ namespace ConsoleApp2
                         {
                             TcpClient client = listener.AcceptTcpClient();
                             Console.WriteLine("Got new connection");
-                            ch.HandleClient(client);
+                            this.ch.HandleClient(client);
                         }
                         catch (SocketException)
                         {
                             break;
                         }
                     }
+
                     Console.WriteLine("Server stopped");
                 });
             task.Start();
         }
+
         public void Stop()
         {
             listener.Stop();

@@ -1,5 +1,5 @@
 ﻿
-namespace ConsoleApp2
+namespace ServerConsole
 {
     using System;
     using System.Collections.Generic;
