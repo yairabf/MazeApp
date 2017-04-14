@@ -8,7 +8,7 @@ namespace ServerConsole
     using System.Text;
     using System.Threading.Tasks;
 
-    interface IClientHandler
+    interface IClientHandler : IView
     {
         void HandleClient(TcpClient client);
     }

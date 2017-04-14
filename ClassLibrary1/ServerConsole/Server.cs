@@ -26,16 +26,17 @@ namespace ServerConsole
         {
             IPEndPoint ep = new
                 IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
-            listener = new TcpListener(ep);
+            this.listener = new TcpListener(ep);
 
-            listener.Start();
+            this.listener.Start();
             Console.WriteLine("Waiting for connections...");
-            Task task = new Task(() => {
+            Task task = new Task(() => 
+            {
                     while (true)
                     {
                         try
                         {
-                            TcpClient client = listener.AcceptTcpClient();
+                            TcpClient client = this.listener.AcceptTcpClient();
                             Console.WriteLine("Got new connection");
                             this.ch.HandleClient(client);
                         }
@@ -52,7 +53,7 @@ namespace ServerConsole
 
         public void Stop()
         {
-            listener.Stop();
+            this.listener.Stop();
         }
     }
 }

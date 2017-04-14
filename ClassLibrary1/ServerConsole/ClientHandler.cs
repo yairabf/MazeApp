@@ -11,6 +11,7 @@ namespace ServerConsole
 
     class ClientHandler : IClientHandler
     {
+        private 
         public void HandleClient(TcpClient client)
         {
             new Task(() =>
