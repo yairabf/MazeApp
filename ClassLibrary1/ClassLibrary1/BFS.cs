@@ -23,10 +23,10 @@ namespace ClassLibrary1
                 List<State<T>> succerssors = searchable.getAllPossibleStates(n);
                 foreach (State<T> s in succerssors)
                 {
-                    State<T> cameFrom = s.getCameFrom();
+                    //State<T> cameFrom = s.getCameFrom();
                     if (!closed.Contains(s) && !openContains(s))
                     {
-                        // s.setCameFrom(n);  // already done by getSuccessors
+                        s.setCameFrom(n);  // already done by getSuccessors
                         addToOpenList(s);
                     }
                     else if (!openContains(s))

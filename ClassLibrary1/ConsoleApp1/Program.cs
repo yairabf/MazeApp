@@ -19,13 +19,17 @@ class Program
             DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
             Maze maze = mazeGenerator.Generate(10, 10);
             Console.WriteLine(maze.ToString());
-            DFS<Position> bfs = new DFS<Position>();
+            BFS<Position> bfs = new BFS<Position>();
+            DFS<Position> dfs = new DFS<Position>();
             MazeToSearchableAdapter adapter = new MazeToSearchableAdapter(maze);
             Solution<Position> bfsSolution = bfs.Search(adapter);
             bfsSolution.printSolution();
             Console.WriteLine(bfs.getNumberOfNodesEvaluated());
-            //the same for dfs
-        }
+            Solution<Position> dfsSolution = dfs.Search(adapter);
+            dfsSolution.printSolution();
+            Console.WriteLine(dfs.getNumberOfNodesEvaluated());
+        //the same for dfs
+    }
 
 
     }
