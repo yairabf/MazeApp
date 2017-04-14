@@ -1,17 +1,28 @@
-﻿using System;
-using ClassLibrary1;
-using MazeGeneratorLib;
-using MazeLib;
-
+﻿
 namespace ConsoleApp1
 {
-    class Program
+    using System;
+    using ClassLibrary1;
+    using MazeGeneratorLib;
+    using MazeLib;
+
+    /// <summary>
+    /// the Main program that runs everything
+    /// </summary>
+    public class Program
     {
+        /// <summary>
+        /// Mains the specified arguments.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         public static void Main(string[] args)
         {
             CompareSolvers();
         }
 
+        /// <summary>
+        /// Compares the solvers.
+        /// </summary>
         public static void CompareSolvers()
         {
             DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
@@ -26,9 +37,6 @@ namespace ConsoleApp1
             Solution<Position> dfsSolution = dfs.Search(adapter);
             dfsSolution.PrintSolution();
             Console.WriteLine(dfs.GetNumberOfNodesEvaluated());
-            //the same for dfs
         }
-
-
     }
 }

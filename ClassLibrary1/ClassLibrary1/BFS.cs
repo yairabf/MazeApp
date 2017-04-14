@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ClassLibrary1
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     public class Bfs<T> : PriorityQueueSearcher<T>
     {
         public override Solution<T> Search(ISearchable<T> searchable)
@@ -18,8 +19,11 @@ namespace ClassLibrary1
                 State<T> n = PopOpenList();  // inherited from Searcher, removes the best state
                 closed.Add(n);
                 if (n.Equals(searchable.GetGoalState()))
-                    return BackTrace(n); // private method, back traces through the parents
-                                         // calling the delegated method, returns a list of states with n as a parent
+                {
+                    return this.BackTrace(n); // private method, back traces through the parents
+                    // calling the delegated method, returns a list of states with n as a parent
+                }
+
                 List<State<T>> succerssors = searchable.GetAllPossibleStates(n);
                 foreach (State<T> s in succerssors)
                 {
