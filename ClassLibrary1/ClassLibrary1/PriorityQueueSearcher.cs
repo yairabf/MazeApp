@@ -15,15 +15,15 @@ namespace ClassLibrary1
         {
             openList = new SimplePriorityQueue<State<T>, double>();
         }
-        protected State<T> popOpenList()
+        protected State<T> PopOpenList()
         {
-            evaluatedNodes++;
+            EvaluatedNodes++;
             return openList.Dequeue();
         }
 
-        protected void addToOpenList(State<T> s)
+        protected void AddToOpenList(State<T> s)
         {
-            openList.Enqueue(s, s.getCost());
+            openList.Enqueue(s, s.GetCost());
         }
         
         // a property of openList 
@@ -31,7 +31,7 @@ namespace ClassLibrary1
             get { return openList.Count; }
         }
 
-        protected bool openContains(State<T> s)
+        protected bool OpenContains(State<T> s)
         {
             return openList.Contains(s);
         }

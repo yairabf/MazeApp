@@ -18,16 +18,16 @@ namespace ClassLibrary1
          * receives a goal state and builds the solution
          * 
          */
-        public void buildSolution(State<T> goal)
+        public void BuildSolution(State<T> goal)
         {
             while(goal != null)
             {
                 solutionList.Push(goal);
-                goal = goal.getCameFrom();
+                goal = goal.GetCameFrom();
             }
         }
 
-        public void printSolution()
+        public void PrintSolution()
         {
             foreach (State<T> s in solutionList)
             {

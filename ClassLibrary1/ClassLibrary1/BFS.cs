@@ -6,49 +6,49 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1
 {
-    public class BFS<T> : PriorityQueueSearcher<T>
+    public class Bfs<T> : PriorityQueueSearcher<T>
     {
         public override Solution<T> Search(ISearchable<T> searchable)
         {
             // Searcher's abstract method overriding
-            addToOpenList(searchable.getInitialState()); // inherited from Searcher
+            AddToOpenList(searchable.GetInitialState()); // inherited from Searcher
             HashSet<State<T>> closed = new HashSet<State<T>>();
             while (OpenListSize > 0)
             {
-                State<T> n = popOpenList();  // inherited from Searcher, removes the best state
+                State<T> n = PopOpenList();  // inherited from Searcher, removes the best state
                 closed.Add(n);
-                if (n.Equals(searchable.getGoalState()))
-                    return backTrace(n); // private method, back traces through the parents
+                if (n.Equals(searchable.GetGoalState()))
+                    return BackTrace(n); // private method, back traces through the parents
                                          // calling the delegated method, returns a list of states with n as a parent
-                List<State<T>> succerssors = searchable.getAllPossibleStates(n);
+                List<State<T>> succerssors = searchable.GetAllPossibleStates(n);
                 foreach (State<T> s in succerssors)
                 {
                     //State<T> cameFrom = s.getCameFrom();
-                    if (!closed.Contains(s) && !openContains(s))
+                    if (!closed.Contains(s) && !OpenContains(s))
                     {
-                        s.setCameFrom(n);  // already done by getSuccessors
-                        addToOpenList(s);
+                        s.SetCameFrom(n);  // already done by getSuccessors
+                        AddToOpenList(s);
                     }
-                    else if (!openContains(s))
+                    else if (!OpenContains(s))
                     {
-                        addToOpenList(s);
+                        AddToOpenList(s);
                     }
                     //openList.UpdatePriority(s, 5);
-                    if ((n.getCost() + 1) < (s.getCost()))
+                    if ((n.GetCost() + 1) < (s.GetCost()))
                     {
-                        s.setCameFrom(n);
-                        s.setCost(n.getCost() + 1);
-                        openList.UpdatePriority(s, s.getCost());
+                        s.SetCameFrom(n);
+                        s.SetCost(n.GetCost() + 1);
+                        openList.UpdatePriority(s, s.GetCost());
                     }
                 }
             }
             Console.WriteLine("have not reached the goal");
             return null;
         }
-        protected override Solution<T> backTrace(State<T> n)
+        protected override Solution<T> BackTrace(State<T> n)
         {
             Solution<T> solution = new Solution<T>();
-            solution.buildSolution(n);
+            solution.BuildSolution(n);
             return solution;
         }
     }

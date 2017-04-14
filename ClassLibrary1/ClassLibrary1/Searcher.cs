@@ -4,16 +4,16 @@ namespace ClassLibrary1
 {
     public abstract class Searcher<T> : ISearcher<T>
     {
-        protected int evaluatedNodes = 0;
+        protected int EvaluatedNodes = 0;
         
         // ISearcher’s methods:
-        public int getNumberOfNodesEvaluated()
+        public int GetNumberOfNodesEvaluated()
         {
-            return evaluatedNodes;
+            return EvaluatedNodes;
         }
 
         public abstract Solution<T> Search(ISearchable<T> searchable);
 
-        protected abstract Solution<T> backTrace(State<T> n);
+        protected abstract Solution<T> BackTrace(State<T> n);
     }
 }

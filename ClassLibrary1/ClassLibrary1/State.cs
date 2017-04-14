@@ -8,13 +8,13 @@ namespace ClassLibrary1
 {
     public class State<T>
     {
-        private T state;    // the state represented by a string
-        private double cost;     // cost to reach this state (set by a setter)
-        private State<T> cameFrom;  // the state we came from to this state (setter)
+        private T _state;    // the state represented by a string
+        private double _cost;     // cost to reach this state (set by a setter)
+        private State<T> _cameFrom;  // the state we came from to this state (setter)
 
         public State(T state)    // CTOR 
         {
-            this.state = state;
+            this._state = state;
         }
         public override bool Equals(object obj)
         {
@@ -25,42 +25,42 @@ namespace ClassLibrary1
         {
             if (s == null)
                 return false;
-            return state.Equals(s.state);
+            return _state.Equals(s._state);
         } // ...
 
         public override int GetHashCode()
         {
-            return state.GetHashCode();
+            return _state.GetHashCode();
         }
 
-        public double getCost()
+        public double GetCost()
         {
-            return this.cost;
+            return this._cost;
         }
 
-        public void setCost(double c)
+        public void SetCost(double c)
         {
-            this.cost = c;
+            this._cost = c;
         }
 
-        public State<T> getCameFrom()
+        public State<T> GetCameFrom()
         {
-            return this.cameFrom;
+            return this._cameFrom;
         }
 
-        public void setCameFrom(State<T> s)
+        public void SetCameFrom(State<T> s)
         {
-            this.cameFrom = s;
+            this._cameFrom = s;
         }
 
         public String ToString()
         {
-            return state.ToString();
+            return _state.ToString();
         }
 
-        public T getState()
+        public T GetState()
         {
-            return this.state;
+            return this._state;
         }
 
         /*public static class StatePool

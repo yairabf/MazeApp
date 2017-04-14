@@ -13,26 +13,26 @@ namespace ClassLibrary1
 
         public MazeToSearchableAdapter(Maze m)
         {
-            this.maze = m;
+            maze = m;
         }
 
-        public State<Position> getInitialState()
+        public State<Position> GetInitialState()
         {
             State<Position> state = new State<Position>(maze.InitialPos);
             return state;
         }
 
-        public State<Position> getGoalState()
+        public State<Position> GetGoalState()
         {
             State<Position> state = new State<Position>(maze.GoalPos);
             return state;
         }
         //returns all neighbours of the state
         //*******************************************************************need to check if columns and rows start from 0
-        public List<State<Position>> getAllPossibleStates(State<Position> currentState)
+        public List<State<Position>> GetAllPossibleStates(State<Position> currentState)
         {
             List <State<Position>> list = new List<State<Position>>();
-            Position currentPos = (Position)currentState.getState();
+            Position currentPos = currentState.GetState();
             State<Position> neighbour;
             //left neighbour
             if ((currentPos.Col > 0) && (maze[currentPos.Row, currentPos.Col - 1] == CellType.Free))

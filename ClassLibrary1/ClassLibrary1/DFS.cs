@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1
 {
-    public class DFS<T> : Searcher<T>
+    public class Dfs<T> : Searcher<T>
     {
         public override Solution<T> Search(ISearchable<T> searchable)
         {
             Stack<State<T>> stack = new Stack<State<T>>();
             HashSet<State<T>> finished = new HashSet<State<T>>();
-            stack.Push(searchable.getInitialState());
-            while (stack.Count() > 0)
+            stack.Push(searchable.GetInitialState());
+            while (stack.Any())
             {
                 State<T> current = stack.Pop();
-                evaluatedNodes++;
-                if (current.Equals(searchable.getGoalState()))
+                EvaluatedNodes++;
+                if (current.Equals(searchable.GetGoalState()))
                 {
-                    return backTrace(current);
+                    return BackTrace(current);
                 }
                 if (!finished.Contains(current))
                 {
                     finished.Add(current);
-                    List<State<T>> succerssors = searchable.getAllPossibleStates(current);
+                    List<State<T>> succerssors = searchable.GetAllPossibleStates(current);
                     foreach (State<T> s in succerssors)
                     {
                         if (!stack.Contains(s) && !finished.Contains(s))
                         {
-                            s.setCameFrom(current);
+                            s.SetCameFrom(current);
                             stack.Push(s);
                         }
                     }
@@ -39,10 +39,10 @@ namespace ClassLibrary1
             return null;
         }
 
-        protected override Solution<T> backTrace(State<T> n)
+        protected override Solution<T> BackTrace(State<T> n)
         {
             Solution<T> sol = new Solution<T>();
-            sol.buildSolution(n);
+            sol.BuildSolution(n);
             return sol;
         }
     }

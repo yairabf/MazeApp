@@ -17,15 +17,15 @@ namespace ConsoleApp1
             DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
             Maze maze = mazeGenerator.Generate(10, 10);
             Console.WriteLine(maze.ToString());
-            BFS<Position> bfs = new BFS<Position>();
-            DFS<Position> dfs = new DFS<Position>();
+            Bfs<Position> bfs = new Bfs<Position>();
+            Dfs<Position> dfs = new Dfs<Position>();
             MazeToSearchableAdapter adapter = new MazeToSearchableAdapter(maze);
             Solution<Position> bfsSolution = bfs.Search(adapter);
-            bfsSolution.printSolution();
-            Console.WriteLine(bfs.getNumberOfNodesEvaluated());
+            bfsSolution.PrintSolution();
+            Console.WriteLine(bfs.GetNumberOfNodesEvaluated());
             Solution<Position> dfsSolution = dfs.Search(adapter);
-            dfsSolution.printSolution();
-            Console.WriteLine(dfs.getNumberOfNodesEvaluated());
+            dfsSolution.PrintSolution();
+            Console.WriteLine(dfs.GetNumberOfNodesEvaluated());
             //the same for dfs
         }
 
