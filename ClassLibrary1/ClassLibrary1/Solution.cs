@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MazeLib;
 
 namespace ClassLibrary1
 {
@@ -33,6 +34,11 @@ namespace ClassLibrary1
             {
                 Console.WriteLine(s.ToString());
             }
+        }
+
+        public string ToJason()
+        {
+             
         }
     }
 }

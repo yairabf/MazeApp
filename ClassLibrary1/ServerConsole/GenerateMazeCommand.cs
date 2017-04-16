@@ -1,5 +1,7 @@
 ﻿
 
+using MazeLib;
+
 namespace ServerConsole
 {
     using System;
@@ -19,7 +21,7 @@ namespace ServerConsole
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
-            Maze maze = model.GenerateMaze(name, rows, cols);
+            Maze maze = model.Generate(name, rows, cols);
             return maze.ToJSON();
         }
     }

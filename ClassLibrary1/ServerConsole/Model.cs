@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary1;
@@ -16,6 +17,7 @@ namespace ServerConsole
         private Dictionary<string, Maze> mazes;
         private Dictionary<string, Solution<Position>> bfsMazes;
         private Dictionary<string, Solution<Position>> dfsMazes;
+        private Dictionary<string, Game> gameDictionary;
 
 
 
@@ -24,6 +26,7 @@ namespace ServerConsole
             mazes = new Dictionary<string, Maze>();
             bfsMazes = new Dictionary<string, Solution<Position>>();
             dfsMazes = new Dictionary<string, Solution<Position>>();
+            gameDictionary = new Dictionary<string, Game>();
         }
 
         /// <summary>
@@ -40,8 +43,11 @@ namespace ServerConsole
             {
                 return maze;
             }
+
             DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
             maze = mazeGenerator.Generate(rows, cols);
+            maze.Name = name;
+            this.mazes.Add(maze.Name, maze);
             return maze;
         }
 
@@ -88,6 +94,30 @@ namespace ServerConsole
             }
 
             return new Solution<Position>();
+        }
+
+        public string StartGame(string gameName, int rows, int cols, TcpClient tcpClient)
+        {
+            Game game;
+            if (gameDictionary.TryGetValue(gameName, out game))
+            {
+                return "game is occupied";
+            }
+            Maze maze = this.Generate(gameName, rows, cols);
+            game = new Game(maze, new Player("playerOne", tcpClient));
+            gameDictionary.Add(gameName, game);
+            return "Waiting for second player";
+        }
+
+        public string JoinGame(string gameName, TcpClient tcpClient)
+        {
+            Game game;
+            if (gameDictionary.TryGetValue(gameName, out game))
+            {
+                game.SetPlayerTwo(new Player("PlayerTwo", tcpClient));
+                return game.ToJSON();
+            }
+            return "Game does not exist";
         }
 
 

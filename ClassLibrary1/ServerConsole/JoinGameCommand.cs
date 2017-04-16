@@ -5,9 +5,17 @@ namespace ServerConsole
 {
     class JoinGameCommand : ICommand
     {
+        private IModel model;
+
+        public JoinGameCommand(IModel model)
+        {
+            this.model = model;
+        }
+
         public string Execute(string[] args, TcpClient client = null)
         {
-            throw new NotImplementedException();
+            string name = args[0];
+            return this.model.JoinGame(name, client);
         }
     }
 }
