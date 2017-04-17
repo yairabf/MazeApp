@@ -38,7 +38,10 @@ namespace ClassLibrary1
 
         public string ToJason()
         {
-             
+            JObject mazeObj = new JObject();
+            mazeObj["Name"] = Name;
+            mazeObj["Rows"] = Rows;
+            mazeObj["Cols"] = Cols;
         }
     }
 }

@@ -89,7 +89,6 @@ namespace ServerConsole
                     MazeToSearchableAdapter adapter = new MazeToSearchableAdapter(maze);
                     Solution<Position> dfsSolution = dfs.Search(adapter);
                     return dfsSolution;
-                     
                 }
             }
 
@@ -115,7 +114,7 @@ namespace ServerConsole
             if (gameDictionary.TryGetValue(gameName, out game))
             {
                 game.SetPlayerTwo(new Player("PlayerTwo", tcpClient));
-                return game.ToJSON();
+                return game.SendStartingMessages();
             }
             return "Game does not exist";
         }

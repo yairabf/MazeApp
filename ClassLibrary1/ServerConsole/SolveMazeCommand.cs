@@ -19,7 +19,11 @@ namespace ServerConsole
             string name = args[0];
             int algorithm = int.Parse(args[1]);
             Solution<Position> solution = this.model.Solve(name, algorithm);
-            return solution.ToJason();
+            //return solution.ToJason();
+            JObject mazeObj = new JObject();
+            mazeObj["Name"] = ;
+            mazeObj["Rows"] = Rows;
+            mazeObj["Cols"] = Cols;
         }
     }
 }
