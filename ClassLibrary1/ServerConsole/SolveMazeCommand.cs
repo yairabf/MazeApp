@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using ClassLibrary1;
 using MazeLib;
+using Newtonsoft.Json.Linq;
 
 namespace ServerConsole
 {
@@ -20,10 +21,11 @@ namespace ServerConsole
             int algorithm = int.Parse(args[1]);
             Solution<Position> solution = this.model.Solve(name, algorithm);
             //return solution.ToJason();
-            JObject mazeObj = new JObject();
-            mazeObj["Name"] = ;
-            mazeObj["Rows"] = Rows;
-            mazeObj["Cols"] = Cols;
+            JObject solutionObj = new JObject();
+            solutionObj["Name"] = name;
+            solutionObj["solution"] = solution.ToString();
+            solutionObj["NodesEvaluated"] = solution.GetEvaluatedNodes();
+            return solutionObj.ToString();
         }
     }
 }

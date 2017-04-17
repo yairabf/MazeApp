@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MazeLib;
+using Newtonsoft.Json.Linq;
 
 namespace ClassLibrary1
 {
     public class Solution<T>
     {
+        private int nodesEvaluated;
         private Stack<State<T>> solutionList;
 
         public Solution()
@@ -19,13 +21,14 @@ namespace ClassLibrary1
          * receives a goal state and builds the solution
          * 
          */
-        public void BuildSolution(State<T> goal)
+        public void BuildSolution(State<T> goal, int nodes)
         {
             while(goal != null)
             {
                 solutionList.Push(goal);
                 goal = goal.GetCameFrom();
             }
+            this.nodesEvaluated = nodes;
         }
 
         public void PrintSolution()
@@ -36,12 +39,20 @@ namespace ClassLibrary1
             }
         }
 
-        public string ToJason()
+        public override string ToString()
         {
-            JObject mazeObj = new JObject();
-            mazeObj["Name"] = Name;
-            mazeObj["Rows"] = Rows;
-            mazeObj["Cols"] = Cols;
+            string solutionAsString = string.Empty;
+            while (solutionList.Count != 0)
+            {
+                State < T > state = solutionList.Pop();
+                solutionAsString += state.ToString();
+            }
+            return solutionAsString;
+        }
+
+        public int GetEvaluatedNodes()
+        {
+            return this.nodesEvaluated;
         }
     }
 }
