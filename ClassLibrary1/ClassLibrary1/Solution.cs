@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,3 +44,31 @@ namespace ClassLibrary1
         }
     }
 }
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MazeLib;
+using Newtonsoft.Json.Linq;
+
+namespace ClassLibrary1
+{
+    public interface Solution<T>
+    { 
+        /**
+         * receives a goal state and builds the solution
+         * 
+         */
+        void BuildSolution(State<T> goal, int nodes);
+
+        void PrintSolution();
+
+        string ToString();
+
+        int GetEvaluatedNodes();
+
+    }
+}
+>>>>>>> e4383228fb054b6834708d69bc8bfbcf4f6e5a87

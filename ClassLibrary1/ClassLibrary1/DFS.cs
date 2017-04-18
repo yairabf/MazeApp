@@ -42,7 +42,7 @@ namespace ClassLibrary1
         protected override Solution<T> BackTrace(State<T> n)
         {
             Solution<T> sol = new Solution<T>();
-            sol.BuildSolution(n);
+            sol.BuildSolution(n, EvaluatedNodes);
             return sol;
         }
     }

@@ -37,10 +37,13 @@
       <HintPath>..\packages\PriorityQueue.0.1.0\lib\net45\ConcurrentPriorityQueue.dll</HintPath>
     </Reference>
     <Reference Include="MazeGeneratorLib">
-      <HintPath>..\..\..\..\לימודים\שנה ב\תכנות מתקדם 2\MazeGeneratorLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\MazeGeneratorLib.dll</HintPath>
     </Reference>
     <Reference Include="MazeLib">
-      <HintPath>..\..\..\..\לימודים\שנה ב\תכנות מתקדם 2\MazeLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\MazeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -60,6 +63,7 @@
   <ItemGroup>
     <Compile Include="BFS.cs" />
     <Compile Include="DFS.cs" />
+    <Compile Include="MazeSolution.cs" />
     <Compile Include="MazeToSearchableAdapter.cs" />
     <Compile Include="PriorityQueueSearcher.cs" />
     <Compile Include="Solution.cs" />
