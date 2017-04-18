@@ -108,15 +108,15 @@ namespace ServerConsole
             return "Waiting for second player";
         }
 
-        public string JoinGame(string gameName, TcpClient tcpClient)
+        public void JoinGame(string gameName, TcpClient tcpClient)
         {
             Game game;
             if (gameDictionary.TryGetValue(gameName, out game))
             {
                 game.SetPlayerTwo(new Player("PlayerTwo", tcpClient));
-                return game.SendStartingMessages();
+                game.SendStartingMessages();
             }
-            return "Game does not exist";
+            //return "Game does not exist";
         }
 
 
