@@ -12,11 +12,11 @@ namespace ServerConsole
     using MazeGeneratorLib;
     using MazeLib;
 
-    class Model<T> : IModel
+    class Model : IModel
     {
         private Dictionary<string, Maze> mazes;
-        private Dictionary<string, Solution<Position>> bfsMazes;
-        private Dictionary<string, Solution<Position>> dfsMazes;
+        private Dictionary<string, ISolution<Position>> bfsMazes;
+        private Dictionary<string, ISolution<Position>> dfsMazes;
         private Dictionary<string, Game> gameDictionary;
 
 
@@ -24,8 +24,8 @@ namespace ServerConsole
         public Model()
         {
             mazes = new Dictionary<string, Maze>();
-            bfsMazes = new Dictionary<string, Solution<Position>>();
-            dfsMazes = new Dictionary<string, Solution<Position>>();
+            bfsMazes = new Dictionary<string, ISolution<Position>>();
+            dfsMazes = new Dictionary<string, ISolution<Position>>();
             gameDictionary = new Dictionary<string, Game>();
         }
 
@@ -58,11 +58,13 @@ namespace ServerConsole
         /// <param name="name">The name.</param>
         /// <param name="algorithm">The algorithm.</param>
         /// <returns>the wanted solution</returns>
-        public Solution<Position> Solve(string name, int algorithm)
+        public ISolution<Position> Solve(string name, int algorithm)
         {
-            Solution<Position> solvedMaze;
+            Console.WriteLine("in model function");
+            ISolution<Position> solvedMaze;
             if (algorithm == 0)
             {
+                Console.WriteLine("in model function bfs solution");
                 if (this.bfsMazes.TryGetValue(name, out solvedMaze))
                 {
                     return solvedMaze;
@@ -70,9 +72,11 @@ namespace ServerConsole
                 Maze maze;
                 if (this.mazes.TryGetValue(name, out maze))
                 {
+                    Console.WriteLine("in model function mazes");
                     Bfs<Position> bfs = new Bfs<Position>();
                     MazeToSearchableAdapter adapter = new MazeToSearchableAdapter(maze);
-                    Solution<Position> bfsSolution = bfs.Search(adapter);
+                    ISolution<Position> bfsSolution = bfs.Search(adapter);
+                    Console.WriteLine(bfsSolution.ToString());
                     return bfsSolution;
                 }
             }
@@ -87,12 +91,12 @@ namespace ServerConsole
                 {
                     Dfs<Position> dfs = new Dfs<Position>();
                     MazeToSearchableAdapter adapter = new MazeToSearchableAdapter(maze);
-                    Solution<Position> dfsSolution = dfs.Search(adapter);
+                    ISolution<Position> dfsSolution = dfs.Search(adapter);
                     return dfsSolution;
                 }
             }
 
-            return new Solution<Position>();
+            return null;
         }
 
         public string StartGame(string gameName, int rows, int cols, TcpClient tcpClient)

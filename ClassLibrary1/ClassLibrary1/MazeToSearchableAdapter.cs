@@ -10,10 +10,12 @@ namespace ClassLibrary1
     public class MazeToSearchableAdapter : ISearchable<Position>
     {
         private Maze maze;
+        private MazeSolution solution;
 
         public MazeToSearchableAdapter(Maze m)
         {
             maze = m;
+            solution = new MazeSolution();
         }
 
         public State<Position> GetInitialState()
@@ -27,8 +29,10 @@ namespace ClassLibrary1
             State<Position> state = new State<Position>(maze.GoalPos);
             return state;
         }
-        //returns all neighbours of the state
-        //*******************************************************************need to check if columns and rows start from 0
+        
+        // returns all neighbours of the state
+        
+        // *******************************************************************need to check if columns and rows start from 0
         public List<State<Position>> GetAllPossibleStates(State<Position> currentState)
         {
             List <State<Position>> list = new List<State<Position>>();
@@ -60,6 +64,11 @@ namespace ClassLibrary1
             }
             return list;
 
+        }
+
+        public Solution<Position> GetSolution()
+        {
+            return solution;
         }
     }
 }

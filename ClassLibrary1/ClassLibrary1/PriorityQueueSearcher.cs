@@ -35,9 +35,5 @@ namespace ClassLibrary1
         {
             return openList.Contains(s);
         }
-
-        //protected abstract Solution<T> backTrace(State<T> n); 
-
-        //public abstract Solution<T> Search(ISearchable<T> searchable);
     }
 }

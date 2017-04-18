@@ -19,12 +19,15 @@ namespace ServerConsole
         {
             string name = args[0];
             int algorithm = int.Parse(args[1]);
-            Solution<Position> solution = this.model.Solve(name, algorithm);
+            Console.WriteLine("calling model");
+            ISolution<Position> solution = this.model.Solve(name, algorithm);
+            Console.WriteLine("got the solution");
             //return solution.ToJason();
             JObject solutionObj = new JObject();
             solutionObj["Name"] = name;
             solutionObj["solution"] = solution.ToString();
-            solutionObj["NodesEvaluated"] = solution.GetEvaluatedNodes();
+            Console.WriteLine(solution.ToString());
+            solutionObj["NodesEvaluated"] = solution.GetNodeEvaluated();
             return solutionObj.ToString();
         }
     }

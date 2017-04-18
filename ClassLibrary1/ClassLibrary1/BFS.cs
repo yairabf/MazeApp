@@ -9,7 +9,7 @@ namespace ClassLibrary1
 
     public class Bfs<T> : PriorityQueueSearcher<T>
     {
-        public override Solution<T> Search(ISearchable<T> searchable)
+        public override ISolution<T> Search(ISearchable<T> searchable)
         {
             // Searcher's abstract method overriding
             AddToOpenList(searchable.GetInitialState()); // inherited from Searcher
@@ -20,8 +20,9 @@ namespace ClassLibrary1
                 closed.Add(n);
                 if (n.Equals(searchable.GetGoalState()))
                 {
-                    return BackTrace(n); // private method, back traces through the parents
+                    BackTrace(n, searchable); // private method, back traces through the parents
                     // calling the delegated method, returns a list of states with n as a parent
+                    return searchable.GetSolution();
                 }
 
                 List<State<T>> succerssors = searchable.GetAllPossibleStates(n);
@@ -49,11 +50,10 @@ namespace ClassLibrary1
             Console.WriteLine("have not reached the goal");
             return null;
         }
-        protected override Solution<T> BackTrace(State<T> n)
+        protected override void BackTrace(State<T> n, ISearchable<T> s)
         {
-            Solution<T> solution = new Solution<T>();
-            solution.BuildSolution(n, EvaluatedNodes);
-            return solution;
+            s.GetSolution().BuildSolution(n, EvaluatedNodes);
+            //Console.WriteLine(s.GetSolution().ToString());
         }
     }
         

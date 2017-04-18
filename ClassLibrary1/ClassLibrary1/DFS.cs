@@ -8,7 +8,7 @@ namespace ClassLibrary1
 {
     public class Dfs<T> : Searcher<T>
     {
-        public override Solution<T> Search(ISearchable<T> searchable)
+        public override ISolution<T> Search(ISearchable<T> searchable)
         {
             Stack<State<T>> stack = new Stack<State<T>>();
             HashSet<State<T>> finished = new HashSet<State<T>>();
@@ -19,7 +19,8 @@ namespace ClassLibrary1
                 EvaluatedNodes++;
                 if (current.Equals(searchable.GetGoalState()))
                 {
-                    return BackTrace(current);
+                    BackTrace(current, searchable);
+                    return searchable.GetSolution();
                 }
                 if (!finished.Contains(current))
                 {
@@ -39,11 +40,9 @@ namespace ClassLibrary1
             return null;
         }
 
-        protected override Solution<T> BackTrace(State<T> n)
+        protected override void BackTrace(State<T> n, ISearchable<T> searchable)
         {
-            Solution<T> sol = new Solution<T>();
-            sol.BuildSolution(n, EvaluatedNodes);
-            return sol;
+            searchable.GetSolution().BuildSolution(n, EvaluatedNodes);
         }
     }
 }

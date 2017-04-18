@@ -3,56 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MazeLib;
-using Newtonsoft.Json.Linq;
 
 namespace ClassLibrary1
 {
-    public class Solution<T>
+    public abstract class Solution<T> : ISolution<T>
     {
-        private int nodesEvaluated;
-        private Stack<State<T>> solutionList;
+        protected int nodesEvaluated;
 
         public Solution()
         {
-            solutionList = new Stack<State<T>>();       
-        }
-        /**
-         * receives a goal state and builds the solution
-         * 
-         */
-        public void BuildSolution(State<T> goal, int nodes)
-        {
-            while(goal != null)
-            {
-                solutionList.Push(goal);
-                goal = goal.GetCameFrom();
-            }
-            this.nodesEvaluated = nodes;
+            nodesEvaluated = 0;
         }
 
-        public void PrintSolution()
+        public abstract void BuildSolution(State<T> goal, int nodes);
+
+        public void SetNodeEvaluated(int node)
         {
-            foreach (State<T> s in solutionList)
-            {
-                Console.WriteLine(s.ToString());
-            }
+            this.nodesEvaluated = node;
         }
 
-        public override string ToString()
-        {
-            string solutionAsString = string.Empty;
-            while (solutionList.Count != 0)
-            {
-                State < T > state = solutionList.Pop();
-                solutionAsString += state.ToString();
-            }
-            return solutionAsString;
-        }
-
-        public int GetEvaluatedNodes()
+        public int GetNodeEvaluated()
         {
             return this.nodesEvaluated;
         }
+
+        public abstract void PrintSolution();
+
+        public abstract string ToString();
+
+
     }
 }
