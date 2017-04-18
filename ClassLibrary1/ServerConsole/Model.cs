@@ -92,7 +92,7 @@ namespace ServerConsole
                 }
             }
 
-            return new Solution<Position>();
+            return null;
         }
 
         public string StartGame(string gameName, int rows, int cols, TcpClient tcpClient)
