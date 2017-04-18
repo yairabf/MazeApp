@@ -46,38 +46,42 @@ namespace ClassLibrary1
             while (sol.Any())
             {
                 State<Position> state = sol.Pop();
-                int movementJ = state.GetState().Col - sol.Peek().GetState().Col;
-                int movementI = state.GetState().Row - sol.Peek().GetState().Row;
-                if (movementI != 0)
+                if (sol.Any())
                 {
-                    switch (movementI)
+                    int movementJ = state.GetState().Col - sol.Peek().GetState().Col;
+                    int movementI = state.GetState().Row - sol.Peek().GetState().Row;
+                    if (movementI != 0)
                     {
-                        case 1:
-                            solutionAsString.Append("2");
-                            break;
-                        case -1:
-                            solutionAsString.Append("3");
-                            break;
+                        switch (movementI)
+                        {
+                            case 1:
+                                solutionAsString.Append("2");
+                                break;
+                            case -1:
+                                solutionAsString.Append("3");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (movementJ)
+                        {
+                            case 1:
+                                solutionAsString.Append("0");
+                                break;
+                            case -1:
+                                solutionAsString.Append("1");
+                                break;
+                        }
                     }
                 }
-                else
-                {
-                    switch (movementJ)
-                    {
-                        case 1:
-                            solutionAsString.Append("0");
-                            break;
-                        case -1:
-                            solutionAsString.Append("1");
-                            break;
-                    }
-                }
-            }
+            }    
             if (solutionAsString.Length == 0)
                 return "There is maze to solve";
-            Console.WriteLine(solutionAsString.ToString());
+            // Console.WriteLine(solutionAsString.ToString());
             return solutionAsString.ToString();
-        }
+            }
+    
 
         public int GetEvaluatedNodes()
         {

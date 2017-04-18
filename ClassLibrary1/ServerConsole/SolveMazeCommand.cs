@@ -26,7 +26,7 @@ namespace ServerConsole
             JObject solutionObj = new JObject();
             solutionObj["Name"] = name;
             solutionObj["solution"] = solution.ToString();
-            Console.WriteLine(solution.ToString());
+            //Console.WriteLine(solution.ToString());
             solutionObj["NodesEvaluated"] = solution.GetNodeEvaluated();
             return solutionObj.ToString();
         }
