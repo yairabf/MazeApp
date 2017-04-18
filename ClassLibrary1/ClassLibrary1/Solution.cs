@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MazeLib;
+using Newtonsoft.Json.Linq;
 
 namespace ClassLibrary1
 {
@@ -38,7 +39,7 @@ namespace ClassLibrary1
 
         public string ToJason()
         {
-             
+            JObject mazeObj = new JObject();
         }
     }
 }
