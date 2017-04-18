@@ -53,6 +53,7 @@ namespace ClassLibrary1
         protected override void BackTrace(State<T> n, ISearchable<T> s)
         {
             s.GetSolution().BuildSolution(n, EvaluatedNodes);
+            //Console.WriteLine(s.GetSolution().ToString());
         }
     }
         

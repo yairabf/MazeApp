@@ -1,5 +1,7 @@
 ﻿
 
+using System;
+
 namespace ServerConsole
 {
     using System.Collections.Generic;
@@ -18,7 +20,12 @@ namespace ServerConsole
 
         public Controller()
         {
+            model = new Model(); 
             this.commands = new Dictionary<string, ICommand>();
+            commands.Add("generate", new GenerateMazeCommand(this.model));
+            commands.Add("solve", new SolveMazeCommand(this.model));
+            commands.Add("start", new StartGameCommand(this.model));
+            commands.Add("join", new JoinGameCommand(this.model));
         }
 
         public void SetView(IView v)
@@ -29,8 +36,7 @@ namespace ServerConsole
         public void SetModel(IModel m)
         {
             this.model = m;
-            commands.Add("generate", new GenerateMazeCommand(model));
-
+            
         }
 
         public string ExecuteCommand(string commandLine, TcpClient tcpClient)
@@ -41,6 +47,7 @@ namespace ServerConsole
                 return "Command not found";
             string[] args = arr.Skip(1).ToArray();
             ICommand command = commands[commandKey];
+            Console.WriteLine("start command");
             return command.Execute(args, tcpClient);
         }
     }

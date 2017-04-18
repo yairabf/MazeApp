@@ -48,6 +48,7 @@ namespace ServerConsole
                     Console.WriteLine("Server stopped");
                 });
             task.Start();
+            task.Wait();
         }
 
         public void Stop()

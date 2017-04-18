@@ -64,11 +64,12 @@ namespace ConsoleApp3
 
                         Console.WriteLine("{0}", feedback);
                     }
+
                     if (command.Equals("close"))
                     {
                         this.connected = false;
                     }
-                    reader.ReadLine();
+                    //reader.ReadLine();
 
                     // ************TODO - ADD a condition of receiving empty jason obj to stop loop*****
                 }

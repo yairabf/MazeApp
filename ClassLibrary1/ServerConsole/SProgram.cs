@@ -10,7 +10,12 @@ namespace ServerConsole
     {
         static void Main(string[] args)
         {
-            Server server = new Server(263501, new ClientHandler());
+            IController controller = new Controller();
+            IModel model = new Model();
+            //controller.SetModel(model);
+            IClientHandler viewHandler = new ClientHandler(controller);
+            controller.SetView(viewHandler);
+            Server server = new Server(3501, viewHandler);
             server.Start();
         }
     }

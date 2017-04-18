@@ -10,7 +10,7 @@ namespace ClassLibrary1
     public class MazeToSearchableAdapter : ISearchable<Position>
     {
         private Maze maze;
-        private Solution<Position> solution;
+        private MazeSolution solution;
 
         public MazeToSearchableAdapter(Maze m)
         {
@@ -68,10 +68,6 @@ namespace ClassLibrary1
 
         public Solution<Position> GetSolution()
         {
-            if (solution.GetNodeEvaluated() == 0)
-            {
-                return null;
-            }
             return solution;
         }
     }
