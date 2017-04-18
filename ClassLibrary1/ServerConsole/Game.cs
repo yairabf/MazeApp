@@ -58,7 +58,11 @@ namespace ServerConsole
             this.playerTwo.SetPosition(p2);
         }
 
+<<<<<<< HEAD
         //public void Play()
+=======
+        public void Play()
+>>>>>>> bee849beae43f309b39acdabd1d08c8261a68617
 
     }
 }
