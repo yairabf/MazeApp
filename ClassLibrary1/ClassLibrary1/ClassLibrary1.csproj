@@ -66,10 +66,11 @@
     <Compile Include="MazeSolution.cs" />
     <Compile Include="MazeToSearchableAdapter.cs" />
     <Compile Include="PriorityQueueSearcher.cs" />
-    <Compile Include="Solution.cs" />
+    <Compile Include="ISolution.cs" />
     <Compile Include="Searcher.cs" />
     <Compile Include="ISearcher.cs" />
     <Compile Include="ISearchable.cs" />
+    <Compile Include="Solution.cs" />
     <Compile Include="State.cs" />
   </ItemGroup>
   <ItemGroup>

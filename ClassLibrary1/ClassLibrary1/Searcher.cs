@@ -1,5 +1,7 @@
 ﻿using ClassLibrary1;
 using System;
+using System.Collections.Generic;
+
 namespace ClassLibrary1
 {
     public abstract class Searcher<T> : ISearcher<T>
@@ -12,8 +14,13 @@ namespace ClassLibrary1
             return EvaluatedNodes;
         }
 
-        public abstract Solution<T> Search(ISearchable<T> searchable);
+        public abstract ISolution<T> Search(ISearchable<T> searchable);
 
-        protected abstract Solution<T> BackTrace(State<T> n);
+
+        /// <summary>
+        /// Backs the trace.
+        /// </summary>
+        /// <param name="n">The n.</param>
+        protected abstract void BackTrace(State<T> n, ISearchable<T> searchable);
     }
 }

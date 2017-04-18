@@ -58,7 +58,7 @@ namespace ServerConsole
         /// <param name="name">The name.</param>
         /// <param name="algorithm">The algorithm.</param>
         /// <returns>the wanted solution</returns>
-        public Solution<Position> Solve(string name, int algorithm)
+        public ISolution<Position> Solve(string name, int algorithm)
         {
             Solution<Position> solvedMaze;
             if (algorithm == 0)
@@ -72,7 +72,7 @@ namespace ServerConsole
                 {
                     Bfs<Position> bfs = new Bfs<Position>();
                     MazeToSearchableAdapter adapter = new MazeToSearchableAdapter(maze);
-                    Solution<Position> bfsSolution = bfs.Search(adapter);
+                    ISolution<Position> bfsSolution = bfs.Search(adapter);
                     return bfsSolution;
                 }
             }
@@ -87,7 +87,7 @@ namespace ServerConsole
                 {
                     Dfs<Position> dfs = new Dfs<Position>();
                     MazeToSearchableAdapter adapter = new MazeToSearchableAdapter(maze);
-                    Solution<Position> dfsSolution = dfs.Search(adapter);
+                    ISolution<Position> dfsSolution = dfs.Search(adapter);
                     return dfsSolution;
                 }
             }

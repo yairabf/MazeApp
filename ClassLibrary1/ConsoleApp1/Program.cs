@@ -31,10 +31,10 @@ namespace ConsoleApp1
             Bfs<Position> bfs = new Bfs<Position>();
             Dfs<Position> dfs = new Dfs<Position>();
             MazeToSearchableAdapter adapter = new MazeToSearchableAdapter(maze);
-            Solution<Position> bfsSolution = bfs.Search(adapter);
+            ISolution<Position> bfsSolution = bfs.Search(adapter);
             bfsSolution.PrintSolution();
             Console.WriteLine(bfs.GetNumberOfNodesEvaluated());
-            Solution<Position> dfsSolution = dfs.Search(adapter);
+            ISolution<Position> dfsSolution = dfs.Search(adapter);
             dfsSolution.PrintSolution();
             Console.WriteLine(dfs.GetNumberOfNodesEvaluated());
         }

@@ -24,8 +24,7 @@ namespace ServerConsole
 
         public void Start()
         {
-            IPEndPoint ep = new
-                IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+            IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3501);
             this.listener = new TcpListener(ep);
 
             this.listener.Start();

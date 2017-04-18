@@ -1,74 +1,36 @@
-<<<<<<< HEAD
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MazeLib;
-using Newtonsoft.Json.Linq;
 
 namespace ClassLibrary1
 {
-    public class Solution<T>
+    public abstract class Solution<T> : ISolution<T>
     {
-        private Stack<State<T>> solutionList;
+        protected int nodesEvaluated;
 
         public Solution()
         {
-            solutionList = new Stack<State<T>>();       
+            nodesEvaluated = 0;
         }
-        /**
-         * receives a goal state and builds the solution
-         * 
-         */
-        public void BuildSolution(State<T> goal)
+
+        public abstract void BuildSolution(State<T> goal, int nodes);
+
+        public void SetNodeEvaluated(int node)
         {
-            while(goal != null)
-            {
-                solutionList.Push(goal);
-                goal = goal.GetCameFrom();
-            }
+            this.nodesEvaluated = node;
         }
 
-        public void PrintSolution()
+        public int GetNodeEvaluated()
         {
-            foreach (State<T> s in solutionList)
-            {
-                Console.WriteLine(s.ToString());
-            }
+            return this.nodesEvaluated;
         }
 
-        public string ToJason()
-        {
-            JObject mazeObj = new JObject();
-        }
-    }
-}
-=======
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MazeLib;
-using Newtonsoft.Json.Linq;
+        public abstract void PrintSolution();
 
-namespace ClassLibrary1
-{
-    public interface Solution<T>
-    { 
-        /**
-         * receives a goal state and builds the solution
-         * 
-         */
-        void BuildSolution(State<T> goal, int nodes);
+        public abstract string ToString();
 
-        void PrintSolution();
-
-        string ToString();
-
-        int GetEvaluatedNodes();
 
     }
 }
->>>>>>> e4383228fb054b6834708d69bc8bfbcf4f6e5a87

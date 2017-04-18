@@ -10,7 +10,6 @@ namespace ClassLibrary1
 {
     class MazeSolution : Solution<Position >
     {
-            private int nodesEvaluated;
             private Stack<State<Position>> solutionList;
 
             public MazeSolution()
@@ -21,7 +20,7 @@ namespace ClassLibrary1
              * receives a goal state and builds the solution
              * 
              */
-            public void BuildSolution(State<Position> goal, int nodes)
+            public override void BuildSolution(State<Position> goal, int nodes)
             {
                 while (goal != null)
                 {
@@ -31,7 +30,7 @@ namespace ClassLibrary1
                 this.nodesEvaluated = nodes;
             }
        
-        public void PrintSolution()
+        public override void PrintSolution()
             {
                 foreach (State<Position> s in solutionList)
                 {

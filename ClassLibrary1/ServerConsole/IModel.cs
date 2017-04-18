@@ -10,7 +10,7 @@ namespace ServerConsole
     {
         Maze Generate(string name, int rows, int cols);
 
-        Solution<Position> Solve(string name, int algorithm);
+        ISolution<Position> Solve(string name, int algorithm);
 
         //string Solve(string name, int algorithm);
 
