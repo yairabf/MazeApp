@@ -1,4 +1,6 @@
 ﻿
+using System.Threading;
+
 namespace ConsoleApp3
 {
     using System;
@@ -14,6 +16,12 @@ namespace ConsoleApp3
     class Client
     {
         private bool connected;
+        private TcpClient tcpClient;
+        private static CancellationTokenSource tCancellation;
+        private static NetworkStream stream;
+        private static BinaryReader reader;
+        private static BinaryWriter writer;
+        private static IPEndPoint endPoint;
 
         public Client()
         {
@@ -22,26 +30,13 @@ namespace ConsoleApp3
 
         public void StartConnection()
         {
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3501);
-            TcpClient tcpClient = new TcpClient();
+            endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3501);
+            tcpClient = new TcpClient();
             tcpClient.Connect(endPoint);
             Console.WriteLine("You are connected");
-
-            /* using (NetworkStream stream = tcpClient.GetStream())
-             using (StreamReader reader = new StreamReader(stream))
-             using (StreamWriter writer = new StreamWriter(stream))
-             {
-                 // Send data to server
-                 Console.Write("Please enter a number: ");
-                 int num = int.Parse(Console.ReadLine());
-                 writer.Write(num);
-                 // Get result from server
-                 int result = reader.Read();
-                 Console.WriteLine("Result = {0}", result);
-             }*/
-            using (NetworkStream stream = tcpClient.GetStream())
-            using (BinaryReader reader = new BinaryReader(stream))
-            using (BinaryWriter writer = new BinaryWriter(stream))
+            using (stream = tcpClient.GetStream())
+            using (reader = new BinaryReader(stream))
+            using (writer = new BinaryWriter(stream))
             {
                 while (this.connected)
                 {
@@ -51,7 +46,10 @@ namespace ConsoleApp3
                     writer.Write(command);
                     writer.Flush();
                     Console.WriteLine("{0}", command);
-
+                    if (command.Contains("start") || command.Contains("join"))
+                    {
+                        StartMultiPlayThread();
+                    }
                     // reading a reply from server
                     string feedback = reader.ReadString();
                     Console.WriteLine("{0}", feedback);
@@ -66,6 +64,26 @@ namespace ConsoleApp3
             }
 
             tcpClient.Close();
+        }
+
+        private static void StartMultiPlayThread()
+        {
+            tCancellation = new CancellationTokenSource();
+            CancellationToken ctask = tCancellation.Token;
+            Task multi = Task.Factory.StartNew(() =>
+            {
+                bool playing = true;
+                {
+                    while (playing)
+                    {
+                        string feedback = reader.ReadString();
+                        Console.WriteLine("{0}", feedback);
+                        if (feedback.Contains("closed"))
+                            playing = false;
+                        writer.Write("notified");
+                    }
+                }
+            }, ctask);
         }
     }
 }

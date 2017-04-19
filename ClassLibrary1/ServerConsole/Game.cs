@@ -99,7 +99,7 @@ namespace ServerConsole
             StreamWriter clientStream = new StreamWriter(player2.GetTcpClient().GetStream());
             clientStream.Write(message);
             clientStream.Flush();
-            return "";
+            return "notified";
         }
 
         //checks which player has requested to move and updates the position up if possible

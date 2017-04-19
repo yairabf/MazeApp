@@ -30,13 +30,15 @@ namespace ServerConsole
                         while (true)
                         {
                             string commandLine = reader.ReadString();
+                            if(commandLine.Contains("notified"))
+                                continue;
                             Console.WriteLine("Got command: {0}", commandLine);
 
                             string result = controller.ExecuteCommand(commandLine, client);
+                            if(result.Contains("notified"))
+                                continue;
                             Console.WriteLine(result);
                             result += '\n';
-                            result += '@';
-
                             writer.Write(result);
                             writer.Flush();
                         }
