@@ -35,8 +35,8 @@ namespace ServerConsole
                             Console.WriteLine("Got command: {0}", commandLine);
 
                             string result = controller.ExecuteCommand(commandLine, client);
-                            if(result.Contains("notified"))
-                                continue;
+                            //if(result.Contains("notified"))
+                              //  continue;
                             Console.WriteLine(result);
                             result += '\n';
                             writer.Write(result);

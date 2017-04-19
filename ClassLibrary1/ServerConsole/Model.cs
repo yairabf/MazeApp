@@ -112,7 +112,7 @@ namespace ServerConsole
             Maze maze = this.Generate(gameName, rows, cols);
             game = new Game(maze, new Player("playerOne", tcpClient));
             gameDictionary.Add(gameName, game);
-            return "notified";
+            return "wait for second player";
         }
 
         public string JoinGame(string gameName, TcpClient tcpClient)
