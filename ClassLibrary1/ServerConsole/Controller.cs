@@ -50,7 +50,7 @@ namespace ServerConsole
                 return "Command not found";
             string[] args = arr.Skip(1).ToArray();
             ICommand command = commands[commandKey];
-            Console.WriteLine("start command");
+            //Console.WriteLine("start command");
             return command.Execute(args, tcpClient);
         }
     }

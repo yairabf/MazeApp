@@ -63,11 +63,11 @@ namespace ServerConsole
         /// <returns>the wanted solution</returns>
         public ISolution<Position> Solve(string name, int algorithm)
         {
-            Console.WriteLine("in model function");
+            //Console.WriteLine("in model function");
             ISolution<Position> solvedMaze;
             if (algorithm == 0)
             {
-                Console.WriteLine("in model function bfs solution");
+                //Console.WriteLine("in model function bfs solution");
                 if (this.bfsMazes.TryGetValue(name, out solvedMaze))
                 {
                     return solvedMaze;
@@ -75,7 +75,7 @@ namespace ServerConsole
                 Maze maze;
                 if (this.mazes.TryGetValue(name, out maze))
                 {
-                    Console.WriteLine("in model function mazes");
+                    //Console.WriteLine("in model function mazes");
                     Bfs<Position> bfs = new Bfs<Position>();
                     MazeToSearchableAdapter adapter = new MazeToSearchableAdapter(maze);
                     ISolution<Position> bfsSolution = bfs.Search(adapter);
@@ -123,7 +123,7 @@ namespace ServerConsole
                 if (!game.IsOccuiped())
                 {
                     game.SetPlayerTwo(new Player("PlayerTwo", tcpClient));
-
+                    game.SetOccuiped(true);
                     return game.SendStartingMessages();
                 }
             }

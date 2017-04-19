@@ -176,6 +176,11 @@ namespace ServerConsole
             return this.occupied;
         }
 
+        public void SetOccuiped(bool occ)
+        {
+            this.occupied = occ;
+        }
+
         public Player GetPlayerOne()
         {
             return this.playerOne;

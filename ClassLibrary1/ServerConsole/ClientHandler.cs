@@ -33,7 +33,7 @@ namespace ServerConsole
                             Console.WriteLine("Got command: {0}", commandLine);
 
                             string result = controller.ExecuteCommand(commandLine, client);
-                            //Console.WriteLine(result);
+                            Console.WriteLine(result);
                             result += '\n';
                             result += '@';
 
