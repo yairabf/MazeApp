@@ -70,20 +70,21 @@ namespace ConsoleApp3
         {
             tCancellation = new CancellationTokenSource();
             CancellationToken ctask = tCancellation.Token;
-            Task multi = Task.Factory.StartNew(() =>
+            Task multi = new Task(() =>
             {
                 bool playing = true;
                 {
                     while (playing)
                     {
                         string feedback = reader.ReadString();
-                        Console.WriteLine("{0}", feedback);
                         if (feedback.Contains("closed"))
                             playing = false;
+                        Console.WriteLine(feedback);
                         writer.Write("notified");
                     }
                 }
             }, ctask);
+            multi.Start();
         }
     }
 }
