@@ -18,6 +18,7 @@ namespace ServerConsole
         private Dictionary<string, ISolution<Position>> bfsMazes;
         private Dictionary<string, ISolution<Position>> dfsMazes;
         private Dictionary<string, Game> gameDictionary;
+        private Dictionary<TcpClient, Game> clientGameDictionary;
 
 
 
@@ -27,6 +28,8 @@ namespace ServerConsole
             bfsMazes = new Dictionary<string, ISolution<Position>>();
             dfsMazes = new Dictionary<string, ISolution<Position>>();
             gameDictionary = new Dictionary<string, Game>();
+            clientGameDictionary = new Dictionary<TcpClient, Game>();
+            
         }
 
         /// <summary>
@@ -112,15 +115,25 @@ namespace ServerConsole
             return "Waiting for second player";
         }
 
-        public void JoinGame(string gameName, TcpClient tcpClient)
+        public string JoinGame(string gameName, TcpClient tcpClient)
         {
             Game game;
             if (gameDictionary.TryGetValue(gameName, out game))
             {
                 game.SetPlayerTwo(new Player("PlayerTwo", tcpClient));
-                game.SendStartingMessages();
+                return game.SendStartingMessages();
             }
-            //return "Game does not exist";
+            return "Game does not exist";
+        }
+
+        public string PlayTurn(string movement, TcpClient tcpClient)
+        {
+            Game game;
+            if (clientGameDictionary.TryGetValue(tcpClient, out game))
+            {
+                return game.MovePlayer(movement, tcpClient);
+            }
+            return "client is not participating in a game";
         }
 
 

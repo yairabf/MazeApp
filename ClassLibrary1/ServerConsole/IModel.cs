@@ -17,5 +17,8 @@ namespace ServerConsole
         string StartGame(string gameName, int rows, int cols, TcpClient tcpClient);
 
         string JoinGame(string gameName, TcpClient tcpClient);
+
+        string PlayTurn(string movement, TcpClient tcpClient);
+
     }
 }

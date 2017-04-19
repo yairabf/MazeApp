@@ -1,0 +1,10 @@
+diff a/ClassLibrary1/ServerConsole/Game.cs b/ClassLibrary1/ServerConsole/Game.cs	(rejected hunks)
+@@ -58,7 +58,7 @@
+             this.playerTwo.SetPosition(p2);
+         }
+ 
+-        public void Play()
++        //public void Play();
+ 
+     }
+ }

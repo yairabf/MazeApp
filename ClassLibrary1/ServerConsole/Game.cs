@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using MazeLib;
+using Newtonsoft.Json.Linq;
 
 namespace ServerConsole
 {
@@ -58,11 +59,88 @@ namespace ServerConsole
             this.playerTwo.SetPosition(p2);
         }
 
-<<<<<<< HEAD
-        //public void Play()
-=======
-        public void Play()
->>>>>>> bee849beae43f309b39acdabd1d08c8261a68617
+        public string MovePlayer(string movement, TcpClient tcpClient)
+        {
+            Player player = null;
+            //checking which client sent us the play movement
+            if (tcpClient == playerOne.GetTcpClient())
+            {
+                player = playerOne;
+            }
+            else if(tcpClient == playerTwo.GetTcpClient())
+            {
+                player = playerTwo;
+            }
+            else
+            {
+                Console.WriteLine("Error: can not compare between tcp clients in MovePlayer in model");
+            }
+            
+            switch (movement)
+            {
+                case "up":
+                    MovePlayerUp(player);
+                    break;
+                case "left":
+                    MovePlayerLeft(player);
+                    break;
+                case "right":
+                    MovePlayerRight(player);
+                    break;
+                case "down":
+                    MovePlayerDown(player);
+                    break;
+                default:
+                    return "incorrect movement";
+            }
+            //sending a message to the other player
+            return PlayMessage(movement);
+        }
 
+        //checks which player has requested to move and updates the position up if possible
+        private void MovePlayerUp(Player player)
+        {
+            if ((player.GetPosition().Row - 1) >= 0 &&
+                maze[player.GetPosition().Row - 1, player.GetPosition().Col] != CellType.Wall)
+            {
+                player.SetPosition(new Position(player.GetPosition().Row - 1, player.GetPosition().Col));
+            }
+        }
+
+        private void MovePlayerLeft(Player player)
+        {
+            if ((player.GetPosition().Col - 1) >= 0 &&
+                maze[player.GetPosition().Row, player.GetPosition().Col - 1] != CellType.Wall)
+            {
+                player.SetPosition(new Position(player.GetPosition().Row, player.GetPosition().Col - 1));
+            }
+        }
+
+        private void MovePlayerRight(Player player)
+        {
+            if ((player.GetPosition().Col + 1) < maze.Cols &&
+                maze[player.GetPosition().Row, player.GetPosition().Col + 1] != CellType.Wall)
+            {
+                player.SetPosition(new Position(player.GetPosition().Row, player.GetPosition().Col + 1));
+            }
+        }
+
+        private void MovePlayerDown(Player player)
+        {
+            if ((player.GetPosition().Row + 1) < maze.Rows &&
+                maze[player.GetPosition().Row + 1, player.GetPosition().Col] != CellType.Wall)
+            {
+                player.SetPosition(new Position(player.GetPosition().Row + 1, player.GetPosition().Col));
+            }
+        }
+
+        //creates the message for the second object
+        private string PlayMessage(string movement)
+        {
+            JObject message = new JObject();
+            message["Name"] = this.name;
+            message["Direction"] = PlayMessage(movement);
+            return message.ToString();
+        }
     }
 }

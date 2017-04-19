@@ -1,0 +1,10 @@
+diff a/ClassLibrary1/ClassLibrary1/MazeSolution.cs b/ClassLibrary1/ClassLibrary1/MazeSolution.cs	(rejected hunks)
+@@ -74,7 +74,7 @@
+                 }
+             }
+             if (solutionAsString.Length == 0)
+-                return "There is maze to solve";
++                return "There is no maze to solve";
+             Console.WriteLine(solutionAsString.ToString());
+             return solutionAsString.ToString();
+         }
