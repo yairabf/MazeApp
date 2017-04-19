@@ -45,10 +45,11 @@ namespace ServerConsole
                 TcpClient clientOne = playerOne.GetTcpClient();
                 Console.WriteLine("starting game: " + name);
                 using (NetworkStream stream = clientOne.GetStream())
-                using (BinaryReader reader = new BinaryReader(stream))
-                using (BinaryWriter writer = new BinaryWriter(stream))
+                using (StreamReader reader = new StreamReader(stream))
+                using (StreamWriter writer = new StreamWriter(stream))
                 {
                     writer.Write(maze.ToJSON());
+                    writer.Flush();
                 }
                 return maze.ToJSON();
             }
@@ -101,6 +102,7 @@ namespace ServerConsole
             string message = PlayMessage(movement);
             StreamWriter clientStream = new StreamWriter(player2.GetTcpClient().GetStream());
             clientStream.Write(message);
+            clientStream.Flush();
             return "";
         }
 
@@ -161,6 +163,7 @@ namespace ServerConsole
             string message = "The " + this.name + " game been closed.";
             StreamWriter clientStream = new StreamWriter(secondPlayer.GetTcpClient().GetStream());
             clientStream.Write(message);
+            clientStream.Flush();
             return message;
         }
 
