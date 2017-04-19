@@ -40,31 +40,21 @@ namespace ConsoleApp3
                  Console.WriteLine("Result = {0}", result);
              }*/
             using (NetworkStream stream = tcpClient.GetStream())
-            using (StreamReader reader = new StreamReader(stream))
-            using (StreamWriter writer = new StreamWriter(stream))
+            using (BinaryReader reader = new BinaryReader(stream))
+            using (BinaryWriter writer = new BinaryWriter(stream))
             {
                 while (this.connected)
                 {
                     // Sending a command to server
                     Console.Write("Please enter a command: ");
                     string command = Console.ReadLine();
-                    writer.WriteLine(command);
+                    writer.Write(command);
                     writer.Flush();
                     Console.WriteLine("{0}", command);
 
                     // reading a reply from server
-                    while (true)
-                    {
-                        string feedback = reader.ReadLine();
-                        if (reader.Peek() == '@')
-                        {
-                            feedback.TrimEnd('\n');
-                            break;
-                        }
-
-                        Console.WriteLine("{0}", feedback);
-                    }
-
+                    string feedback = reader.ReadString();
+                    Console.WriteLine("{0}", feedback);
                     if (command.Equals("close"))
                     {
                         this.connected = false;
