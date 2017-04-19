@@ -20,7 +20,12 @@ namespace ServerConsole
         public string Execute(string[] args, TcpClient client = null)
         {
             List<string> games = this.model.AvaliableGames();
-            return games.ToString();
+            JObject gameToJason = new JObject();
+            foreach (var game in games)
+            {
+                gameToJason.Add(game);
+            }
+            return gameToJason.ToString();
         }
     }
 }
