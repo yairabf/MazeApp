@@ -120,10 +120,14 @@ namespace ServerConsole
             Game game;
             if (gameDictionary.TryGetValue(gameName, out game))
             {
-                game.SetPlayerTwo(new Player("PlayerTwo", tcpClient));
-                return game.SendStartingMessages();
+                if (!game.IsOccuiped())
+                {
+                    game.SetPlayerTwo(new Player("PlayerTwo", tcpClient));
+
+                    return game.SendStartingMessages();
+                }
             }
-            return "Game does not exist";
+            return "Game does not exist or occuiped";
         }
 
         public string PlayTurn(string movement, TcpClient tcpClient)
@@ -136,6 +140,28 @@ namespace ServerConsole
             return "client is not participating in a game";
         }
 
+        public List<string> AvaliableGames()
+        {
+            List<string> gameList = new List<string>();
+            foreach (var game in this.gameDictionary)
+            {
+                if(!game.Value.IsOccuiped())
+                gameList.Add(game.Value.GetName());
+            }
+            return gameList;
+        }
 
+        public string CloseGame(string name, TcpClient tcpClient)
+        {
+            Game game;
+            if(this.clientGameDictionary.TryGetValue(tcpClient, out game))
+            {
+                this.clientGameDictionary.Remove(game.GetPlayerOne().GetTcpClient());
+                this.clientGameDictionary.Remove(game.GetPlayerTwo().GetTcpClient());
+                this.gameDictionary.Remove(game.GetName());
+                return game.CloseMessage(tcpClient);
+            }
+            return "Can't close the wanted game";
+        }
     }
 }

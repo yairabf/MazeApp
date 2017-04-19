@@ -26,6 +26,9 @@ namespace ServerConsole
             commands.Add("solve", new SolveMazeCommand(this.model));
             commands.Add("start", new StartGameCommand(this.model));
             commands.Add("join", new JoinGameCommand(this.model));
+            commands.Add("list", new ListCommand(this.model));
+            commands.Add("play", new JoinGameCommand(this.model));
+            commands.Add("close", new JoinGameCommand(this.model));
         }
 
         public void SetView(IView v)

@@ -16,6 +16,7 @@ namespace ServerConsole
         private Maze maze;
         private Player playerOne;
         private Player playerTwo;
+        private bool occupied;
 
         public Game(Maze m, Player pOne)
         {
@@ -23,6 +24,7 @@ namespace ServerConsole
             this.maze = m;
             this.playerOne = pOne;
             this.playerOne.SetPosition(maze.InitialPos);
+            this.occupied = false;
         }
 
         public void SetPlayerTwo(Player pTwo)
@@ -61,40 +63,45 @@ namespace ServerConsole
 
         public string MovePlayer(string movement, TcpClient tcpClient)
         {
-            Player player = null;
+            Player player1 = null;
+            Player player2 = null;;
             //checking which client sent us the play movement
             if (tcpClient == playerOne.GetTcpClient())
             {
-                player = playerOne;
+                player1 = playerOne;
+                player2 = playerTwo;
             }
             else if(tcpClient == playerTwo.GetTcpClient())
             {
-                player = playerTwo;
+                player1 = playerTwo;
+                player2 = playerOne;
             }
             else
             {
                 Console.WriteLine("Error: can not compare between tcp clients in MovePlayer in model");
             }
-            
             switch (movement)
             {
                 case "up":
-                    MovePlayerUp(player);
+                    MovePlayerUp(player1);
                     break;
                 case "left":
-                    MovePlayerLeft(player);
+                    MovePlayerLeft(player1);
                     break;
                 case "right":
-                    MovePlayerRight(player);
+                    MovePlayerRight(player1);
                     break;
                 case "down":
-                    MovePlayerDown(player);
+                    MovePlayerDown(player1);
                     break;
                 default:
                     return "incorrect movement";
             }
             //sending a message to the other player
-            return PlayMessage(movement);
+            string message = PlayMessage(movement);
+            StreamWriter clientStream = new StreamWriter(player2.GetTcpClient().GetStream());
+            clientStream.Write(message);
+            return "";
         }
 
         //checks which player has requested to move and updates the position up if possible
@@ -141,6 +148,42 @@ namespace ServerConsole
             message["Name"] = this.name;
             message["Direction"] = PlayMessage(movement);
             return message.ToString();
+        }
+
+        public string CloseMessage(TcpClient tcpClient)
+        {
+            Player secondPlayer = null;
+            if (tcpClient.Equals(this.playerOne.GetTcpClient()))
+                secondPlayer = this.playerTwo;
+            else
+                secondPlayer = this.playerOne;
+
+            string message = "The " + this.name + " game been closed.";
+            StreamWriter clientStream = new StreamWriter(secondPlayer.GetTcpClient().GetStream());
+            clientStream.Write(message);
+            return message;
+        }
+
+
+
+        public string GetName()
+        {
+            return this.name;
+        }
+
+        public bool IsOccuiped()
+        {
+            return this.occupied;
+        }
+
+        public Player GetPlayerOne()
+        {
+            return this.playerOne;
+        }
+
+        public Player GetPlayerTwo()
+        {
+            return this.playerTwo;
         }
     }
 }

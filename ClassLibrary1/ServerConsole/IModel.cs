@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.Net.Sockets;
 using ClassLibrary1;
 
@@ -19,6 +20,10 @@ namespace ServerConsole
         string JoinGame(string gameName, TcpClient tcpClient);
 
         string PlayTurn(string movement, TcpClient tcpClient);
+
+        string CloseGame(string movement, TcpClient tcpClient);
+
+        List<string> AvaliableGames();
 
     }
 }

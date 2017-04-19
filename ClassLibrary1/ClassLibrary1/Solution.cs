@@ -29,7 +29,7 @@ namespace ClassLibrary1
 
         public abstract void PrintSolution();
 
-        public abstract string ToString();
+        public override abstract string ToString();
 
 
     }
