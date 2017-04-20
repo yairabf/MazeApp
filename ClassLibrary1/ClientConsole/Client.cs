@@ -15,7 +15,7 @@ namespace ConsoleApp3
 
     class Client
     {
-        private bool connected;
+        //private bool connected;
         private TcpClient tcpClient;
         private static CancellationTokenSource tCancellation;
         private static NetworkStream stream;
@@ -26,7 +26,7 @@ namespace ConsoleApp3
         public Client()
         {
             tcpClient = new TcpClient();
-            connected = true;
+            //connected = true;
         }
 
         public void Connect()
