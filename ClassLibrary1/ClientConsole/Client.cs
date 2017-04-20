@@ -54,11 +54,11 @@ namespace ConsoleApp3
                         {
                             CloseConnection();
                         }
-                        /*else if (feedback.Contains("closed"))
+                        else if (feedback.Contains("closed"))
                         {
                             Console.WriteLine(feedback);
                             CloseConnection();
-                        }*/
+                        }
                         else
                         {
                             Console.WriteLine(feedback);

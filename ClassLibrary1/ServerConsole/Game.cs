@@ -151,7 +151,7 @@ namespace ServerConsole
         public string CloseMessage(TcpClient tcpClient)
         {
             Player secondPlayer = null;
-            if (tcpClient.Equals(this.playerOne.GetTcpClient()))
+            if (tcpClient == this.playerOne.GetTcpClient())
                 secondPlayer = this.playerTwo;
             else
                 secondPlayer = this.playerOne;
