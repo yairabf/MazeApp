@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -124,6 +125,8 @@ namespace ServerConsole
                 {
                     game.SetPlayerTwo(new Player("PlayerTwo", tcpClient));
                     game.SetOccuiped(true);
+                    clientGameDictionary.Add(game.GetPlayerOne().GetTcpClient(), game);
+                    clientGameDictionary.Add(game.GetPlayerTwo().GetTcpClient(), game);
                     return game.SendStartingMessages();
                 }
             }
@@ -135,6 +138,7 @@ namespace ServerConsole
             Game game;
             if (clientGameDictionary.TryGetValue(tcpClient, out game))
             {
+                Console.WriteLine("game found");
                 return game.MovePlayer(movement, tcpClient);
             }
             return "client is not participating in a game";
@@ -156,6 +160,7 @@ namespace ServerConsole
             Game game;
             if(this.clientGameDictionary.TryGetValue(tcpClient, out game))
             {
+                BinaryWriter clientStream;
                 this.clientGameDictionary.Remove(game.GetPlayerOne().GetTcpClient());
                 this.clientGameDictionary.Remove(game.GetPlayerTwo().GetTcpClient());
                 this.gameDictionary.Remove(game.GetName());

@@ -27,8 +27,8 @@ namespace ServerConsole
             commands.Add("start", new StartGameCommand(this.model));
             commands.Add("join", new JoinGameCommand(this.model));
             commands.Add("list", new ListCommand(this.model));
-            commands.Add("play", new JoinGameCommand(this.model));
-            commands.Add("close", new JoinGameCommand(this.model));
+            commands.Add("play", new PlayCommand(this.model));
+            commands.Add("close", new CloseCommand(this.model));
         }
 
         public void SetView(IView v)
@@ -52,6 +52,19 @@ namespace ServerConsole
             ICommand command = commands[commandKey];
             //Console.WriteLine("start command");
             return command.Execute(args, tcpClient);
+        }
+
+        public bool CloseSingle(string commandLine, TcpClient client)
+        {
+            string[] arr = commandLine.Split(' ');
+            string commandKey = arr[0];
+            if (!commands.ContainsKey(commandKey))
+                Console.WriteLine("command not found");
+            string[] args = arr.Skip(1).ToArray();
+            ICommand command = commands[commandKey];
+            /*if(command.GetIsSingle())
+                client.Close();*/
+            return command.GetIsSingle();
         }
     }
 }

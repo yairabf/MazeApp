@@ -8,11 +8,11 @@ using Newtonsoft.Json.Linq;
 
 namespace ServerConsole
 {
-    class CloseCommnad : ICommand
+    class CloseCommand : ICommand
     {
         private IModel model;
 
-        public CloseCommnad(IModel m)
+        public CloseCommand(IModel m)
         {
             this.model = m;
         }
@@ -21,6 +21,11 @@ namespace ServerConsole
         {
             string name = args[0];
             return model.CloseGame(name, client);
+        }
+
+        public bool GetIsSingle()
+        {
+            return false;
         }
     }
 }

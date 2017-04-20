@@ -40,13 +40,11 @@ namespace ServerConsole
             {
                 TcpClient clientOne = playerOne.GetTcpClient();
                 Console.WriteLine("starting game: " + name);
-                using (NetworkStream stream = clientOne.GetStream())
-                using (StreamReader reader = new StreamReader(stream))
-                using (StreamWriter writer = new StreamWriter(stream))
-                {
-                    writer.Write(maze.ToJSON());
-                    writer.Flush();
-                }
+                NetworkStream stream = clientOne.GetStream();
+                    //using (StreamReader reader = new StreamReader(stream))
+                BinaryWriter writer = new BinaryWriter(stream);
+                writer.Write(maze.ToJSON());
+                writer.Flush();
                 return maze.ToJSON();
             }
             return string.Empty;
@@ -65,11 +63,13 @@ namespace ServerConsole
             //checking which client sent us the play movement
             if (tcpClient == playerOne.GetTcpClient())
             {
+                Console.WriteLine("this is player one");
                 player1 = playerOne;
                 player2 = playerTwo;
             }
             else if(tcpClient == playerTwo.GetTcpClient())
             {
+                Console.WriteLine("this is player two");
                 player1 = playerTwo;
                 player2 = playerOne;
             }
@@ -96,7 +96,7 @@ namespace ServerConsole
             }
             //sending a message to the other player
             string message = PlayMessage(movement);
-            StreamWriter clientStream = new StreamWriter(player2.GetTcpClient().GetStream());
+            BinaryWriter clientStream = new BinaryWriter(player2.GetTcpClient().GetStream());
             clientStream.Write(message);
             clientStream.Flush();
             return "notified";
@@ -144,7 +144,7 @@ namespace ServerConsole
         {
             JObject message = new JObject();
             message["Name"] = this.name;
-            message["Direction"] = PlayMessage(movement);
+            message["Direction"] = movement;
             return message.ToString();
         }
 
@@ -157,8 +157,9 @@ namespace ServerConsole
                 secondPlayer = this.playerOne;
 
             string message = "The " + this.name + " game been closed.";
-            StreamWriter clientStream = new StreamWriter(secondPlayer.GetTcpClient().GetStream());
+            BinaryWriter clientStream = new BinaryWriter(secondPlayer.GetTcpClient().GetStream());
             clientStream.Write(message);
+            secondPlayer.GetTcpClient().Close();
             clientStream.Flush();
             return message;
         }

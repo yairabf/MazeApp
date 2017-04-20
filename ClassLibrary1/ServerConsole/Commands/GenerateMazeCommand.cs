@@ -25,5 +25,10 @@ namespace ServerConsole
             Maze maze = model.Generate(name, rows, cols);
             return maze.ToJSON();
         }
+
+        public bool GetIsSingle()
+        {
+            return true;
+        }
     }
 }

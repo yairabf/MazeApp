@@ -23,5 +23,10 @@ namespace ServerConsole
             int cols = int.Parse(args[2]);
             return this.model.StartGame(name, rows, cols, client);
         }
+
+        public bool GetIsSingle()
+        {
+            return false;
+        }
     }
 }

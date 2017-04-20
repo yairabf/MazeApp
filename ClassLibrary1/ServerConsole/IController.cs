@@ -17,5 +17,7 @@ namespace ServerConsole
         void SetModel(IModel module);
 
         string ExecuteCommand(string commandLine, TcpClient tcpClient);
+
+        bool CloseSingle(string commandLine, TcpClient client);
     }
 }

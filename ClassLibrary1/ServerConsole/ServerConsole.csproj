@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CloseCommnad.cs" />
+    <Compile Include="Commands\CloseCommand.cs" />
     <Compile Include="Commands\ListCommand.cs" />
     <Compile Include="Commands\PlayCommand.cs" />
     <Compile Include="ClientHandler.cs" />

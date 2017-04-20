@@ -17,5 +17,10 @@ namespace ServerConsole
             string name = args[0];
             return this.model.JoinGame(name, client);
         }
+
+        public bool GetIsSingle()
+        {
+            return false;
+        }
     }
 }

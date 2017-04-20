@@ -11,7 +11,7 @@ namespace ConsoleApp3
         static void Main(string[] args)
         {
             Client client = new Client();
-            client.StartConnection();
+            client.SendCommands();
         }
     }
 }

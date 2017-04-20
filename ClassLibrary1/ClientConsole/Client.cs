@@ -19,15 +19,87 @@ namespace ConsoleApp3
         private TcpClient tcpClient;
         private static CancellationTokenSource tCancellation;
         private static NetworkStream stream;
-        private static BinaryReader reader;
+        //private static BinaryReader reader;
         private static BinaryWriter writer;
         private static IPEndPoint endPoint;
 
         public Client()
         {
+            tcpClient = new TcpClient();
             connected = true;
         }
 
+        public void Connect()
+        {
+            endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3501);
+            tcpClient.Connect(endPoint);
+            Console.WriteLine("You are connected");
+            stream = tcpClient.GetStream();
+            //reader = new BinaryReader(stream);
+            writer = new BinaryWriter(stream);
+            ReadingTasks();
+        }
+
+        private void ReadingTasks()
+        {
+            Task listening = new Task(() =>
+            {
+                BinaryReader reader = new BinaryReader(tcpClient.GetStream());
+                //bool playing = true;
+                {
+                    while (tcpClient.Connected)
+                    {
+                        string feedback = reader.ReadString();
+                        if (feedback == "null")
+                        {
+                            CloseConnection();
+                        }
+                        /*else if (feedback.Contains("closed"))
+                        {
+                            Console.WriteLine(feedback);
+                            CloseConnection();
+                        }*/
+                        else
+                        {
+                            Console.WriteLine(feedback);
+                        }
+                        //writer.Write("notified");
+                    }
+                }
+            });
+            listening.Start();
+            //listening.Wait();
+        }
+        
+        private void CloseConnection()
+        {
+            tcpClient.Close();
+            tcpClient = new TcpClient();
+        }
+
+        public void SendCommands()
+        {
+            while (true)
+            {
+                System.Threading.Thread.Sleep(100);
+                Console.Write("Please enter a command: ");
+                string command = Console.ReadLine();
+                if (!this.tcpClient.Connected)
+                {
+                    Connect();
+                }
+                writer.Write(command);
+                writer.Flush();
+            }
+         }
+
+
+
+
+
+
+
+        /*
         public void StartConnection()
         {
             endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3501);
@@ -48,7 +120,9 @@ namespace ConsoleApp3
                     Console.WriteLine("{0}", command);
                     if (command.Contains("start") || command.Contains("join"))
                     {
+                        Console.WriteLine("starting start multiply thread function");
                         StartMultiPlayThread();
+                        Console.WriteLine("finished the function multiply thread");
                     }
                     // reading a reply from server
                     string feedback = reader.ReadString();
@@ -79,12 +153,15 @@ namespace ConsoleApp3
                         string feedback = reader.ReadString();
                         if (feedback.Contains("closed"))
                             playing = false;
+                        Console.WriteLine("writing feedback for client");
                         Console.WriteLine(feedback);
+                        Console.WriteLine("finished writing feedback");
                         writer.Write("notified");
                     }
                 }
             }, ctask);
             multi.Start();
-        }
+            multi.Wait();
+        }*/
     }
 }

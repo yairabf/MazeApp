@@ -22,28 +22,52 @@ namespace ServerConsole
         public void HandleClient(TcpClient client)
         {
             new Task(() =>
-                {
-                    using (NetworkStream stream = client.GetStream())
-                    using (BinaryReader reader = new BinaryReader(stream))
-                    using (BinaryWriter writer = new BinaryWriter(stream))
+            {
+                NetworkStream stream = client.GetStream();
+                BinaryReader reader = new BinaryReader(stream);
+                BinaryWriter writer = new BinaryWriter(stream);
                     {
-                        while (true)
+                        while (client.Connected)
                         {
-                            string commandLine = reader.ReadString();
-                            if(commandLine.Contains("notified"))
-                                continue;
-                            Console.WriteLine("Got command: {0}", commandLine);
+                            try
+                            {
+                                string commandLine = reader.ReadString();
+                                if (commandLine.Contains("notified"))
+                                    continue;
+                                Console.WriteLine("Got command: {0}", commandLine);
 
-                            string result = controller.ExecuteCommand(commandLine, client);
-                            //if(result.Contains("notified"))
-                              //  continue;
-                            Console.WriteLine(result);
-                            result += '\n';
-                            writer.Write(result);
-                            writer.Flush();
+                                string result = controller.ExecuteCommand(commandLine, client);
+                                //if(result.Contains("notified"))
+                                //  continue;
+                                Console.WriteLine(result);
+                                Console.WriteLine(commandLine);
+                                result += '\n';
+                                writer.Write(result);
+                                writer.Flush();
+                                if (result.Contains("closed"))
+                                {
+                                    Console.WriteLine("closing client");
+                                    //writer.Write(result);
+                                    client.Close();
+                                    break;
+                                }
+
+                                if (controller.CloseSingle(commandLine, client))
+                                {
+                                    writer.Write("null");
+                                    client.Close();
+                                    break;
+                                }   
+                            }
+
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("entered catch");
+                                //Console.WriteLine(e);
+                            }     
                         }
                     }
-                    client.Close();
+                    //client.Close();
                 }).Start();
         }
     }

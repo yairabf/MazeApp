@@ -28,5 +28,10 @@ namespace ServerConsole
             solutionObj["NodesEvaluated"] = solution.GetNodeEvaluated();
             return solutionObj.ToString();
         }
+
+        public bool GetIsSingle()
+        {
+            return true;
+        }
     }
 }

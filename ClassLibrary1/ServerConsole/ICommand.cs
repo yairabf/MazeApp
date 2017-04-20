@@ -6,5 +6,7 @@ namespace ServerConsole
     internal interface ICommand
     {
         string Execute(string[] args, TcpClient client = null);
+
+        bool GetIsSingle();
     }
 }

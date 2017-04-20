@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServerConsole
 {
-    class PlayCommand
+    class PlayCommand : ICommand
     {
         private IModel model;
 
@@ -20,6 +20,11 @@ namespace ServerConsole
         {
             string movement = args[0];
             return this.model.PlayTurn(movement, client);
+        }
+
+        public bool GetIsSingle()
+        {
+            return false;
         }
     }
 }

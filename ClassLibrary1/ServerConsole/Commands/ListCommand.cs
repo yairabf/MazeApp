@@ -28,5 +28,10 @@ namespace ServerConsole
             stringList += "]";
             return stringList;
         }
+
+        public bool GetIsSingle()
+        {
+            return true;
+        }
     }
 }
