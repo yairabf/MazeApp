@@ -58,9 +58,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj">
+    <ProjectReference Include="..\ClassLibrary1\SearchAlgorithmLib.csproj">
       <Project>{69c3420a-c5f1-4dca-87af-fcdac2f41728}</Project>
-      <Name>ClassLibrary1</Name>
+      <Name>SearchAlgorithmLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\ConsoleApp1\ConsoleApp1.csproj">
       <Project>{5953ec9c-0314-45cf-af6e-448f72bc918d}</Project>

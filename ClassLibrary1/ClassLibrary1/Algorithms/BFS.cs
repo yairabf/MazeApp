@@ -1,11 +1,9 @@
 ﻿
-namespace ClassLibrary1
+using System;
+using System.Collections.Generic;
+
+namespace ClassLibrary1.Algorithms
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     /// <summary>
     /// A class that implements the best first search algorithm
     /// on a searchable object.

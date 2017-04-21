@@ -1,4 +1,6 @@
-﻿namespace ServerConsole
+﻿using ServerConsole.View;
+
+namespace ServerConsole
 {
     using System;
     using System.Collections.Generic;

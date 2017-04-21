@@ -38,7 +38,6 @@ namespace ServerConsole.TheController.Commands
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
-            Console.WriteLine("calling model");
             Maze maze = model.Generate(name, rows, cols);
             return maze.ToJSON();
         }

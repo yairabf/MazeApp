@@ -1,5 +1,7 @@
 ﻿
 
+using ClassLibrary1.Algorithms;
+
 namespace ConsoleApp1
 {
     using System;

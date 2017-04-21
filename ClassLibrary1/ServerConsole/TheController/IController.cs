@@ -1,4 +1,6 @@
 ﻿
+using ServerConsole.View;
+
 namespace ServerConsole.TheController
 {
     using System.Net.Sockets;

@@ -1,4 +1,6 @@
 ﻿
+using ClassLibrary1.Algorithms;
+
 namespace ServerConsole.TheModel
 {
     using System;

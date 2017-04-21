@@ -1,17 +1,16 @@
 ﻿
 
 
-namespace ConsoleApp3
+using System;
+using System.Configuration;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace ClientConsole
 {
-    using System;
-    using System.Configuration;
-    using System.IO;
-    using System.Net;
-    using System.Net.Sockets;
-    using System.Threading;
-    using System.Threading.Tasks;
-
-
     /// <summary>
     /// A class for the client side of the connection.
     /// </summary>

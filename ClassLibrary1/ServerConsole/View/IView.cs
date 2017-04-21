@@ -1,5 +1,5 @@
 ﻿
-namespace ServerConsole
+namespace ServerConsole.View
 {
     /// <summary>
     /// Am interface we might use in the future.

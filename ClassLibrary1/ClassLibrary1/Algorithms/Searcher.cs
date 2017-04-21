@@ -1,8 +1,4 @@
-﻿using ClassLibrary1;
-using System;
-using System.Collections.Generic;
-
-namespace ClassLibrary1
+﻿namespace ClassLibrary1.Algorithms
 {
     /// <summary>
     /// An abstract class for all searchers.

@@ -57,7 +57,6 @@ namespace ServerConsole.View
                                 Console.WriteLine("Got command: {0}", commandLine);
 
                                 string result = controller.ExecuteCommand(commandLine, client);
-                                Console.WriteLine(commandLine);
                                 result += '\n';
                                 writer.Write(result);
                                 writer.Flush();
