@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ServerConsole
 {
+    /// <summary>
+    /// The program class for the server.
+    /// </summary>
     class Program
     {
         static void Main(string[] args)

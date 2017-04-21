@@ -15,14 +15,31 @@ namespace ServerConsole
 
     class Model : IModel
     {
+        /// <summary>
+        /// A dictionary. The keys are the names and values are the mazes.
+        /// </summary>
         private Dictionary<string, Maze> mazes;
+        /// <summary>
+        /// A dictionary. The keys are maze names and valus are the solutions for the mazes using bfs.
+        /// </summary>
         private Dictionary<string, ISolution<Position>> bfsMazes;
+        /// <summary>
+        /// A dictionary. The keys are maze names and valus are the solutions for the mazes using dfs.
+        /// </summary>
         private Dictionary<string, ISolution<Position>> dfsMazes;
+        /// <summary>
+        /// A dictionary. The keys are the game names and values are the game themselves.
+        /// </summary>
         private Dictionary<string, Game> gameDictionary;
+        /// <summary>
+        /// A dictionary. The keys are the clients connected and values are the games they are in.
+        /// </summary>
         private Dictionary<TcpClient, Game> clientGameDictionary;
 
 
-
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public Model()
         {
             mazes = new Dictionary<string, Maze>();
@@ -103,6 +120,15 @@ namespace ServerConsole
             return null;
         }
 
+        /// <summary>
+        /// Starts a Game and waits for the second player.
+        /// </summary>
+        /// <param name="gameName"> Name of the game </param>
+        /// <param name="rows"> Amount of rows for the game</param>
+        /// <param name="cols"> Amount of columns for the game </param>
+        /// <param name="tcpClient"> The client we are talking to </param>
+        /// <returns>
+        /// Information for the client regarding the game </returns>
         public string StartGame(string gameName, int rows, int cols, TcpClient tcpClient)
         {
             Game game;
@@ -116,6 +142,13 @@ namespace ServerConsole
             return "wait for second player";
         }
 
+        /// <summary>
+        /// Koins an existing game and sends messages to both clients.
+        /// </summary>
+        /// <param name="gameName"> The name of the game to join </param>
+        /// <param name="tcpClient"> The client we are talking to </param>
+        /// <returns>
+        /// A jason string of the maze </returns>
         public string JoinGame(string gameName, TcpClient tcpClient)
         {
             Game game;
@@ -133,6 +166,13 @@ namespace ServerConsole
             return "Game does not exist or occuiped";
         }
 
+        /// <summary>
+        /// Plays a Turn for a certain player.
+        /// </summary>
+        /// <param name="movement"> Where to move the player </param>
+        /// <param name="tcpClient"> The client that requested moving </param>
+        /// <returns>
+        /// Sends to the other player a notification that this player has moved, as a jason</returns>
         public string PlayTurn(string movement, TcpClient tcpClient)
         {
             Game game;
@@ -144,6 +184,11 @@ namespace ServerConsole
             return "client is not participating in a game";
         }
 
+        /// <summary>
+        /// Sends a list of the available games to join.
+        /// </summary>
+        /// <returns>
+        /// The list of the games to join </returns>
         public List<string> AvaliableGames()
         {
             List<string> gameList = new List<string>();
@@ -155,6 +200,12 @@ namespace ServerConsole
             return gameList;
         }
 
+        /// <summary>
+        /// Closes the game, removes it from dictionary and game disconnects one client.
+        /// </summary>
+        /// <param name="name" Name of the game ></param>
+        /// <param name="tcpClient"> The client requested the closing </param>
+        /// <returns></returns>
         public string CloseGame(string name, TcpClient tcpClient)
         {
             Game game;
