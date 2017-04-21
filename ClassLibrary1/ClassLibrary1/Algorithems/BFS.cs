@@ -1,8 +1,7 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace ClassLibrary1.Algorithms
+namespace ClassLibrary1.Algorithems
 {
     /// <summary>
     /// A class that implements the best first search algorithm

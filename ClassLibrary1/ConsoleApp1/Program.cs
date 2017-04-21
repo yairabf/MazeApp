@@ -1,6 +1,6 @@
 ﻿
 
-using ClassLibrary1.Algorithms;
+using ClassLibrary1.Algorithems;
 
 namespace ConsoleApp1
 {
@@ -41,6 +41,8 @@ namespace ConsoleApp1
             ISolution<Position> dfsSolution = dfs.Search(adapter);
             dfsSolution.PrintSolution();
             Console.WriteLine(dfs.GetNumberOfNodesEvaluated());
+            Console.WriteLine("Please enter to close");
+            Console.ReadLine();
         }
     }
 }
