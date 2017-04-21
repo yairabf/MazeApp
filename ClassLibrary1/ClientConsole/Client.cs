@@ -18,46 +18,47 @@ namespace ConsoleApp3
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.IO;
+    using System.Linq;
     using System.Net;
     using System.Net.Sockets;
+    using System.Text;
+    using System.Threading.Tasks;
     using MazeLib;
-    
+
     /// <summary>
     /// A class for the client side of the connection.
     /// </summary>
-    class Client
+    public class Client
     {
         /// <summary>
         /// The t cancellation
         /// </summary>
         private static CancellationTokenSource taskCancellation;
-        
+
         /// <summary>
         /// The stream
         /// </summary>
         private static NetworkStream stream;
-        
+
         /// <summary>
         /// The writer
         /// </summary>
         private static BinaryWriter writer;
-        
+
         /// <summary>
         /// The end point
         /// </summary>
         private static IPEndPoint endPoint;
-    
+
         /// <summary>
         /// The TCP client
         /// </summary>
         private TcpClient tcpClient;
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="Client"/> class. 
+        /// initialize the tcp client
         /// </summary>
         public Client()
         {
@@ -79,6 +80,7 @@ namespace ConsoleApp3
                 {
                     Connect();
                 }
+
                 try
                 {
                     writer.Write(command);
@@ -88,9 +90,8 @@ namespace ConsoleApp3
                 {
                     Console.WriteLine(e.Message);
                 }
-                
             }
-         }
+        }
 
         /// <summary>
         /// Connects the client to the server and creates a reading thread.
@@ -139,7 +140,6 @@ namespace ConsoleApp3
                             {
                                 Console.WriteLine(feedback);
                             }
-                            //writer.Write("notified");
                         }
                         catch (Exception e)
                         {
@@ -149,7 +149,6 @@ namespace ConsoleApp3
                 }
             });
             listening.Start();
-            //listening.Wait();
         }
 
         /// <summary>
@@ -160,10 +159,6 @@ namespace ConsoleApp3
             tcpClient.Close();
             tcpClient = new TcpClient();
         }
-
-
-
-
 
 
         /*

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
+﻿using System.Net.Sockets;
 
-namespace ServerConsole
+namespace ServerConsole.Controller.Commands
 {
     /// <summary>
     /// A class for the command that closes the connection.
     /// </summary>
-    class CloseCommand : ICommand
+    public class CloseCommand : ICommand
     {
         /// <summary>
         /// The model.
@@ -19,9 +13,11 @@ namespace ServerConsole
         private IModel model;
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="CloseCommand"/> class. 
         /// </summary>
-        /// <param name="m"> Is the model </param>
+        /// <param name="m">
+        /// Is the model 
+        /// </param>
         public CloseCommand(IModel m)
         {
             this.model = m;
@@ -32,7 +28,7 @@ namespace ServerConsole
         /// </summary>
         /// <param name="args"> The name </param>
         /// <param name="client"> The client that sent the command </param>
-        /// <returns></returns>
+        /// <returns>The respond of the execution</returns>
         public string Execute(string[] args, TcpClient client = null)
         {
             string name = args[0];
@@ -40,7 +36,7 @@ namespace ServerConsole
         }
 
         /// <summary>
-        /// Getter.
+        /// Getter that tells if the command is not single player command.
         /// </summary>
         /// <returns>
         /// True if is a single type command, otherwise false </returns>

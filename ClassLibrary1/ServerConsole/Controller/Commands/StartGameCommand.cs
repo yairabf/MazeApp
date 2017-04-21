@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using MazeLib;
+﻿
 
-namespace ServerConsole
+namespace ServerConsole.Controller.Commands
 {
+ 
+    using System.Net.Sockets;
+
     /// <summary>
     /// A class for the start command.
     /// </summary>
-    class StartGameCommand : ICommand
+    public class StartGameCommand : ICommand
     {
         /// <summary>
         /// The model. 
@@ -18,9 +16,11 @@ namespace ServerConsole
         private IModel model;
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="StartGameCommand"/> class.
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="model">
+        /// The model.
+        /// </param>
         public StartGameCommand(IModel model)
         {
             this.model = model;

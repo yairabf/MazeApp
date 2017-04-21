@@ -1,5 +1,5 @@
 ﻿
-namespace ServerConsole
+namespace ServerConsole.Controller
 {
     using System;
     using System.Collections.Generic;
@@ -9,8 +9,9 @@ namespace ServerConsole
     using System.Security.Cryptography.X509Certificates;
     using System.Text;
     using System.Threading.Tasks;
+    
     /// <summary>
-    /// An interface for the controler int the MVC.
+    /// An interface for the controller int the MVC.
     /// </summary>
     public interface IController
     {
@@ -36,12 +37,7 @@ namespace ServerConsole
         /// <returns></returns>
         string ExecuteCommand(string commandLine, TcpClient tcpClient);
 
-        /// <summary>
-        /// Helps with closing the connections.
-        /// </summary>
-        /// <param name="commandLine"> What has been received from client.</param>
-        /// <param name="client">
-        /// <returns></returns>
+        
         bool CloseSingle(string commandLine, TcpClient client);
     }
 }

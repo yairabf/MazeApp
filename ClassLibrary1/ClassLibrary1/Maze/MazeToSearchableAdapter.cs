@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MazeLib;
+﻿
 
-namespace ClassLibrary1
+namespace ClassLibrary1.Maze
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using MazeLib;
+
     /// <summary>
-    /// An adapter between the Isearchable interface to the maze class.
+    /// An adapter between the "Searchable" interface to the maze class.
     /// </summary>
     public class MazeToSearchableAdapter : ISearchable<Position>
     {
@@ -16,15 +18,19 @@ namespace ClassLibrary1
         /// The maze itself.
         /// </summary>
         private Maze maze;
+        
         /// <summary>
-        /// Te solution to the maze.
+        /// The solution to the maze.
         /// </summary>
         private MazeSolution solution;
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="MazeToSearchableAdapter"/> class. 
+        /// Initializes it's solution
         /// </summary>
-        /// <param name="m"> The maze </param>
+        /// <param name="m">
+        /// The maze 
+        /// </param>
         public MazeToSearchableAdapter(Maze m)
         {
             maze = m;
@@ -32,7 +38,7 @@ namespace ClassLibrary1
         }
 
         /// <summary>
-        /// Getter.
+        /// Getter for the start position.
         /// </summary>
         /// <returns>
         /// The initial state</returns>
@@ -43,7 +49,7 @@ namespace ClassLibrary1
         }
 
         /// <summary>
-        /// Getter.
+        /// Getter goal position.
         /// </summary>
         /// <returns>
         /// The goal state </returns>
@@ -64,36 +70,39 @@ namespace ClassLibrary1
             List <State<Position>> list = new List<State<Position>>();
             Position currentPos = currentState.GetState();
             State<Position> neighbour;
-            //left neighbour
+            
+            // left neighbor
             if ((currentPos.Col > 0) && (maze[currentPos.Row, currentPos.Col - 1] == CellType.Free))
             {
                 neighbour = new State<Position>(new Position(currentPos.Row, currentPos.Col - 1));
                 list.Add(neighbour);
             }
-            //top neighbour
+
+            // top neighbor
             if ((currentPos.Row > 0) && (maze[currentPos.Row - 1, currentPos.Col] == CellType.Free))
             {
                 neighbour = new State<Position>(new Position(currentPos.Row - 1, currentPos.Col));
                 list.Add(neighbour);
             }
-            //right neighbour
+            
+            // right neighbor
             if ((currentPos.Col < maze.Cols - 1) && (maze[currentPos.Row, currentPos.Col + 1] == CellType.Free))
             {
                 neighbour = new State<Position>(new Position(currentPos.Row, currentPos.Col + 1));
                 list.Add(neighbour);
             }
-            //bottom neighbour
+            
+            // bottom neighbor
             if ((currentPos.Row < maze.Rows - 1) && (maze[currentPos.Row + 1, currentPos.Col] == CellType.Free))
             {
                 neighbour = new State<Position>(new Position(currentPos.Row + 1, currentPos.Col));
                 list.Add(neighbour);
             }
             return list;
-
         }
 
         /// <summary>
-        /// Getter.
+        /// Getter for the solution.
         /// </summary>
         /// <returns>
         /// The solution </returns>

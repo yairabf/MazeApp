@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Text;
-using System.Threading.Tasks;
-using MazeLib;
+﻿
 
-namespace ClassLibrary1
+namespace ClassLibrary1.Maze
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.Remoting.Channels;
+    using System.Text;
+    using System.Threading.Tasks;
+    using MazeLib;
+
     /// <summary>
     /// A class representing a maze.
     /// </summary>
-    class MazeSolution : Solution<Position>
+    public class MazeSolution : Solution<Position>
     {
         /// <summary>
         /// A stack containing all the nodes for the solution
@@ -19,7 +21,8 @@ namespace ClassLibrary1
         private Stack<State<Position>> solutionList;
 
         /// <summary>
-        /// Constructor
+        /// Initializes a new instance of the <see cref="MazeSolution"/> class. 
+        /// Creating new stack for the states.
         /// </summary>
         public MazeSolution()
         {
@@ -53,7 +56,7 @@ namespace ClassLibrary1
         }
 
         /// <summary>
-        /// Converts the sollution to a string.
+        /// Converts the solution to a string.
         /// </summary>
         /// <returns>
         /// The solution as a string </returns>
@@ -61,7 +64,7 @@ namespace ClassLibrary1
         {
             Stack<State<Position>> sol = new Stack<State<Position>>(this.solutionList.Reverse());
             
-            StringBuilder solutionAsString = new StringBuilder("");
+            StringBuilder solutionAsString = new StringBuilder(string.Empty);
             while (sol.Any())
             {
                 State<Position> state = sol.Pop();
@@ -94,15 +97,16 @@ namespace ClassLibrary1
                         }
                     }
                 }
-            }    
+            }
             if (solutionAsString.Length == 0)
-                return "There is maze to solve";
-            // Console.WriteLine(solutionAsString.ToString());
+            {
+                return "There is no maze to solve";
+            }
             return solutionAsString.ToString();
             }
     
         /// <summary>
-        /// Getter.
+        /// Getter for the evaluated nodes.
         /// </summary>
         /// <returns>
         /// The number of nodes evaluated </returns>

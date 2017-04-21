@@ -1,15 +1,17 @@
-﻿using System;
-using System.Net.Sockets;
-using ClassLibrary1;
-using MazeLib;
-using Newtonsoft.Json.Linq;
+﻿
 
-namespace ServerConsole
+namespace ServerConsole.Controller.Commands
 {
+    using System;
+    using System.Net.Sockets;
+    using ClassLibrary1;
+    using MazeLib;
+    using Newtonsoft.Json.Linq;
+
     /// <summary>
     /// A class for the solve command.
     /// </summary>
-    class SolveMazeCommand : ICommand
+    public class SolveMazeCommand : ICommand
     {
         /// <summary>
         /// The model.
@@ -17,9 +19,11 @@ namespace ServerConsole
         private IModel model;
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="SolveMazeCommand"/> class. 
         /// </summary>
-        /// <param name="model"> The model </param>
+        /// <param name="model">
+        /// The model 
+        /// </param>
         public SolveMazeCommand(IModel model)
         {
             this.model = model;

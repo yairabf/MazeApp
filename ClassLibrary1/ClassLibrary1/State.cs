@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace ClassLibrary1
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// A class representing a state.
     /// </summary>
@@ -16,19 +18,22 @@ namespace ClassLibrary1
         /// The state represented by a string
         /// </summary>
         private T _state;
+        
         /// <summary>
         /// cost to reach this state (set by a setter)
         /// </summary>
         private double _cost;
+       
         /// <summary>
         /// the state we came from to this state (setter)
         /// </summary>
         private State<T> _cameFrom;  
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="State{T}"/> class. 
         /// </summary>
-        /// <param name="state"></param>
+        /// <param name="state">
+        /// </param>
         public State(T state)    
         {
             this._state = state;
@@ -37,7 +42,7 @@ namespace ClassLibrary1
         /// <summary>
         /// Equals, override.
         /// </summary>
-        /// <param name="obj"> The object to ompare with.</param>
+        /// <param name="obj"> The object to compare with.</param>
         /// <returns>
         /// True if equal, otherwise false</returns>
         public override bool Equals(object obj)
@@ -45,30 +50,36 @@ namespace ClassLibrary1
             return Equals(obj as State<T>);
         }
 
+
         /// <summary>
-        /// Equals, override.
+        /// The equals method.
         /// </summary>
-        /// <param name="obj"> The object to ompare with.</param>
+        /// <param name="s">
+        /// The s.
+        /// </param>
         /// <returns>
-        /// True if equal, otherwise false</returns>
-        public bool Equals(State<T> s) // we override Object's Equals method 
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public bool Equals(State<T> s)
         {
             if (s == null)
+            {
                 return false;
+            }
             return _state.Equals(s._state);
         } 
 
         /// <summary>
-        /// Getter.
+        /// Getter for the hash code.
         /// </summary>
-        /// <returns> The hashcode </returns>
+        /// <returns> The hash code </returns>
         public override int GetHashCode()
         {
             return _state.GetHashCode();
         }
 
         /// <summary>
-        /// Getter.
+        /// Getter for the cost.
         /// </summary>
         /// <returns>
         /// The cost</returns>
@@ -78,7 +89,7 @@ namespace ClassLibrary1
         }
 
         /// <summary>
-        /// Setter.
+        /// Setter for the cost.
         /// </summary>
         /// <param name="c"> The new cost </param>
         public void SetCost(double c)
@@ -87,7 +98,7 @@ namespace ClassLibrary1
         }
 
         /// <summary>
-        /// Getter.
+        /// Getter for the state that point to current state.
         /// </summary>
         /// <returns>
         /// Gets the father state </returns>
@@ -97,27 +108,27 @@ namespace ClassLibrary1
         }
 
         /// <summary>
-        /// Setter.
+        /// Setter for the state.
         /// </summary>
         /// <param name="s">
         /// Sets the father state </param>
         public void SetCameFrom(State<T> s)
-        {
+        { 
             this._cameFrom = s;
         }
 
         /// <summary>
-        /// To string
+        /// To string 
         /// </summary>
         /// <returns>
         /// The state as a string </returns>
-        public String ToString()
+        public override string ToString()
         {
             return _state.ToString();
         }
 
         /// <summary>
-        /// Getter.
+        /// Getter for the state.
         /// </summary>
         /// <returns>
         /// The state </returns>
@@ -125,6 +136,5 @@ namespace ClassLibrary1
         {
             return this._state;
         }
-
     }
 }
