@@ -7,32 +7,58 @@ using MazeLib;
 
 namespace ClassLibrary1
 {
+    /// <summary>
+    /// An adapter between the Isearchable interface to the maze class.
+    /// </summary>
     public class MazeToSearchableAdapter : ISearchable<Position>
     {
+        /// <summary>
+        /// The maze itself.
+        /// </summary>
         private Maze maze;
+        /// <summary>
+        /// Te solution to the maze.
+        /// </summary>
         private MazeSolution solution;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="m"> The maze </param>
         public MazeToSearchableAdapter(Maze m)
         {
             maze = m;
             solution = new MazeSolution();
         }
 
+        /// <summary>
+        /// Getter.
+        /// </summary>
+        /// <returns>
+        /// The initial state</returns>
         public State<Position> GetInitialState()
         {
             State<Position> state = new State<Position>(maze.InitialPos);
             return state;
         }
 
+        /// <summary>
+        /// Getter.
+        /// </summary>
+        /// <returns>
+        /// The goal state </returns>
         public State<Position> GetGoalState()
         {
             State<Position> state = new State<Position>(maze.GoalPos);
             return state;
         }
         
-        // returns all neighbours of the state
-        
-        // *******************************************************************need to check if columns and rows start from 0
+        /// <summary>
+        /// Returns all the possible states to go to from current state.
+        /// </summary>
+        /// <param name="currentState"> The state we are currently at</param>
+        /// <returns>
+        /// A list of states</returns>
         public List<State<Position>> GetAllPossibleStates(State<Position> currentState)
         {
             List <State<Position>> list = new List<State<Position>>();
@@ -66,6 +92,11 @@ namespace ClassLibrary1
 
         }
 
+        /// <summary>
+        /// Getter.
+        /// </summary>
+        /// <returns>
+        /// The solution </returns>
         public Solution<Position> GetSolution()
         {
             return solution;

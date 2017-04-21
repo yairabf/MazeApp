@@ -9,16 +9,32 @@ namespace ServerConsole
     using System.Net.Sockets;
     using System.Text;
     using System.Threading.Tasks;
-
+    /// <summary>
+    /// A class that handles a client from the server
+    /// is actually the vies in MVC.
+    /// </summary>
     class ClientHandler : IClientHandler
     {
+        /// <summary>
+        /// The controller.
+        /// </summary>
         private IController controller;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="controller">
+        /// The controller </param>
         public ClientHandler(IController controller)
         {
             this.controller = controller;
         }
 
+        /// <summary>
+        /// Handles the client. Receives the command and invokes
+        /// the controller.
+        /// </summary>
+        /// <param name="client"> The client needed to be handled with </param>
         public void HandleClient(TcpClient client)
         {
             new Task(() =>

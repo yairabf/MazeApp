@@ -8,18 +8,29 @@ using MazeLib;
 
 namespace ClassLibrary1
 {
+    /// <summary>
+    /// A class representing a maze.
+    /// </summary>
     class MazeSolution : Solution<Position>
     {
+        /// <summary>
+        /// A stack containing all the nodes for the solution
+        /// </summary>
         private Stack<State<Position>> solutionList;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MazeSolution()
         {
             solutionList = new Stack<State<Position>>();
         }
-        /**
-         * receives a goal state and builds the solution
-         * 
-         */
+        
+        /// <summary>
+        /// Receives a goal state and builds a solution.
+        /// </summary>
+        /// <param name="goal"> Is the goal of solution </param>
+        /// <param name="nodes"> Is the amount of nodes evaluated in the search </param>
         public override void BuildSolution(State<Position> goal, int nodes)
         {
             while (goal != null)
@@ -30,6 +41,9 @@ namespace ClassLibrary1
             this.nodesEvaluated = nodes;
         }
 
+        /// <summary>
+        /// Prints the solution.
+        /// </summary>
         public override void PrintSolution()
         {
             foreach (State<Position> s in solutionList)
@@ -38,6 +52,11 @@ namespace ClassLibrary1
             }
         }
 
+        /// <summary>
+        /// Converts the sollution to a string.
+        /// </summary>
+        /// <returns>
+        /// The solution as a string </returns>
         public override string ToString()
         {
             Stack<State<Position>> sol = new Stack<State<Position>>(this.solutionList.Reverse());
@@ -82,7 +101,11 @@ namespace ClassLibrary1
             return solutionAsString.ToString();
             }
     
-
+        /// <summary>
+        /// Getter.
+        /// </summary>
+        /// <returns>
+        /// The number of nodes evaluated </returns>
         public int GetEvaluatedNodes()
         {
             return this.nodesEvaluated;

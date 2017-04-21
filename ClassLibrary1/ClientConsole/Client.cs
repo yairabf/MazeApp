@@ -12,7 +12,9 @@ namespace ConsoleApp3
     using System.Net;
     using System.Net.Sockets;
     using MazeLib;
-
+    /// <summary>
+    /// A class for the client side of the connection.
+    /// </summary>
     class Client
     {
         //private bool connected;
@@ -23,12 +25,18 @@ namespace ConsoleApp3
         private static BinaryWriter writer;
         private static IPEndPoint endPoint;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public Client()
         {
             tcpClient = new TcpClient();
             //connected = true;
         }
 
+        /// <summary>
+        /// Connects the client to the server and creates a reading thread.
+        /// </summary>
         public void Connect()
         {
             endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3501);
@@ -40,6 +48,9 @@ namespace ConsoleApp3
             ReadingTasks();
         }
 
+        /// <summary>
+        /// A private method for reading from the server.
+        /// </summary>
         private void ReadingTasks()
         {
             Task listening = new Task(() =>
@@ -71,12 +82,19 @@ namespace ConsoleApp3
             //listening.Wait();
         }
         
+        /// <summary>
+        /// Closes the connection.
+        /// </summary>
         private void CloseConnection()
         {
             tcpClient.Close();
             tcpClient = new TcpClient();
         }
 
+        /// <summary>
+        /// The first function the gets called by the program, starts the process
+        /// and writes to the server.
+        /// </summary>
         public void SendCommands()
         {
             while (true)
@@ -133,7 +151,7 @@ namespace ConsoleApp3
                     }
                     //reader.ReadLine();
 
-                    // ************TODO - ADD a condition of receiving empty jason obj to stop loop*****
+                   
                 }
             }
 
