@@ -1,14 +1,12 @@
 ﻿
-
-
-
-namespace ServerConsole.Controller
+namespace ServerConsole.TheController
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net.Sockets;
     using Commands;
+    using TheModel;
 
     /// <summary>
     /// A class for the controller of the MVC.
@@ -91,7 +89,7 @@ namespace ServerConsole.Controller
         /// </summary>
         /// <param name="commandLine"> The string received from user </param>
         /// <param name="client"> The client we are talking to </param>
-        /// <returns></returns>
+        /// <returns>the respond from the command</returns>
         public bool CloseSingle(string commandLine, TcpClient client)
         {
             string[] arr = commandLine.Split(' ');

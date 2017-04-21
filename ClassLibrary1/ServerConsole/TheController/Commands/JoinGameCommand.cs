@@ -1,8 +1,9 @@
-﻿using System;
-using System.Net.Sockets;
-
-namespace ServerConsole.Controller.Commands
+﻿
+namespace ServerConsole.TheController.Commands
 {
+    using System.Net.Sockets;
+    using TheModel;
+
     /// <summary>
     /// A class for the join command.
     /// </summary>

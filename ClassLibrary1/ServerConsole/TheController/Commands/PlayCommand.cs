@@ -1,11 +1,13 @@
-﻿using System.Net.Sockets;
-
-namespace ServerConsole.Controller.Commands
+﻿
+namespace ServerConsole.TheController.Commands
 {
+    using System.Net.Sockets;
+    using TheModel;
+
     /// <summary>
-    /// A class for the command that closes the connection.
+    /// A class for the play command.
     /// </summary>
-    public class CloseCommand : ICommand
+    public class PlayCommand : ICommand
     {
         /// <summary>
         /// The model.
@@ -13,14 +15,14 @@ namespace ServerConsole.Controller.Commands
         private IModel model;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CloseCommand"/> class. 
+        /// Initializes a new instance of the <see cref="PlayCommand"/> class. 
         /// </summary>
-        /// <param name="m">
-        /// Is the model 
+        /// <param name="model">
+        /// The model 
         /// </param>
-        public CloseCommand(IModel m)
+        public PlayCommand(IModel model)
         {
-            this.model = m;
+            this.model = model;
         }
 
         /// <summary>
@@ -31,12 +33,12 @@ namespace ServerConsole.Controller.Commands
         /// <returns>The respond of the execution</returns>
         public string Execute(string[] args, TcpClient client = null)
         {
-            string name = args[0];
-            return model.CloseGame(name, client);
+            string movement = args[0];
+            return this.model.PlayTurn(movement, client);
         }
 
         /// <summary>
-        /// Getter that tells if the command is not single player command.
+        /// Getter.
         /// </summary>
         /// <returns>
         /// True if is a single type command, otherwise false </returns>

@@ -1,29 +1,26 @@
 ﻿
-
-
-namespace ServerConsole.Controller.Commands
+namespace ServerConsole.TheController.Commands
 {
-    using MazeLib;
-    using System;
     using System.Net.Sockets;
+    using TheModel;
 
     /// <summary>
-    /// A class for the generate command. 
+    /// A class for the start command.
     /// </summary>
-    internal class GenerateMazeCommand : ICommand
+    public class StartGameCommand : ICommand
     {
         /// <summary>
-        /// The model.
+        /// The model. 
         /// </summary>
         private IModel model;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GenerateMazeCommand"/> class. 
+        /// Initializes a new instance of the <see cref="StartGameCommand"/> class.
         /// </summary>
         /// <param name="model">
-        /// The model 
+        /// The model.
         /// </param>
-        public GenerateMazeCommand(IModel model)
+        public StartGameCommand(IModel model)
         {
             this.model = model;
         }
@@ -33,15 +30,13 @@ namespace ServerConsole.Controller.Commands
         /// </summary>
         /// <param name="args"> The name </param>
         /// <param name="client"> The client that sent the command </param>
-        /// <returns>The respond of the execution</returns>
+        /// <returns>the respond from the command</returns>
         public string Execute(string[] args, TcpClient client = null)
         {
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
-            Console.WriteLine("calling model");
-            Maze maze = model.Generate(name, rows, cols);
-            return maze.ToJSON();
+            return this.model.StartGame(name, rows, cols, client);
         }
 
         /// <summary>
@@ -51,7 +46,7 @@ namespace ServerConsole.Controller.Commands
         /// True if is a single type command, otherwise false </returns>
         public bool GetIsSingle()
         {
-            return true;
+            return false;
         }
     }
 }

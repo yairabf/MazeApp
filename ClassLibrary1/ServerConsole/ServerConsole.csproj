@@ -42,6 +42,7 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,26 +52,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\Commands\CloseCommand.cs" />
-    <Compile Include="Controller\Commands\ListCommand.cs" />
-    <Compile Include="Controller\Commands\PlayCommand.cs" />
+    <Compile Include="TheController\Commands\CloseCommand.cs" />
+    <Compile Include="TheController\Commands\ListCommand.cs" />
+    <Compile Include="TheController\Commands\PlayCommand.cs" />
     <Compile Include="View\ClientHandler.cs" />
-    <Compile Include="Controller\Controller.cs" />
-    <Compile Include="Model\Game.cs" />
-    <Compile Include="Controller\Commands\GenerateMazeCommand.cs" />
+    <Compile Include="TheController\Controller.cs" />
+    <Compile Include="TheModel\Game.cs" />
+    <Compile Include="TheController\Commands\GenerateMazeCommand.cs" />
     <Compile Include="View\IClientHandler.cs" />
-    <Compile Include="Controller\Commands\ICommand.cs" />
-    <Compile Include="Controller\IController.cs" />
-    <Compile Include="Model\IModel.cs" />
+    <Compile Include="TheController\Commands\ICommand.cs" />
+    <Compile Include="TheController\IController.cs" />
+    <Compile Include="TheModel\IModel.cs" />
     <Compile Include="View\IView.cs" />
-    <Compile Include="Controller\Commands\JoinGameCommand.cs" />
-    <Compile Include="Model\Model.cs" />
-    <Compile Include="Model\Player.cs" />
+    <Compile Include="TheController\Commands\JoinGameCommand.cs" />
+    <Compile Include="TheModel\Model.cs" />
+    <Compile Include="TheModel\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server.cs" />
-    <Compile Include="Controller\Commands\SolveMazeCommand.cs" />
+    <Compile Include="TheController\Commands\SolveMazeCommand.cs" />
     <Compile Include="SProgram.cs" />
-    <Compile Include="Controller\Commands\StartGameCommand.cs" />
+    <Compile Include="TheController\Commands\StartGameCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

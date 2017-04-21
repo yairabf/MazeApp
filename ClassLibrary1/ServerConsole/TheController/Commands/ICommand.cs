@@ -1,9 +1,9 @@
 ﻿
 
-namespace ServerConsole.Controller.Commands
+using System.Net.Sockets;
+
+namespace ServerConsole.TheController.Commands
 {
-    using System.Net.Sockets;
-   
     /// <summary>
     /// An interface for the commands.
     /// </summary>

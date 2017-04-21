@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ServerConsole.Controller.Commands
+﻿
+namespace ServerConsole.TheController.Commands
 {
+    using System;
+    using System.Net.Sockets;
+    using MazeLib;
+    using TheModel;
+
     /// <summary>
-    /// A class for the play command.
+    /// A class for the generate command. 
     /// </summary>
-    public class PlayCommand : ICommand
+    internal class GenerateMazeCommand : ICommand
     {
         /// <summary>
         /// The model.
@@ -18,12 +17,12 @@ namespace ServerConsole.Controller.Commands
         private IModel model;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlayCommand"/> class. 
+        /// Initializes a new instance of the <see cref="GenerateMazeCommand"/> class. 
         /// </summary>
         /// <param name="model">
         /// The model 
         /// </param>
-        public PlayCommand(IModel model)
+        public GenerateMazeCommand(IModel model)
         {
             this.model = model;
         }
@@ -36,18 +35,22 @@ namespace ServerConsole.Controller.Commands
         /// <returns>The respond of the execution</returns>
         public string Execute(string[] args, TcpClient client = null)
         {
-            string movement = args[0];
-            return this.model.PlayTurn(movement, client);
+            string name = args[0];
+            int rows = int.Parse(args[1]);
+            int cols = int.Parse(args[2]);
+            Console.WriteLine("calling model");
+            Maze maze = model.Generate(name, rows, cols);
+            return maze.ToJSON();
         }
 
         /// <summary>
-        /// Getter.
+        /// Getter .
         /// </summary>
         /// <returns>
         /// True if is a single type command, otherwise false </returns>
         public bool GetIsSingle()
         {
-            return false;
+            return true;
         }
     }
 }

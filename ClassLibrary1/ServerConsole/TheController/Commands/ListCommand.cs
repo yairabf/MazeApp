@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ServerConsole.Controller.Commands
+﻿
+namespace ServerConsole.TheController.Commands
 {
+    using System.Collections.Generic;
+    using System.Net.Sockets;
+    using TheModel;
+
     /// <summary>
     /// A class for the list command.
     /// </summary>
@@ -36,7 +34,7 @@ namespace ServerConsole.Controller.Commands
         /// <returns>The respond of the execution</returns>
         public string Execute(string[] args, TcpClient client = null)
         {
-            List<string> games = this.model.AvaliableGames();
+            List<string> games = this.model.AvailableGames();
             string stringList = "[\n";
             foreach (var game in games)
             {

@@ -1,30 +1,16 @@
-﻿// ***********************************************************************
-// Assembly         : ClientConsole
-// Author           : Yair
-// Created          : 04-14-2017
-//
-// Last Modified By : Yair
-// Last Modified On : 04-21-2017
-// ***********************************************************************
-// <copyright file="Client.cs" company="">
-//     Copyright ©  2017
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
+﻿
 
-using System.Threading;
 
 namespace ConsoleApp3
 {
     using System;
-    using System.Collections.Generic;
+    using System.Configuration;
     using System.IO;
-    using System.Linq;
     using System.Net;
     using System.Net.Sockets;
-    using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
-    using MazeLib;
+
 
     /// <summary>
     /// A class for the client side of the connection.
@@ -100,7 +86,8 @@ namespace ConsoleApp3
         {
             try
             {
-                endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3501);
+                int port = int.Parse(ConfigurationManager.AppSettings["PortNum"]);
+                endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
                 tcpClient.Connect(endPoint);
                 Console.WriteLine("You are connected");
                 stream = tcpClient.GetStream();

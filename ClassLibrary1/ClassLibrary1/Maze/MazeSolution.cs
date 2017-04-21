@@ -41,7 +41,7 @@ namespace ClassLibrary1.Maze
                 solutionList.Push(goal);
                 goal = goal.GetCameFrom();
             }
-            this.nodesEvaluated = nodes;
+            this.NodesEvaluated = nodes;
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace ClassLibrary1.Maze
         /// The number of nodes evaluated </returns>
         public int GetEvaluatedNodes()
         {
-            return this.nodesEvaluated;
+            return this.NodesEvaluated;
         }
     }
 }
