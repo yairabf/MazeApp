@@ -55,13 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BFS.cs" />
-    <Compile Include="DFS.cs" />
-    <Compile Include="MazeSolution.cs" />
-    <Compile Include="MazeToSearchableAdapter.cs" />
-    <Compile Include="PriorityQueueSearcher.cs" />
+    <Compile Include="Algorithms\BFS.cs" />
+    <Compile Include="Algorithms\DFS.cs" />
+    <Compile Include="Maze\MazeSolution.cs" />
+    <Compile Include="Maze\MazeToSearchableAdapter.cs" />
+    <Compile Include="Algorithms\PriorityQueueSearcher.cs" />
     <Compile Include="ISolution.cs" />
-    <Compile Include="Searcher.cs" />
+    <Compile Include="Algorithms\Searcher.cs" />
     <Compile Include="ISearcher.cs" />
     <Compile Include="ISearchable.cs" />
     <Compile Include="Solution.cs" />

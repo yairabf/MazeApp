@@ -1,18 +1,19 @@
 ﻿
+using ServerConsole.View;
 
-using System;
-
-namespace ServerConsole
+namespace ServerConsole.TheController
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net.Sockets;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Commands;
+    using TheModel;
+
     /// <summary>
     /// A class for the controller of the MVC.
     /// </summary>
-    class Controller : IController
+    public class Controller : IController
     {
         /// <summary>
         /// The view 
@@ -30,7 +31,7 @@ namespace ServerConsole
         private Dictionary<string, ICommand> commands;
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="Controller"/> class.
         /// </summary>
         public Controller()
         {
@@ -46,7 +47,7 @@ namespace ServerConsole
         }
 
         /// <summary>
-        /// Setter. 
+        /// Setter for the view. 
         /// </summary>
         /// <param name="v">
         /// The view </param>
@@ -56,7 +57,7 @@ namespace ServerConsole
         }
 
         /// <summary>
-        /// Setter.
+        /// Setter for the model.
         /// </summary>
         /// <param name="m">
         /// The model </param>
@@ -77,10 +78,11 @@ namespace ServerConsole
             string[] arr = commandLine.Split(' ');
             string commandKey = arr[0];
             if (!commands.ContainsKey(commandKey))
+            {
                 return "Command not found";
+            }
             string[] args = arr.Skip(1).ToArray();
             ICommand command = commands[commandKey];
-            //Console.WriteLine("start command");
             return command.Execute(args, tcpClient);
         }
 
@@ -89,7 +91,7 @@ namespace ServerConsole
         /// </summary>
         /// <param name="commandLine"> The string received from user </param>
         /// <param name="client"> The client we are talking to </param>
-        /// <returns></returns>
+        /// <returns>the respond from the command</returns>
         public bool CloseSingle(string commandLine, TcpClient client)
         {
             string[] arr = commandLine.Split(' ');

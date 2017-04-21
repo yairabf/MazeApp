@@ -60,9 +60,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj">
+    <ProjectReference Include="..\ClassLibrary1\SearchAlgorithmLib.csproj">
       <Project>{69c3420a-c5f1-4dca-87af-fcdac2f41728}</Project>
-      <Name>ClassLibrary1</Name>
+      <Name>SearchAlgorithmLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

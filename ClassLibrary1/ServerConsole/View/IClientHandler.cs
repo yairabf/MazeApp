@@ -1,12 +1,7 @@
-﻿
-namespace ServerConsole
+﻿using System.Net.Sockets;
+
+namespace ServerConsole.View
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net.Sockets;
-    using System.Text;
-    using System.Threading.Tasks;
     /// <summary>
     /// An interface for the client handler.
     /// </summary>

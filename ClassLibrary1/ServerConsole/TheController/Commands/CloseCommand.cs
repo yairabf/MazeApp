@@ -1,15 +1,13 @@
 ﻿
-
-using MazeLib;
-
-namespace ServerConsole
+namespace ServerConsole.TheController.Commands
 {
-    using System;
     using System.Net.Sockets;
+    using TheModel;
+
     /// <summary>
-    /// A class for the generate command. 
+    /// A class for the command that closes the connection.
     /// </summary>
-    internal class GenerateMazeCommand : ICommand
+    public class CloseCommand : ICommand
     {
         /// <summary>
         /// The model.
@@ -17,13 +15,14 @@ namespace ServerConsole
         private IModel model;
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="CloseCommand"/> class. 
         /// </summary>
-        /// <param name="model">
-        /// The model </param>
-        public GenerateMazeCommand(IModel model)
+        /// <param name="m">
+        /// Is the model 
+        /// </param>
+        public CloseCommand(IModel m)
         {
-            this.model = model;
+            this.model = m;
         }
 
         /// <summary>
@@ -31,25 +30,21 @@ namespace ServerConsole
         /// </summary>
         /// <param name="args"> The name </param>
         /// <param name="client"> The client that sent the command </param>
-        /// <returns></returns>
+        /// <returns>The respond of the execution</returns>
         public string Execute(string[] args, TcpClient client = null)
         {
             string name = args[0];
-            int rows = int.Parse(args[1]);
-            int cols = int.Parse(args[2]);
-            Console.WriteLine("calling model");
-            Maze maze = model.Generate(name, rows, cols);
-            return maze.ToJSON();
+            return model.CloseGame(name, client);
         }
 
         /// <summary>
-        /// Getter.
+        /// Getter that tells if the command is not single player command.
         /// </summary>
         /// <returns>
         /// True if is a single type command, otherwise false </returns>
         public bool GetIsSingle()
         {
-            return true;
+            return false;
         }
     }
 }

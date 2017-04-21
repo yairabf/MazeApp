@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-
-namespace ServerConsole
+﻿
+namespace ServerConsole.TheController.Commands
 {
+    using System.Collections.Generic;
+    using System.Net.Sockets;
+    using TheModel;
+
     /// <summary>
     /// A class for the list command.
     /// </summary>
@@ -19,10 +16,11 @@ namespace ServerConsole
         private IModel model;
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="ListCommand"/> class. 
         /// </summary>
         /// <param name="m">
-        /// The model </param>
+        /// The model 
+        /// </param>
         public ListCommand(IModel m)
         {
             this.model = m;
@@ -33,10 +31,10 @@ namespace ServerConsole
         /// </summary>
         /// <param name="args"> The name </param>
         /// <param name="client"> The client that sent the command </param>
-        /// <returns></returns>
+        /// <returns>The respond of the execution</returns>
         public string Execute(string[] args, TcpClient client = null)
         {
-            List<string> games = this.model.AvaliableGames();
+            List<string> games = this.model.AvailableGames();
             string stringList = "[\n";
             foreach (var game in games)
             {

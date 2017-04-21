@@ -1,4 +1,5 @@
-﻿
+﻿using ServerConsole.View;
+
 namespace ServerConsole
 {
     using System;
@@ -14,24 +15,26 @@ namespace ServerConsole
     /// </summary>
     class Server
     {
-       /// <summary>
-       /// The port.
-       /// </summary>
+        /// <summary>
+        /// The port.
+        /// </summary>
         private int port;
+
         /// <summary>
         /// Listener to new clients.
         /// </summary>
         private TcpListener listener;
+
         /// <summary>
         /// The client handler.
         /// </summary>
         private IClientHandler ch;
 
         /// <summary>
-        /// constructor.
+        /// Initializes a new instance of the <see cref="Server"/> class.
         /// </summary>
-        /// <param name="port"></param>
-        /// <param name="ch"></param>
+        /// <param name="port">The port.</param>
+        /// <param name="ch">Th client handler.</param>
         public Server(int port, IClientHandler ch)
         {
             this.port = port;
@@ -39,33 +42,32 @@ namespace ServerConsole
         }
 
         /// <summary>
-        /// Creates a threas for every incoming client and lets the ch deal with him.
+        /// Creates a thread for every incoming client and lets the client handler deal with him.
         /// </summary>
         public void Start()
         {
-            IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3501);
+            IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), this.port);
             this.listener = new TcpListener(ep);
-
             this.listener.Start();
             Console.WriteLine("Waiting for connections...");
-            Task task = new Task(() => 
+            Task task = new Task(() =>
             {
-                    while (true)
+                while (true)
+                {
+                    try
                     {
-                        try
-                        {
-                            TcpClient client = this.listener.AcceptTcpClient();
-                            Console.WriteLine("Got new connection");
-                            this.ch.HandleClient(client);
-                        }
-                        catch (SocketException)
-                        {
-                            break;
-                        }
+                        TcpClient client = this.listener.AcceptTcpClient();
+                        Console.WriteLine("Got new connection");
+                        this.ch.HandleClient(client);
                     }
+                    catch (SocketException)
+                    {
+                        break;
+                    }
+                }
 
-                    Console.WriteLine("Server stopped");
-                });
+                Console.WriteLine("Server stopped");
+            });
             task.Start();
             task.Wait();
         }

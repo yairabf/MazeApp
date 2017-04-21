@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Priority_Queue;
+﻿using Priority_Queue;
 
-namespace ClassLibrary1
+namespace ClassLibrary1.Algorithms
 {
     /// <summary>
     /// An abstract class for a searcher that uses a priority queue.

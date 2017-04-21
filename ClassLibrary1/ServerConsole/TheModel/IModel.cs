@@ -1,11 +1,11 @@
 ﻿
-using System.Collections.Generic;
-using System.Net.Sockets;
-using ClassLibrary1;
-
-namespace ServerConsole
+namespace ServerConsole.TheModel
 {
+    using System.Collections.Generic;
+    using System.Net.Sockets;
+    using ClassLibrary1;
     using MazeLib;
+
     /// <summary>
     /// An interface for the model in the MVC.
     /// </summary>
@@ -25,7 +25,7 @@ namespace ServerConsole
         /// </summary>
         /// <param name="name"> The name of the maze to be solved.</param>
         /// <param name="algorithm"> Which algorithm to use for the search </param>
-        /// <returns></returns>
+        /// <returns>the solution of the maze named <param name="name"></param></returns>
         ISolution<Position> Solve(string name, int algorithm);
 
         //string Solve(string name, int algorithm);
@@ -64,7 +64,14 @@ namespace ServerConsole
         /// <returns></returns>
         string CloseGame(string movement, TcpClient tcpClient);
 
-        List<string> AvaliableGames();
+
+        /// <summary>
+        /// The available games.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="List"/>.
+        /// </returns>
+        List<string> AvailableGames();
 
     }
 }

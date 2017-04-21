@@ -1,36 +1,42 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using ClassLibrary1;
+﻿
+using ClassLibrary1.Algorithms;
 
-namespace ServerConsole
+namespace ServerConsole.TheModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Net.Sockets;
+    using ClassLibrary1;
+    using ClassLibrary1.Maze;
     using MazeGeneratorLib;
     using MazeLib;
 
-    class Model : IModel
+    /// <summary>
+    /// The model part of the MVC.
+    /// </summary>
+    internal class Model : IModel
     {
         /// <summary>
         /// A dictionary. The keys are the names and values are the mazes.
         /// </summary>
         private Dictionary<string, Maze> mazes;
+       
         /// <summary>
         /// A dictionary. The keys are maze names and valus are the solutions for the mazes using bfs.
         /// </summary>
         private Dictionary<string, ISolution<Position>> bfsMazes;
+        
         /// <summary>
         /// A dictionary. The keys are maze names and valus are the solutions for the mazes using dfs.
         /// </summary>
         private Dictionary<string, ISolution<Position>> dfsMazes;
+        
         /// <summary>
         /// A dictionary. The keys are the game names and values are the game themselves.
         /// </summary>
         private Dictionary<string, Game> gameDictionary;
+        
         /// <summary>
         /// A dictionary. The keys are the clients connected and values are the games they are in.
         /// </summary>
@@ -38,7 +44,7 @@ namespace ServerConsole
 
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="Model"/> class. 
         /// </summary>
         public Model()
         {
@@ -81,11 +87,11 @@ namespace ServerConsole
         /// <returns>the wanted solution</returns>
         public ISolution<Position> Solve(string name, int algorithm)
         {
-            //Console.WriteLine("in model function");
+            // Console.WriteLine("in model function");
             ISolution<Position> solvedMaze;
             if (algorithm == 0)
             {
-                //Console.WriteLine("in model function bfs solution");
+                // Console.WriteLine("in model function bfs solution");
                 if (this.bfsMazes.TryGetValue(name, out solvedMaze))
                 {
                     return solvedMaze;
@@ -93,7 +99,7 @@ namespace ServerConsole
                 Maze maze;
                 if (this.mazes.TryGetValue(name, out maze))
                 {
-                    //Console.WriteLine("in model function mazes");
+                    // Console.WriteLine("in model function mazes");
                     Bfs<Position> bfs = new Bfs<Position>();
                     MazeToSearchableAdapter adapter = new MazeToSearchableAdapter(maze);
                     ISolution<Position> bfsSolution = bfs.Search(adapter);
@@ -143,16 +149,15 @@ namespace ServerConsole
         }
 
         /// <summary>
-        /// Koins an existing game and sends messages to both clients.
+        /// Joins an existing game and sends messages to both clients.
         /// </summary>
         /// <param name="gameName"> The name of the game to join </param>
         /// <param name="tcpClient"> The client we are talking to </param>
         /// <returns>
         /// A jason string of the maze </returns>
         public string JoinGame(string gameName, TcpClient tcpClient)
-        {
-            Game game;
-            if (gameDictionary.TryGetValue(gameName, out game))
+        {       
+            if (gameDictionary.TryGetValue(gameName, out Game game))
             {
                 if (!game.IsOccuiped())
                 {
@@ -163,7 +168,7 @@ namespace ServerConsole
                     return game.SendStartingMessages();
                 }
             }
-            return "Game does not exist or occuiped";
+            return "Game does not exist or occupied";
         }
 
         /// <summary>
@@ -189,7 +194,7 @@ namespace ServerConsole
         /// </summary>
         /// <returns>
         /// The list of the games to join </returns>
-        public List<string> AvaliableGames()
+        public List<string> AvailableGames()
         {
             List<string> gameList = new List<string>();
             foreach (var game in this.gameDictionary)
@@ -200,12 +205,19 @@ namespace ServerConsole
             return gameList;
         }
 
+
         /// <summary>
-        /// Closes the game, removes it from dictionary and game disconnects one client.
+        /// The close game.
         /// </summary>
-        /// <param name="name" Name of the game ></param>
-        /// <param name="tcpClient"> The client requested the closing </param>
-        /// <returns></returns>
+        /// <param name="name">
+        /// The name of the command
+        /// </param>
+        /// <param name="tcpClient">
+        /// The client the might need to be closed
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public string CloseGame(string name, TcpClient tcpClient)
         {
             Game game;

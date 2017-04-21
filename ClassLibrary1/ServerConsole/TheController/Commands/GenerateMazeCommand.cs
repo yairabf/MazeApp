@@ -1,12 +1,15 @@
-﻿using System;
-using System.Net.Sockets;
-
-namespace ServerConsole
+﻿
+namespace ServerConsole.TheController.Commands
 {
+    using System;
+    using System.Net.Sockets;
+    using MazeLib;
+    using TheModel;
+
     /// <summary>
-    /// A class for the koin command.
+    /// A class for the generate command. 
     /// </summary>
-    class JoinGameCommand : ICommand
+    internal class GenerateMazeCommand : ICommand
     {
         /// <summary>
         /// The model.
@@ -14,10 +17,12 @@ namespace ServerConsole
         private IModel model;
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="GenerateMazeCommand"/> class. 
         /// </summary>
-        /// <param name="model"> The model </param>
-        public JoinGameCommand(IModel model)
+        /// <param name="model">
+        /// The model 
+        /// </param>
+        public GenerateMazeCommand(IModel model)
         {
             this.model = model;
         }
@@ -27,21 +32,24 @@ namespace ServerConsole
         /// </summary>
         /// <param name="args"> The name </param>
         /// <param name="client"> The client that sent the command </param>
-        /// <returns></returns>
+        /// <returns>The respond of the execution</returns>
         public string Execute(string[] args, TcpClient client = null)
         {
             string name = args[0];
-            return this.model.JoinGame(name, client);
+            int rows = int.Parse(args[1]);
+            int cols = int.Parse(args[2]);
+            Maze maze = model.Generate(name, rows, cols);
+            return maze.ToJSON();
         }
 
         /// <summary>
-        /// Getter.
+        /// Getter .
         /// </summary>
         /// <returns>
         /// True if is a single type command, otherwise false </returns>
         public bool GetIsSingle()
         {
-            return false;
+            return true;
         }
     }
 }

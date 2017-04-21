@@ -1,8 +1,12 @@
 ﻿
+
+using ClassLibrary1.Algorithms;
+
 namespace ConsoleApp1
 {
     using System;
     using ClassLibrary1;
+    using ClassLibrary1.Maze;
     using MazeGeneratorLib;
     using MazeLib;
 

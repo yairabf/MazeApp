@@ -1,27 +1,26 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using MazeLib;
-
-namespace ServerConsole
+﻿
+namespace ServerConsole.TheController.Commands
 {
+    using System.Net.Sockets;
+    using TheModel;
+
     /// <summary>
-    /// A class for the start command.
+    /// A class for the join command.
     /// </summary>
-    class StartGameCommand : ICommand
+    public class JoinGameCommand : ICommand
     {
         /// <summary>
-        /// The model. 
+        /// The model.
         /// </summary>
         private IModel model;
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="JoinGameCommand"/> class. 
         /// </summary>
-        /// <param name="model"></param>
-        public StartGameCommand(IModel model)
+        /// <param name="model">
+        /// The model 
+        /// </param>
+        public JoinGameCommand(IModel model)
         {
             this.model = model;
         }
@@ -31,13 +30,11 @@ namespace ServerConsole
         /// </summary>
         /// <param name="args"> The name </param>
         /// <param name="client"> The client that sent the command </param>
-        /// <returns></returns>
+        /// <returns>The respond of the execution</returns>
         public string Execute(string[] args, TcpClient client = null)
         {
             string name = args[0];
-            int rows = int.Parse(args[1]);
-            int cols = int.Parse(args[2]);
-            return this.model.StartGame(name, rows, cols, client);
+            return this.model.JoinGame(name, client);
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿
 
-namespace ServerConsole
+
+namespace ServerConsole.View
 {
     using System;
     using System.Collections.Generic;
@@ -9,11 +10,13 @@ namespace ServerConsole
     using System.Net.Sockets;
     using System.Text;
     using System.Threading.Tasks;
+    using ServerConsole.TheController;
+
     /// <summary>
     /// A class that handles a client from the server
     /// is actually the vies in MVC.
     /// </summary>
-    class ClientHandler : IClientHandler
+    public class ClientHandler : IClientHandler
     {
         /// <summary>
         /// The controller.
@@ -21,10 +24,11 @@ namespace ServerConsole
         private IController controller;
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="ClientHandler"/> class. 
         /// </summary>
         /// <param name="controller">
-        /// The controller </param>
+        /// The controller 
+        /// </param>
         public ClientHandler(IController controller)
         {
             this.controller = controller;
@@ -53,17 +57,12 @@ namespace ServerConsole
                                 Console.WriteLine("Got command: {0}", commandLine);
 
                                 string result = controller.ExecuteCommand(commandLine, client);
-                                //if(result.Contains("notified"))
-                                //  continue;
-                                Console.WriteLine(result);
-                                Console.WriteLine(commandLine);
                                 result += '\n';
                                 writer.Write(result);
                                 writer.Flush();
                                 if (result.Contains("closed"))
                                 {
                                     Console.WriteLine("closing client");
-                                    //writer.Write(result);
                                     client.Close();
                                     break;
                                 }
@@ -75,15 +74,13 @@ namespace ServerConsole
                                     break;
                                 }   
                             }
-
                             catch (Exception e)
                             {
-                                Console.WriteLine("entered catch");
-                                //Console.WriteLine(e);
+                                //Console.WriteLine("entered catch");
+                                Console.WriteLine(e.Message);
                             }     
                         }
                     }
-                    //client.Close();
                 }).Start();
         }
     }

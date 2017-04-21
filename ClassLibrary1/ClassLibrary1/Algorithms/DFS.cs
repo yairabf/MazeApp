@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ClassLibrary1
+namespace ClassLibrary1.Algorithms
 {
     /// <summary>
     /// A class that implements the depth first search algorithm

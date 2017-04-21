@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 using MazeLib;
 
-namespace ServerConsole
+namespace ServerConsole.TheModel
 {
     /// <summary>
     /// A class for a player in the game.

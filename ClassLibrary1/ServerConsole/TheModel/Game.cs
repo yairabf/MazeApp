@@ -1,10 +1,10 @@
-﻿using MazeLib;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.IO;
 using System.Net.Sockets;
+using MazeLib;
+using Newtonsoft.Json.Linq;
 
-namespace ServerConsole
+namespace ServerConsole.TheModel
 {
     /// <summary>
     /// A class that controls a game of two players.
