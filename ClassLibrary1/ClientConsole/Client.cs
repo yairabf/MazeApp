@@ -1,4 +1,17 @@
-﻿
+﻿// ***********************************************************************
+// Assembly         : ClientConsole
+// Author           : Yair
+// Created          : 04-14-2017
+//
+// Last Modified By : Yair
+// Last Modified On : 04-21-2017
+// ***********************************************************************
+// <copyright file="Client.cs" company="">
+//     Copyright ©  2017
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
 using System.Threading;
 
 namespace ConsoleApp3
@@ -12,82 +25,42 @@ namespace ConsoleApp3
     using System.Net;
     using System.Net.Sockets;
     using MazeLib;
+    
     /// <summary>
     /// A class for the client side of the connection.
     /// </summary>
     class Client
     {
-        //private bool connected;
-        private TcpClient tcpClient;
-        private static CancellationTokenSource tCancellation;
+        /// <summary>
+        /// The t cancellation
+        /// </summary>
+        private static CancellationTokenSource taskCancellation;
+        
+        /// <summary>
+        /// The stream
+        /// </summary>
         private static NetworkStream stream;
-        //private static BinaryReader reader;
+        
+        /// <summary>
+        /// The writer
+        /// </summary>
         private static BinaryWriter writer;
+        
+        /// <summary>
+        /// The end point
+        /// </summary>
         private static IPEndPoint endPoint;
+    
+        /// <summary>
+        /// The TCP client
+        /// </summary>
+        private TcpClient tcpClient;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         public Client()
         {
-            tcpClient = new TcpClient();
-            //connected = true;
-        }
-
-        /// <summary>
-        /// Connects the client to the server and creates a reading thread.
-        /// </summary>
-        public void Connect()
-        {
-            endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3501);
-            tcpClient.Connect(endPoint);
-            Console.WriteLine("You are connected");
-            stream = tcpClient.GetStream();
-            //reader = new BinaryReader(stream);
-            writer = new BinaryWriter(stream);
-            ReadingTasks();
-        }
-
-        /// <summary>
-        /// A private method for reading from the server.
-        /// </summary>
-        private void ReadingTasks()
-        {
-            Task listening = new Task(() =>
-            {
-                BinaryReader reader = new BinaryReader(tcpClient.GetStream());
-                //bool playing = true;
-                {
-                    while (tcpClient.Connected)
-                    {
-                        string feedback = reader.ReadString();
-                        if (feedback == "null")
-                        {
-                            CloseConnection();
-                        }
-                        else if (feedback.Contains("closed"))
-                        {
-                            Console.WriteLine(feedback);
-                            CloseConnection();
-                        }
-                        else
-                        {
-                            Console.WriteLine(feedback);
-                        }
-                        //writer.Write("notified");
-                    }
-                }
-            });
-            listening.Start();
-            //listening.Wait();
-        }
-        
-        /// <summary>
-        /// Closes the connection.
-        /// </summary>
-        private void CloseConnection()
-        {
-            tcpClient.Close();
             tcpClient = new TcpClient();
         }
 
@@ -106,11 +79,87 @@ namespace ConsoleApp3
                 {
                     Connect();
                 }
-                writer.Write(command);
-                writer.Flush();
+                try
+                {
+                    writer.Write(command);
+                    writer.Flush();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                
             }
          }
 
+        /// <summary>
+        /// Connects the client to the server and creates a reading thread.
+        /// </summary>
+        public void Connect()
+        {
+            try
+            {
+                endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3501);
+                tcpClient.Connect(endPoint);
+                Console.WriteLine("You are connected");
+                stream = tcpClient.GetStream();
+                writer = new BinaryWriter(stream);
+                ReadingTasks();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("not Connected");
+            }
+        }
+
+        /// <summary>
+        /// A private method for reading from the server.
+        /// </summary>
+        private void ReadingTasks()
+        {
+            Task listening = new Task(() =>
+            {
+                BinaryReader reader = new BinaryReader(tcpClient.GetStream());
+                {
+                    while (tcpClient.Connected)
+                    {
+                        try
+                        {
+                            string feedback = reader.ReadString();
+                            if (feedback == "null")
+                            {
+                                CloseConnection();
+                            }
+                            else if (feedback.Contains("closed"))
+                            {
+                                Console.WriteLine(feedback);
+                                CloseConnection();
+                            }
+                            else
+                            {
+                                Console.WriteLine(feedback);
+                            }
+                            //writer.Write("notified");
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                    }
+                }
+            });
+            listening.Start();
+            //listening.Wait();
+        }
+
+        /// <summary>
+        /// Closes the connection.
+        /// </summary>
+        private void CloseConnection()
+        {
+            tcpClient.Close();
+            tcpClient = new TcpClient();
+        }
 
 
 
@@ -160,8 +209,8 @@ namespace ConsoleApp3
 
         private static void StartMultiPlayThread()
         {
-            tCancellation = new CancellationTokenSource();
-            CancellationToken ctask = tCancellation.Token;
+            taskCancellation = new CancellationTokenSource();
+            CancellationToken ctask = taskCancellation.Token;
             Task multi = new Task(() =>
             {
                 bool playing = true;

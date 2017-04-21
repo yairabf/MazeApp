@@ -78,8 +78,8 @@ namespace ServerConsole
 
                             catch (Exception e)
                             {
-                                Console.WriteLine("entered catch");
-                                //Console.WriteLine(e);
+                                //Console.WriteLine("entered catch");
+                                Console.WriteLine(e.Message);
                             }     
                         }
                     }
