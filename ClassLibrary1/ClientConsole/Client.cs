@@ -12,6 +12,7 @@ namespace ConsoleApp3
     using System.Net;
     using System.Net.Sockets;
     using MazeLib;
+    using System.Configuration;
     /// <summary>
     /// A class for the client side of the connection.
     /// </summary>
@@ -39,7 +40,8 @@ namespace ConsoleApp3
         /// </summary>
         public void Connect()
         {
-            endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3501);
+            int port = Int32.Parse(ConfigurationManager.AppSettings["PortNum"]);
+            endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
             tcpClient.Connect(endPoint);
             Console.WriteLine("You are connected");
             stream = tcpClient.GetStream();
