@@ -76,8 +76,8 @@ namespace ServerConsole.View
                             }
                             catch (Exception e)
                             {
-                                //Console.WriteLine("entered catch");
-                                Console.WriteLine(e.Message);
+                                // Console.WriteLine("entered catch");
+                                // Console.WriteLine(e.Message);
                             }     
                         }
                     }
