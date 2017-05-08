@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerConsole", "ServerCons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientConsole", "ClientConsole\ClientConsole.csproj", "{31FD0324-DD4F-4037-9A8F-F95BE246CAB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfMaze", "WpfMaze\WpfMaze.csproj", "{01517B6B-A844-4A9A-AF27-46C4AE4EFDEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{31FD0324-DD4F-4037-9A8F-F95BE246CAB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31FD0324-DD4F-4037-9A8F-F95BE246CAB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31FD0324-DD4F-4037-9A8F-F95BE246CAB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01517B6B-A844-4A9A-AF27-46C4AE4EFDEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01517B6B-A844-4A9A-AF27-46C4AE4EFDEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01517B6B-A844-4A9A-AF27-46C4AE4EFDEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01517B6B-A844-4A9A-AF27-46C4AE4EFDEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MazeLib;
-using Newtonsoft.Json.Linq;
+﻿
 
 namespace ClassLibrary1
 {
     /// <summary>
     /// An interface for the solutions of the searches.
     /// </summary>
-    /// <typeparam name="T"> Generics </typeparam>
+    /// <typeparam name="T"> Generics solution </typeparam>
     public interface ISolution<T>
     {
         /// <summary>
@@ -22,16 +16,15 @@ namespace ClassLibrary1
         void BuildSolution(State<T> goal, int nodes);
 
         /// <summary>
-        /// Setter.
+        /// Setter for the evaluated nodes.
         /// </summary>
         /// <param name="node"> Amount of nodes to set to </param>
         void SetNodeEvaluated(int node);
 
         /// <summary>
-        /// Getter.
+        /// Getter for the evaluated nodes.
         /// </summary>
-        /// <returns>
-        /// The amount of nodes evaluated </returns>
+        /// <returns>The amount of nodes evaluated </returns>
         int GetNodeEvaluated();
 
         /// <summary>
