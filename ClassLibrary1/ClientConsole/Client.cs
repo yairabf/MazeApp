@@ -1,7 +1,4 @@
-﻿
-
-
-using System;
+﻿using System;
 using System.Configuration;
 using System.IO;
 using System.Net;
@@ -11,6 +8,16 @@ using System.Threading.Tasks;
 
 namespace ClientConsole
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.IO;
+    using System.Net;
+    using System.Net.Sockets;
+    using MazeLib;
+    using System.Configuration;
     /// <summary>
     /// A class for the client side of the connection.
     /// </summary>
@@ -83,9 +90,17 @@ namespace ClientConsole
         /// </summary>
         public void Connect()
         {
+            int port = Int32.Parse(ConfigurationManager.AppSettings["PortNum"]);
+            endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+            tcpClient.Connect(endPoint);
+            Console.WriteLine("You are connected");
+            stream = tcpClient.GetStream();
+            //reader = new BinaryReader(stream);
+            writer = new BinaryWriter(stream);
+            ReadingTasks();
             try
             {
-                int port = int.Parse(ConfigurationManager.AppSettings["PortNum"]);
+                port = int.Parse(ConfigurationManager.AppSettings["PortNum"]);
                 endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
                 tcpClient.Connect(endPoint);
                 Console.WriteLine("You are connected");

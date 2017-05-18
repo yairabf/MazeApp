@@ -1,4 +1,9 @@
+
+﻿
+using System.Configuration;
+
 ﻿using ServerConsole.View;
+
 
 namespace ServerConsole
 {
@@ -9,6 +14,7 @@ namespace ServerConsole
     using System.Net.Sockets;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Configuration;
 
     /// <summary>
     /// The srver class.
@@ -46,6 +52,9 @@ namespace ServerConsole
         /// </summary>
         public void Start()
         {
+
+            this.port = Int32.Parse(ConfigurationManager.AppSettings["PortNum"]);
+
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), this.port);
             this.listener = new TcpListener(ep);
             this.listener.Start();
