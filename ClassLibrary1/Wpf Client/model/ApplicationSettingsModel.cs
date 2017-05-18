@@ -26,6 +26,9 @@ namespace Wpf_Client.model
 
         public int MazeRows { get; set; }
         public int MazeCols { get; set; }
-        public int SearchAlgorithm { get; set; }
+        public int SearchAlgorithm {
+            get { return SearchAlgorithm; }
+            set { Properties.Settings.Default.SearchAlgorithm = value; }
+        }
     }
 }
