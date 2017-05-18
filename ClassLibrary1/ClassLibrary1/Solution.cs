@@ -1,35 +1,73 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace ClassLibrary1
 {
+    /// <summary>
+    /// The solution object represent a route between of two nodes.
+    /// </summary>
+    /// <typeparam name="T">
+    /// The Type of the State inside the solution
+    /// </typeparam>
     public abstract class Solution<T> : ISolution<T>
     {
-        protected int nodesEvaluated;
+        /// <summary>
+        /// The nodes evaluated.
+        /// </summary>
+        protected int NodesEvaluated;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Solution{T}"/> class.
+        /// </summary>
         public Solution()
         {
-            nodesEvaluated = 0;
+            NodesEvaluated = 0;
         }
 
+        /// <summary>
+        /// The build solution.
+        /// </summary>
+        /// <param name="goal">
+        /// The goal.
+        /// </param>
+        /// <param name="nodes">
+        /// The nodes.
+        /// </param>
         public abstract void BuildSolution(State<T> goal, int nodes);
 
+        /// <summary>
+        /// The set node evaluated.
+        /// </summary>
+        /// <param name="node">
+        /// The node.
+        /// </param>
         public void SetNodeEvaluated(int node)
         {
-            this.nodesEvaluated = node;
+            this.NodesEvaluated = node;
         }
 
+        /// <summary>
+        /// The get node evaluated.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
         public int GetNodeEvaluated()
         {
-            return this.nodesEvaluated;
+            return this.NodesEvaluated;
         }
 
+        /// <summary>
+        /// The print solution.
+        /// </summary>
         public abstract void PrintSolution();
 
-        public override abstract string ToString();
+        /// <summary>
+        /// The to string.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
+        public abstract override string ToString();
 
 
     }
