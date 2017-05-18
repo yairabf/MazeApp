@@ -11,25 +11,20 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Wpf_Client.model;
-using Wpf_Client.viewModel;
 
 namespace Wpf_Client.view
 {
     /// <summary>
-    /// Interaction logic for SinglePlayerWindow.xaml
+    /// Interaction logic for Single_PlayerWindow.xaml
     /// </summary>
-    public partial class SinglePlayerWindow : Window
+    public partial class Single_PlayerWindow : Window
     {
-        private SinglePlayerVm vm;
-        public SinglePlayerWindow()
+        public Single_PlayerWindow()
         {
             InitializeComponent();
-            vm = new SinglePlayerVm(new SinglePlayerModel());
-            this.DataContext = vm;
         }
 
-        private void NameOfGameTxt_TextChanged(object sender, TextChangedEventArgs e)
+        private void mazeBoard_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
