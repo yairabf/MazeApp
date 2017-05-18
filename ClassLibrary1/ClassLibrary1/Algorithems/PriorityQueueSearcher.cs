@@ -1,6 +1,6 @@
 ﻿using Priority_Queue;
 
-namespace ClassLibrary1.Algorithms
+namespace ClassLibrary1.Algorithems
 {
     /// <summary>
     /// An abstract class for a searcher that uses a priority queue.

@@ -1,6 +1,6 @@
 ﻿
 
-using ClassLibrary1.Algorithms;
+using ClassLibrary1.Algorithems;
 
 namespace ConsoleApp1
 {
@@ -36,11 +36,11 @@ namespace ConsoleApp1
             Dfs<Position> dfs = new Dfs<Position>();
             MazeToSearchableAdapter adapter = new MazeToSearchableAdapter(maze);
             ISolution<Position> bfsSolution = bfs.Search(adapter);
-            bfsSolution.PrintSolution();
-            Console.WriteLine(bfs.GetNumberOfNodesEvaluated());
+            Console.WriteLine("bfs: " + bfs.GetNumberOfNodesEvaluated());
             ISolution<Position> dfsSolution = dfs.Search(adapter);
-            dfsSolution.PrintSolution();
-            Console.WriteLine(dfs.GetNumberOfNodesEvaluated());
+            Console.WriteLine("dfs: " + dfs.GetNumberOfNodesEvaluated());
+            Console.WriteLine("Please enter to close");
+            Console.ReadLine();
         }
     }
 }

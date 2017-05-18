@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ClassLibrary1.Algorithms
+namespace ClassLibrary1.Algorithems
 {
     /// <summary>
     /// A class that implements the depth first search algorithm

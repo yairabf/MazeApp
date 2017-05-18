@@ -1,4 +1,4 @@
-﻿namespace ClassLibrary1.Algorithms
+﻿namespace ClassLibrary1.Algorithems
 {
     /// <summary>
     /// An abstract class for all searchers.

@@ -1,5 +1,5 @@
 ﻿
-using ClassLibrary1.Algorithms;
+using ClassLibrary1.Algorithems;
 
 namespace ServerConsole.TheModel
 {
