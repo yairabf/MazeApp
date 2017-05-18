@@ -1,21 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using MazeLib;
+using WpfMaze.model;
 using Wpf_Client.model;
 
 namespace Wpf_Client.viewModel
 {
-    class SinglePlayerVm
+    //he
+    class SinglePlayerVm:ViewModel
     {
-        private SinglePlayerModel model;
+        private SinglePlayerModel model;   
         public SinglePlayerVm(SinglePlayerModel m)
         {
             this.model = m;
+            model.PropertyChanged +=
+                delegate(Object sender, PropertyChangedEventArgs e)
+                {
+                    NotifyPropertyChanged("VM_" + e.PropertyName);
+                };
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
         public String NameOfMaze
         {
             get { return model.NameOfMaze; }
@@ -28,10 +38,10 @@ namespace Wpf_Client.viewModel
             set { model.NumOfRows = value; }
         }
 
-        public String NumOfColumns
+        public String NumOfCol
         {
-            get { return model.NumOfColumns; }
-            set { model.NumOfColumns = value; }
+            get { return model.NumOfCol; }
+            set { model.NumOfCol = value; }
         }
 
         public void StartGame()
@@ -39,6 +49,11 @@ namespace Wpf_Client.viewModel
             model.StartGame();
         }
 
-
+        public String MazeAsString
+        {
+            get { return model.MazeAsString; }
+        }
+      
+       
     }
 }
