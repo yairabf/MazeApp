@@ -32,13 +32,13 @@ namespace Wpf_Client.viewModel
             set { model.NameOfMaze = value; }
         }
 
-        public String NumOfRows
+        public int NumOfRows
         {
             get { return model.NumOfRows; }
             set { model.NumOfRows = value; }
         }
 
-        public String NumOfCol
+        public int NumOfCol
         {
             get { return model.NumOfCol; }
             set { model.NumOfCol = value; }
@@ -51,7 +51,7 @@ namespace Wpf_Client.viewModel
 
         public String MazeAsString
         {
-            get { return model.MazeAsString; }
+            get { return model.mazeProp.ToString(); }
         }
       
        
