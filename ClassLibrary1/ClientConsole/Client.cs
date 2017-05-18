@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Dynamic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -27,6 +28,10 @@ namespace ClientConsole
         /// The t cancellation
         /// </summary>
         private static CancellationTokenSource taskCancellation;
+
+        public delegate void GetMessage(string message);
+        public event GetMessage Notify;
+        
 
         /// <summary>
         /// The stream
@@ -61,13 +66,13 @@ namespace ClientConsole
         /// The first function the gets called by the program, starts the process
         /// and writes to the server.
         /// </summary>
-        public void SendCommands()
+        public void SendCommands(string commend)
         {
             while (true)
             {
                 System.Threading.Thread.Sleep(100);
                 Console.Write("Please enter a command: ");
-                string command = Console.ReadLine();
+                string command = commend;
                 if (!this.tcpClient.Connected)
                 {
                     Connect();
@@ -135,10 +140,12 @@ namespace ClientConsole
                             else if (feedback.Contains("closed"))
                             {
                                 Console.WriteLine(feedback);
+                                this.Notify(feedback);
                                 CloseConnection();
                             }
                             else
                             {
+                                this.Notify(feedback);
                                 Console.WriteLine(feedback);
                             }
                         }
