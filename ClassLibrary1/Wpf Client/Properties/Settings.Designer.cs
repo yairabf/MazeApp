@@ -46,5 +46,7 @@ namespace Wpf_Client.Properties {
                 this["ServerPort"] = value;
             }
         }
+
+        public int SearchAlgorithm { get; set; }
     }
 }
