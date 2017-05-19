@@ -8,7 +8,7 @@ namespace WpfMaze.model
     /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
     interface GameModel : INotifyPropertyChanged
     {
-        void StartGame(string start);
+        void StartGame();
 
     }
 }

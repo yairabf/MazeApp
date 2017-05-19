@@ -38,6 +38,7 @@ namespace Wpf_Client.viewModel
             set { model.NumOfRows = value; }
         }
 
+
         public int NumOfCol
         {
             get { return model.NumOfCol; }

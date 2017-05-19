@@ -1,13 +1,13 @@
-﻿<Window x:Class="Wpf_Client.view.Single_PlayerWindow"
+﻿<Window x:Class="Wpf_Client.view.SinglePlayerWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf_Client.view"
         mc:Ignorable="d"
-        Title="Single_PlayerWindow" Height="300" Width="300">
+        Title="SinglePlayerWindow" Height="300" Width="300">
     <Grid>
-        <local:MazeBoard x:Name="mazeBoard" Maze ="{Binding MazeAsString}" ColsUC="{Binding NumOfCol}" RowsUC="{Binding NumOfRows}" Loaded="mazeBoard_Loaded"></local:MazeBoard>
+        <local:MazeBoard x:Name ="{Binding Name}"  MazeUC = "{Binding MazeAsString}" ColsUC="{Binding NumOfCol}" RowsUC="{Binding NumOfRows}" Loaded="mazeBoard_Loaded"></local:MazeBoard>
     </Grid>
 </Window>
 

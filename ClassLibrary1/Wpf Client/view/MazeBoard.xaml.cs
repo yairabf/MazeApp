@@ -27,30 +27,32 @@ namespace Wpf_Client.view
 
         }
 
+        // Using a DependencyProperty as the backing store for Rows. This enables animation, styling,
+        public static readonly DependencyProperty RowsUCProperty =
+            DependencyProperty.Register("RowsUC", typeof(int), typeof(MazeBoard), new
+                PropertyMetadata(0));
+
         public int RowsUC
         {
             get { return (int)GetValue(RowsUCProperty); }
             set { SetValue(RowsUCProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Rows. This enables animation, styling,
-        public static readonly DependencyProperty RowsUCProperty =
-            DependencyProperty.Register("RowsUC", typeof(int), typeof(MazeBoard), new
-                PropertyMetadata(0));
-
-
-
-        public string Maze
-        {
-            get { return (string)GetValue(MazeProperty); }
-            set { SetValue(MazeProperty, value); }
-        }
-
         // Using a DependencyProperty as the backing store for stringMazeUC.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MazeProperty =
+        public static readonly DependencyProperty MazeUCProperty =
             DependencyProperty.Register("Maze", typeof(string), typeof(MazeBoard));
 
+        public string MazeUC
+        {
+            get { return (string)GetValue(MazeUCProperty); }
+            set { SetValue(MazeUCProperty, value); }
+        }
 
+
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ColsUCProperty =
+            DependencyProperty.Register("MyProperty", typeof(int), typeof(MazeBoard), new PropertyMetadata(0));
 
         public int ColsUC
         {
@@ -58,11 +60,10 @@ namespace Wpf_Client.view
             set { SetValue(ColsUCProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ColsUCProperty =
-            DependencyProperty.Register("MyProperty", typeof(int), typeof(MazeBoard), new PropertyMetadata(0));
 
-
+        // Using a DependencyProperty as the backing store for InitialPosUC.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty InitialPosUCProperty =
+            DependencyProperty.Register("InitialPosUC", typeof(int), typeof(MazeBoard), new PropertyMetadata(0));
 
         public int InitialPosUC
         {
@@ -70,11 +71,10 @@ namespace Wpf_Client.view
             set { SetValue(InitialPosUCProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for InitialPosUC.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty InitialPosUCProperty =
-            DependencyProperty.Register("InitialPosUC", typeof(int), typeof(MazeBoard), new PropertyMetadata(0));
 
-
+        // Using a DependencyProperty as the backing store for GoalPosUC.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty GoalPosUCProperty =
+            DependencyProperty.Register("GoalPosUC", typeof(int), typeof(MazeBoard), new PropertyMetadata(0));
 
         public int GoalPosUC
         {
@@ -82,20 +82,24 @@ namespace Wpf_Client.view
             set { SetValue(GoalPosUCProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for GoalPosUC.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty GoalPosUCProperty =
-            DependencyProperty.Register("GoalPosUC", typeof(int), typeof(MazeBoard), new PropertyMetadata(0));
+        public static readonly DependencyProperty NameUCProperty =
+            DependencyProperty.Register("NameUC", typeof(int), typeof(MazeBoard), new PropertyMetadata(0));
 
-
-
-        public void DrawMaze()
+        public string NameUC
         {
-            string maze = Maze;
-            for (int i = 0; i < ColsUC; i++)
-            {
-                
-            }
+            get { return (string)GetValue(NameUCProperty); }
+            set { SetValue(NameUCProperty, value); }
         }
+
+        // Using a DependencyProperty as the backing store for GoalPosUC.  This enables animation, styling, binding, etc...
+     
+
+
+//        public void DrawMaze()
+//        {
+//            string maze = Maze;
+//            for(int i = 0; i < ColsUC;   )
+//        }
 
     }
 }

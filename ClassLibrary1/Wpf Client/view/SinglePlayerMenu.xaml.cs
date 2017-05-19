@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfMaze.model;
-using Wpf_Client.model;
 using Wpf_Client.viewModel;
 
 namespace Wpf_Client.view
@@ -20,19 +19,21 @@ namespace Wpf_Client.view
     /// <summary>
     /// Interaction logic for SinglePlayerMenu.xaml
     /// </summary>
-    public partial class SinglePlayerWindow : Window
+    public partial class SinglePlayerMenu : Window
     {
-        private SinglePlayerVm vm;
-        public SinglePlayerWindow()
+        private SinglePlayerVm singlePlayerVm;
+
+        public SinglePlayerMenu()
         {
+            singlePlayerVm = new SinglePlayerVm(new SinglePlayerModel());
+            this.DataContext = singlePlayerVm;
             InitializeComponent();
-            vm = new SinglePlayerVm(new SinglePlayerModel());
-            this.DataContext = vm;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.vm.StartGame(palr)
+            this.singlePlayerVm.StartGame();
         }
+
     }
 }

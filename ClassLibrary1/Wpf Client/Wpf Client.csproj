@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MazeGeneratorLib">
+      <HintPath>..\..\..\..\Downloads\MazeGeneratorLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MazeLib">
+      <HintPath>..\..\..\..\Downloads\MazeLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,13 +61,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="model\ApplicationSettingsModel.cs" />
+    <Compile Include="model\GameModel.cs" />
     <Compile Include="model\IsettingsModel.cs" />
     <Compile Include="model\SinglePlayerModel.cs" />
     <Compile Include="viewModel\SinglePlayerVm.cs" />
     <Compile Include="viewModel\ViewModel.cs" />
     <Compile Include="viewModel\SettingsViewModel.cs" />
+    <Compile Include="view\MazeBoard.xaml.cs">
+      <DependentUpon>MazeBoard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="view\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\SinglePlayerMenu.xaml.cs">
+      <DependentUpon>SinglePlayerMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="view\SinglePlayerWindow.xaml.cs">
       <DependentUpon>SinglePlayerWindow.xaml</DependentUpon>
@@ -78,7 +91,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="view\MazeBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="view\SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\SinglePlayerMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,6 +134,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\SearchAlgorithmLib.csproj">
+      <Project>{69c3420a-c5f1-4dca-87af-fcdac2f41728}</Project>
+      <Name>SearchAlgorithmLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClientConsole\ClientConsole.csproj">
+      <Project>{31fd0324-dd4f-4037-9a8f-f95be246cab6}</Project>
+      <Name>ClientConsole</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConsoleApp1\ConsoleApp1.csproj">
+      <Project>{5953ec9c-0314-45cf-af6e-448f72bc918d}</Project>
+      <Name>ConsoleApp1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerConsole\ServerConsole.csproj">
+      <Project>{7030b8b9-7452-4508-ad8a-5364e34a0df8}</Project>
+      <Name>ServerConsole</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
