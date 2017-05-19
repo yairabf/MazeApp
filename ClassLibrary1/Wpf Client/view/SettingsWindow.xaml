@@ -35,7 +35,7 @@
         <TextBlock Grid.Row="1">Server Port:</TextBlock>
         <TextBox x:Name="txtPort" Grid.Row="1" Grid.Column="1" Text="{Binding ServerPort}" HorizontalAlignment="Left" Width="182" Grid.ColumnSpan="3"></TextBox>
         <TextBlock Grid.Row="2">Maze rows:</TextBlock>
-        <TextBox x:Name="txtRows" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Width="182" Grid.ColumnSpan="3"/>
+        <TextBox x:Name="txtRows" Grid.Row="2" Grid.Column="1" Text="{Binding MazeRows}" HorizontalAlignment="Left" Width="182" Grid.ColumnSpan="3"/>
         <TextBlock Grid.Row="3">Maze columns:</TextBlock>
         <TextBox x:Name="txtCols" Grid.Row="3" Grid.Column="1" Text="{Binding MazeCols}" Margin="0,0,3,0" Grid.ColumnSpan="3"/>
         <TextBlock Grid.Row="4">Search algorithm:</TextBlock>

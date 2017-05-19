@@ -10,10 +10,10 @@
         <Label Content="Maze rows: " HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" Width="100"/>
         <Label Content="Maze name:" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" Width="100"/>
         <Label Content="Maze Columns:" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Width="100"/>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="172,51,0,0"/>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="172,102,0,0"/>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="172,152,0,0"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="100,227,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding NameOfMaze}" VerticalAlignment="Top" Width="120" Margin="172,51,0,0"/>
+        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding NumOfRows}" VerticalAlignment="Top" Width="120" Margin="172,102,0,0"/>
+        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding NumOfCol}" VerticalAlignment="Top" Width="120" Margin="172,152,0,0"/>
+        <Button Content="Ok" HorizontalAlignment="Left" Margin="100,227,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

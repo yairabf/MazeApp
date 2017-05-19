@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace WpfMaze.model
+namespace Wpf_Client.model
 {
     /// <summary>
     /// The ameModel interface.
@@ -9,6 +9,5 @@ namespace WpfMaze.model
     interface GameModel : INotifyPropertyChanged
     {
         void StartGame();
-
     }
 }

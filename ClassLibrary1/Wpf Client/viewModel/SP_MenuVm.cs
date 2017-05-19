@@ -6,16 +6,15 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using MazeLib;
-using WpfMaze.model;
 using Wpf_Client.model;
 
 namespace Wpf_Client.viewModel
 {
     //he
-    class SinglePlayerVm:ViewModel
+    class SP_MenuVm:ViewModel
     {
         private SinglePlayerModel model;   
-        public SinglePlayerVm(SinglePlayerModel m)
+        public SP_MenuVm(SinglePlayerModel m)
         {
             this.model = m;
             model.PropertyChanged +=

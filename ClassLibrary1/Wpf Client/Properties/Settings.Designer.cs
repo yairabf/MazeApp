@@ -46,7 +46,41 @@ namespace Wpf_Client.Properties {
                 this["ServerPort"] = value;
             }
         }
-
-        public int SearchAlgorithm { get; set; }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int MazeCols {
+            get {
+                return ((int)(this["MazeCols"]));
+            }
+            set {
+                this["MazeCols"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int MazeRows {
+            get {
+                return ((int)(this["MazeRows"]));
+            }
+            set {
+                this["MazeRows"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int SearchAlgorithm {
+            get {
+                return ((int)(this["SearchAlgorithm"]));
+            }
+            set {
+                this["SearchAlgorithm"] = value;
+            }
+        }
     }
 }

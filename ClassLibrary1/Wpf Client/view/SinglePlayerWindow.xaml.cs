@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WpfMaze.model;
+using Wpf_Client.model;
 using Wpf_Client.viewModel;
 
 namespace Wpf_Client.view
@@ -22,19 +22,19 @@ namespace Wpf_Client.view
     public partial class SinglePlayerWindow : Window
     {
 
-        private SinglePlayerVm singlePlayerVm;
+        private SP_MenuVm singlePlayerVm;
  
         public SinglePlayerWindow()
         {
-            singlePlayerVm = new SinglePlayerVm(new SinglePlayerModel());
-            this.DataContext = singlePlayerVm;
             InitializeComponent();
+            singlePlayerVm = new SP_MenuVm(new SinglePlayerModel());
+            this.DataContext = singlePlayerVm;
+            
         }
 
         private void mazeBoard_Loaded(object sender, RoutedEventArgs e)
         {
-            mazeBoard.DrawMaze();
-            //
+            MazeBoard.DrawMaze();
         }
     }
 }

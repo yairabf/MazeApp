@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WpfMaze.model;
+using Wpf_Client.model;
 using Wpf_Client.viewModel;
 
 namespace Wpf_Client.view
@@ -21,11 +21,11 @@ namespace Wpf_Client.view
     /// </summary>
     public partial class SinglePlayerMenu : Window
     {
-        private SinglePlayerVm singlePlayerVm;
+        private SP_MenuVm singlePlayerVm;
 
         public SinglePlayerMenu()
         {
-            singlePlayerVm = new SinglePlayerVm(new SinglePlayerModel());
+            singlePlayerVm = new SP_MenuVm(new SinglePlayerModel());
             this.DataContext = singlePlayerVm;
             InitializeComponent();
         }

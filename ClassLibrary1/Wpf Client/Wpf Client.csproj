@@ -35,10 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MazeGeneratorLib">
-      <HintPath>..\..\..\..\Downloads\MazeGeneratorLib.dll</HintPath>
+      <HintPath>..\..\MazeGeneratorLib.dll</HintPath>
     </Reference>
     <Reference Include="MazeLib">
-      <HintPath>..\..\..\..\Downloads\MazeLib.dll</HintPath>
+      <HintPath>..\..\MazeLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -64,7 +64,8 @@
     <Compile Include="model\GameModel.cs" />
     <Compile Include="model\IsettingsModel.cs" />
     <Compile Include="model\SinglePlayerModel.cs" />
-    <Compile Include="viewModel\SinglePlayerVm.cs" />
+    <Compile Include="viewModel\SP_GameVm.cs" />
+    <Compile Include="viewModel\SP_MenuVm.cs" />
     <Compile Include="viewModel\ViewModel.cs" />
     <Compile Include="viewModel\SettingsViewModel.cs" />
     <Compile Include="view\MazeBoard.xaml.cs">

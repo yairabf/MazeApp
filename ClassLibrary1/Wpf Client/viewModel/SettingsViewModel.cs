@@ -32,7 +32,36 @@ namespace Wpf_Client.viewModel
                 NotifyPropertyChanged("ServerPort");
             }
         }
-        
+
+        public int MazeCols
+        {
+            get { return model.MazeCols; }
+            set
+            {
+                model.MazeCols = value;
+                NotifyPropertyChanged("MazeCols");
+            }
+        }
+
+        public int MazeRows
+        {
+            get { return model.MazeRows; }
+            set
+            {
+                model.MazeRows = value;
+                NotifyPropertyChanged("MazeRows");
+            }
+        }
+
+        public int SearchAlgorithm
+        {
+            get { return model.SearchAlgorithm; }
+            set
+            {
+                model.SearchAlgorithm = value;
+                NotifyPropertyChanged("SearchAlgorithm");
+            }
+        }
         public void SaveSettings()
         {
             model.SaveSettings();

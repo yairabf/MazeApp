@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MazeLib;
+using Wpf_Client.model;
+using Wpf_Client.viewModel;
 
 namespace Wpf_Client.view
 {
@@ -24,10 +26,11 @@ namespace Wpf_Client.view
         public MazeBoard()
         {
             InitializeComponent();
+            //this.DataContext = new SinglePlayerVm(new SinglePlayerModel());
 
         }
 
-        // Using a DependencyProperty as the backing store for Rows. This enables animation, styling,
+        
         public static readonly DependencyProperty RowsUCProperty =
             DependencyProperty.Register("RowsUC", typeof(int), typeof(MazeBoard), new
                 PropertyMetadata(0));
@@ -38,7 +41,7 @@ namespace Wpf_Client.view
             set { SetValue(RowsUCProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for stringMazeUC.  This enables animation, styling, binding, etc...
+
         public static readonly DependencyProperty MazeUCProperty =
             DependencyProperty.Register("Maze", typeof(string), typeof(MazeBoard));
 
@@ -95,11 +98,11 @@ namespace Wpf_Client.view
      
 
 
-//        public void DrawMaze()
-//        {
-//            string maze = Maze;
-//            for(int i = 0; i < ColsUC;   )
-//        }
+        public void DrawMaze()
+        {
+            //string maze = Maze;
+            //for(int i = 0; i < ColsUC;   )
+        }
 
     }
 }
