@@ -13,8 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MazeLib;
-using Wpf_Client.model;
-using Wpf_Client.viewModel;
 
 namespace Wpf_Client.view
 {
@@ -23,14 +21,27 @@ namespace Wpf_Client.view
     /// </summary>
     public partial class MazeBoard : UserControl
     {
+        private Grid grid;
         public MazeBoard()
         {
+            grid = new Grid();
+            grid.HorizontalAlignment = HorizontalAlignment.Left;
+            grid.VerticalAlignment = VerticalAlignment.Top;
+            grid.Background = new SolidColorBrush(Colors.LightSteelBlue);
+            for (int i = 0; i < ColsUC; i++)
+            {
+                grid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+            for (int i = 0; i < RowsUC; i++)
+            {
+                grid.RowDefinitions.Add(new RowDefinition());
+            }
             InitializeComponent();
-            //this.DataContext = new SinglePlayerVm(new SinglePlayerModel());
+            
 
         }
 
-        
+        // Using a DependencyProperty as the backing store for Rows. This enables animation, styling,
         public static readonly DependencyProperty RowsUCProperty =
             DependencyProperty.Register("RowsUC", typeof(int), typeof(MazeBoard), new
                 PropertyMetadata(0));
@@ -41,9 +52,9 @@ namespace Wpf_Client.view
             set { SetValue(RowsUCProperty, value); }
         }
 
-
+        // Using a DependencyProperty as the backing store for stringMazeUC.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MazeUCProperty =
-            DependencyProperty.Register("Maze", typeof(string), typeof(MazeBoard));
+            DependencyProperty.Register("MazeUC", typeof(string), typeof(MazeBoard));
 
         public string MazeUC
         {
@@ -55,7 +66,7 @@ namespace Wpf_Client.view
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ColsUCProperty =
-            DependencyProperty.Register("MyProperty", typeof(int), typeof(MazeBoard), new PropertyMetadata(0));
+            DependencyProperty.Register("ColsUC", typeof(int), typeof(MazeBoard), new PropertyMetadata(0));
 
         public int ColsUC
         {
@@ -100,8 +111,28 @@ namespace Wpf_Client.view
 
         public void DrawMaze()
         {
-            //string maze = Maze;
-            //for(int i = 0; i < ColsUC;   )
+            string maze = MazeUC;
+            int currentPos = 0;
+            for (int i = 0; i < grid.RowDefinitions.Count; i++)
+            {
+                for (int j = 0; j < grid.ColumnDefinitions.Count; j++)
+                {
+                    Rectangle rectangle = new Rectangle();
+                    if (maze[currentPos].Equals('0'))
+                    {
+                        Brush brush = Brushes.Black;
+                        rectangle.Fill = brush;
+                    }
+                    else
+                    {
+                        Brush brush = Brushes.White;
+                        rectangle.Fill = brush;
+                    }
+                    rectangle.SetValue(Grid.ColumnProperty, j);
+                    rectangle.SetValue(Grid.RowProperty, i);
+                    grid.Children.Add(rectangle);
+                }
+            }
         }
 
     }
