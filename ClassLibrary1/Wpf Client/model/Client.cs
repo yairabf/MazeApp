@@ -31,7 +31,7 @@ namespace ClientConsole
 
         public delegate void GetMessage(string message);
         public event GetMessage Notify;
-        
+
 
         /// <summary>
         /// The stream
@@ -95,18 +95,18 @@ namespace ClientConsole
         /// </summary>
         public void Connect()
         {
-            int port = Int32.Parse(ConfigurationManager.AppSettings["PortNum"]);
-            endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
-            tcpClient.Connect(endPoint);
-            Console.WriteLine("You are connected");
+            int port = Wpf_Client.Properties.Settings.Default.ServerPort;
+            endPoint = new IPEndPoint(IPAddress.Parse(Wpf_Client.Properties.Settings.Default.ServerIP), port);
+            /*tcpClient.Connect(endPoint);
+            //Console.WriteLine("You are connected");
             stream = tcpClient.GetStream();
             //reader = new BinaryReader(stream);
             writer = new BinaryWriter(stream);
-            ReadingTasks();
+            ReadingTasks();*/
             try
             {
-                port = int.Parse(ConfigurationManager.AppSettings["PortNum"]);
-                endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+                //port = int.Parse(ConfigurationManager.AppSettings["PortNum"]);
+                //endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
                 tcpClient.Connect(endPoint);
                 Console.WriteLine("You are connected");
                 stream = tcpClient.GetStream();
@@ -202,14 +202,11 @@ namespace ClientConsole
                         this.connected = false;
                     }
                     //reader.ReadLine();
-
                    
                 }
             }
-
             tcpClient.Close();
         }
-
         private static void StartMultiPlayThread()
         {
             taskCancellation = new CancellationTokenSource();

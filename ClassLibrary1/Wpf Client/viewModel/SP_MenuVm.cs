@@ -11,37 +11,52 @@ using Wpf_Client.model;
 namespace Wpf_Client.viewModel
 {
     //he
-    class SP_MenuVm:ViewModel
+    class SP_MenuVm : ViewModel
     {
-        private SinglePlayerModel model;   
+        private SinglePlayerModel model;
+
         public SP_MenuVm(SinglePlayerModel m)
         {
             this.model = m;
-            model.PropertyChanged +=
+            /*model.PropertyChanged +=
                 delegate(Object sender, PropertyChangedEventArgs e)
                 {
-                    NotifyPropertyChanged("VM_" + e.PropertyName);
-                };
+                    NotifyPropertyChanged(e.PropertyName);
+                };*/
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+
         public String NameOfMaze
         {
             get { return model.NameOfMaze; }
-            set { model.NameOfMaze = value; }
+            set
+            {
+                model.NameOfMaze = value;
+                NotifyPropertyChanged("NameOfMaze");
+            }
         }
 
         public int NumOfRows
         {
             get { return model.NumOfRows; }
-            set { model.NumOfRows = value; }
+            set
+            {
+                model.NumOfRows = value;
+                NotifyPropertyChanged("NumOfRows");
+            }
         }
 
 
         public int NumOfCol
         {
             get { return model.NumOfCol; }
-            set { model.NumOfCol = value; }
+            set
+            {
+                model.NumOfCol = value;
+                NotifyPropertyChanged("NumOfCols");
+            }
         }
 
         public void StartGame()
@@ -49,11 +64,13 @@ namespace Wpf_Client.viewModel
             model.StartGame();
         }
 
-        public String MazeAsString
+        public SinglePlayerModel Model
         {
-            get { return model.mazeProp.ToString(); }
+            get
+            {
+                return this.model;
+
+            }
         }
-      
-       
     }
 }

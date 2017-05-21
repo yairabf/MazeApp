@@ -24,6 +24,7 @@ namespace ServerConsole
             IClientHandler viewHandler = new ClientHandler(controller);
             controller.SetView(viewHandler);
             int port = int.Parse(ConfigurationManager.AppSettings["PortNum"]);
+            //int port = 55;
             Console.WriteLine("Connecting to server at 127.0.0.1:{0}", port);
             Server server = new Server(port, viewHandler);
             server.Start();

@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MazeLib;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MazeLib;
 
 namespace Wpf_Client.view
 {
@@ -22,6 +13,9 @@ namespace Wpf_Client.view
     public partial class MazeBoard : UserControl
     {
         private Grid grid;
+        private Rectangle[,] rectArray;
+        private Char[,] mazeAsChars;
+
         public MazeBoard()
         {
             grid = new Grid();
@@ -41,7 +35,18 @@ namespace Wpf_Client.view
 
         }
 
-        // Using a DependencyProperty as the backing store for Rows. This enables animation, styling,
+        public static readonly DependencyProperty Maze_ObjectProperty =
+            DependencyProperty.Register("Maze_Object", typeof(Maze), typeof(MazeBoard), new
+                PropertyMetadata(0));
+
+        public Maze Maze_Object
+        {
+            get { return (Maze)GetValue(Maze_ObjectProperty); }
+            set { SetValue(Maze_ObjectProperty, value); }
+        }
+
+
+
         public static readonly DependencyProperty RowsUCProperty =
             DependencyProperty.Register("RowsUC", typeof(int), typeof(MazeBoard), new
                 PropertyMetadata(0));
@@ -52,19 +57,19 @@ namespace Wpf_Client.view
             set { SetValue(RowsUCProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for stringMazeUC.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MazeUCProperty =
-            DependencyProperty.Register("MazeUC", typeof(string), typeof(MazeBoard));
 
-        public string MazeUC
+
+        public static readonly DependencyProperty MazeStringUCProperty =
+            DependencyProperty.Register("MazeStringUC", typeof(string), typeof(MazeBoard));
+
+        public string MazeStringUC
         {
-            get { return (string)GetValue(MazeUCProperty); }
-            set { SetValue(MazeUCProperty, value); }
+            get { return (string)GetValue(MazeStringUCProperty); }
+            set { SetValue(MazeStringUCProperty, value); }
         }
 
 
 
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ColsUCProperty =
             DependencyProperty.Register("ColsUC", typeof(int), typeof(MazeBoard), new PropertyMetadata(0));
 
@@ -111,26 +116,48 @@ namespace Wpf_Client.view
 
         public void DrawMaze()
         {
-            string maze = MazeUC;
+            string maze = MazeStringUC;
             int currentPos = 0;
-            for (int i = 0; i < grid.RowDefinitions.Count; i++)
+            int rows = RowsUC;
+            int cols = ColsUC;
+            mazeAsChars = new Char[RowsUC, cols];
+            double recSize = Math.Min(300 / rows, 300 / cols);
+            rectArray = new Rectangle[rows,cols];
+            for (int i = 0; i < RowsUC; i++)
             {
-                for (int j = 0; j < grid.ColumnDefinitions.Count; j++)
+                for (int j = 0; j < ColsUC; j++)
                 {
                     Rectangle rectangle = new Rectangle();
+                    rectangle.Height = recSize;
+                    rectangle.Width = recSize;
                     if (maze[currentPos].Equals('0'))
                     {
                         Brush brush = Brushes.Black;
                         rectangle.Fill = brush;
                     }
-                    else
+                    else if(maze[currentPos].Equals('1'))
                     {
                         Brush brush = Brushes.White;
                         rectangle.Fill = brush;
                     }
-                    rectangle.SetValue(Grid.ColumnProperty, j);
-                    rectangle.SetValue(Grid.RowProperty, i);
-                    grid.Children.Add(rectangle);
+                    //entrance
+                    else if (maze[currentPos].Equals('*'))
+                    {
+                        Brush brush = Brushes.Orange;
+                        rectangle.Fill = brush;
+                    }
+                    //exit
+                    else
+                    {
+                        Brush brush = Brushes.Purple;
+                        rectangle.Fill = brush;
+                    }
+                    currentPos++;
+                    rectArray[i, j] = rectangle;
+                    mazeAsChars[i, j] = maze[currentPos];
+                    myCanvas.Children.Add(rectangle);
+                    Canvas.SetLeft(rectangle, j * recSize);
+                    Canvas.SetTop(rectangle, i * recSize);
                 }
             }
         }

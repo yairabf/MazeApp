@@ -82,10 +82,6 @@
       <Project>{69c3420a-c5f1-4dca-87af-fcdac2f41728}</Project>
       <Name>SearchAlgorithmLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClientConsole\ClientConsole.csproj">
-      <Project>{31fd0324-dd4f-4037-9a8f-f95be246cab6}</Project>
-      <Name>ClientConsole</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ConsoleApp1\ConsoleApp1.csproj">
       <Project>{5953ec9c-0314-45cf-af6e-448f72bc918d}</Project>
       <Name>ConsoleApp1</Name>

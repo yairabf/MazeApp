@@ -13,7 +13,7 @@
         <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding NameOfMaze}" VerticalAlignment="Top" Width="120" Margin="172,51,0,0"/>
         <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding NumOfRows}" VerticalAlignment="Top" Width="120" Margin="172,102,0,0"/>
         <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding NumOfCol}" VerticalAlignment="Top" Width="120" Margin="172,152,0,0"/>
-        <Button Content="Ok" HorizontalAlignment="Left" Margin="100,227,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Ok" HorizontalAlignment="Left" Margin="100,227,0,0" VerticalAlignment="Top" Width="100" Click="Ok_Clicked"/>
 
     </Grid>
 </Window>

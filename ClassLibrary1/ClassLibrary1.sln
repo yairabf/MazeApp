@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchAlgorithmLib", "ClassLibrary1\SearchAlgorithmLib.csproj", "{69C3420A-C5F1-4DCA-87AF-FCDAC2F41728}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{5953EC9C-0314-45CF-AF6E-448F72BC918D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerConsole", "ServerConsole\ServerConsole.csproj", "{7030B8B9-7452-4508-AD8A-5364E34A0DF8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientConsole", "ClientConsole\ClientConsole.csproj", "{31FD0324-DD4F-4037-9A8F-F95BE246CAB6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf Client", "Wpf Client\Wpf Client.csproj", "{85982628-EC49-44C6-A8CF-3FF0F131B608}"
 EndProject
@@ -31,10 +29,6 @@ Global
 		{7030B8B9-7452-4508-AD8A-5364E34A0DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7030B8B9-7452-4508-AD8A-5364E34A0DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7030B8B9-7452-4508-AD8A-5364E34A0DF8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31FD0324-DD4F-4037-9A8F-F95BE246CAB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31FD0324-DD4F-4037-9A8F-F95BE246CAB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31FD0324-DD4F-4037-9A8F-F95BE246CAB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31FD0324-DD4F-4037-9A8F-F95BE246CAB6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{85982628-EC49-44C6-A8CF-3FF0F131B608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{85982628-EC49-44C6-A8CF-3FF0F131B608}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85982628-EC49-44C6-A8CF-3FF0F131B608}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf_Client.view;
 
 namespace Wpf_Client
 {
@@ -30,11 +31,13 @@ namespace Wpf_Client
 
         private void Single_Player_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            SinglePlayerMenu singlePlayerMenu = new SinglePlayerMenu();
+            singlePlayerMenu.Show();
+            this.Close();
         }
 
   
-        private void Settings_OnClick_OnClick(object sender, RoutedEventArgs e)
+        private void Settings_OnClick(object sender, RoutedEventArgs e)
         {
             SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.Show();

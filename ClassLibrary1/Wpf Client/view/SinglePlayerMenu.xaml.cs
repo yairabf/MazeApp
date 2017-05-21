@@ -30,10 +30,13 @@ namespace Wpf_Client.view
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Ok_Clicked(object sender, RoutedEventArgs e)
         {
             this.singlePlayerVm.StartGame();
+            SinglePlayerWindow win = new SinglePlayerWindow(singlePlayerVm.Model);
+            this.Close();
+            win.Show();
+            
         }
-
     }
 }

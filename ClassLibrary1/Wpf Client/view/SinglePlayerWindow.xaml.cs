@@ -22,19 +22,19 @@ namespace Wpf_Client.view
     public partial class SinglePlayerWindow : Window
     {
 
-        private SP_MenuVm singlePlayerVm;
+        private SP_GameVm singlePlayerVm;
  
-        public SinglePlayerWindow()
+        public SinglePlayerWindow(SinglePlayerModel model)
         {
+            singlePlayerVm = new SP_GameVm(model);
             InitializeComponent();
-            singlePlayerVm = new SP_MenuVm(new SinglePlayerModel());
             this.DataContext = singlePlayerVm;
-            
+
         }
 
         private void mazeBoard_Loaded(object sender, RoutedEventArgs e)
         {
-            MazeBoard.DrawMaze();
+            my_mazeBoard.DrawMaze();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Wpf_Client.model
         }
 
         public int SearchAlgorithm {
-            get { return SearchAlgorithm; }
+            get { return Properties.Settings.Default.SearchAlgorithm; }
             set { Properties.Settings.Default.SearchAlgorithm = value; }
         }
     }
