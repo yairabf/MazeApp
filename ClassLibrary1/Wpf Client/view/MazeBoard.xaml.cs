@@ -35,7 +35,7 @@ namespace Wpf_Client.view
 
         }
 
-        public static readonly DependencyProperty Maze_ObjectProperty =
+       /* public static readonly DependencyProperty Maze_ObjectProperty =
             DependencyProperty.Register("Maze_Object", typeof(Maze), typeof(MazeBoard), new
                 PropertyMetadata(0));
 
@@ -43,7 +43,7 @@ namespace Wpf_Client.view
         {
             get { return (Maze)GetValue(Maze_ObjectProperty); }
             set { SetValue(Maze_ObjectProperty, value); }
-        }
+        }*/
 
 
 

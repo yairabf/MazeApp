@@ -26,8 +26,8 @@ namespace Wpf_Client.view
  
         public SinglePlayerWindow(SinglePlayerModel model)
         {
-            singlePlayerVm = new SP_GameVm(model);
             InitializeComponent();
+            singlePlayerVm = new SP_GameVm(model);
             this.DataContext = singlePlayerVm;
 
         }

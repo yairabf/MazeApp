@@ -32,8 +32,8 @@ namespace Wpf_Client.view
 
         private void Ok_Clicked(object sender, RoutedEventArgs e)
         {
-            this.singlePlayerVm.StartGame();
             SinglePlayerWindow win = new SinglePlayerWindow(singlePlayerVm.Model);
+            this.singlePlayerVm.StartGame();
             this.Close();
             win.Show();
             

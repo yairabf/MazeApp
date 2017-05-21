@@ -38,7 +38,7 @@ namespace Wpf_Client.viewModel
         }*/
 
 
-        public string MazeAsString
+        public string MazeAsStringProp
         {
             get { return model.MazeAsStringProp; }
             set
