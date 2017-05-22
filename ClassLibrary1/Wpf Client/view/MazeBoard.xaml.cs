@@ -46,7 +46,7 @@ namespace Wpf_Client.view
         }*/
 
 
-
+        //hanani
         public static readonly DependencyProperty RowsUCProperty =
             DependencyProperty.Register("RowsUC", typeof(int), typeof(MazeBoard), new
                 PropertyMetadata(0));
