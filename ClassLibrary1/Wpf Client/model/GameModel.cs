@@ -8,6 +8,6 @@ namespace Wpf_Client.model
     /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
     interface GameModel : INotifyPropertyChanged
     {
-        void StartGame();
+        void StartGame(string generate);
     }
 }

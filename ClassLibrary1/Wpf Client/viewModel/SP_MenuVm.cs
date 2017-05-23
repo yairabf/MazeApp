@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,9 +13,9 @@ namespace Wpf_Client.viewModel
     //he
     class SP_MenuVm : ViewModel
     {
-        private SinglePlayerModel model;
+        private SP_MenuModel model;
 
-        public SP_MenuVm(SinglePlayerModel m)
+        public SP_MenuVm(SP_MenuModel m)
         {
             this.model = m;
             /*model.PropertyChanged +=
@@ -59,18 +59,14 @@ namespace Wpf_Client.viewModel
             }
         }
 
-        public void StartGame()
+        /*public void StartGame()
         {
             model.StartGame();
-        }
+        }*/
 
-        public SinglePlayerModel Model
+        public void SaveSettings()
         {
-            get
-            {
-                return this.model;
-
-            }
+            this.model.SaveSettings();
         }
     }
 }

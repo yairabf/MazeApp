@@ -25,17 +25,18 @@ namespace Wpf_Client.view
 
         public SinglePlayerMenu()
         {
-            singlePlayerVm = new SP_MenuVm(new SinglePlayerModel());
-            this.DataContext = singlePlayerVm;
             InitializeComponent();
+            singlePlayerVm = new SP_MenuVm(new SP_MenuModel());
+            this.DataContext = singlePlayerVm;
         }
 
         private void Ok_Clicked(object sender, RoutedEventArgs e)
         {
-            SinglePlayerWindow win = new SinglePlayerWindow(singlePlayerVm.Model);
-            this.singlePlayerVm.StartGame();
-            this.Close();
+            singlePlayerVm.SaveSettings();
+            SinglePlayerWindow win = new SinglePlayerWindow();
             win.Show();
+            this.Close();
+            
             
         }
     }
