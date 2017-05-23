@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="SinglePlayerWindow" Height="300" Width="300">
     <Grid>
-        <local:MazeBoard x:Name="my_mazeBoard" MazeStringUC = "{Binding MazeAsStringProp}" RowsUC="{Binding Rows}" ColsUC="{Binding Cols}"></local:MazeBoard>
+        <local:MazeBoard MazeUC = "{Binding MazeAsString}" ColsUC ="{Binding NumOfCol}" RowsUC="{Binding NumOfRows}" Loaded="mazeBoard_Loaded"></local:MazeBoard>
     </Grid>
 </Window>
 
