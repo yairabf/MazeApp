@@ -35,11 +35,11 @@ namespace Wpf_Client.model
             client.Notify += HandleStart;
         }
         
-        public void StartGame()
+        public void StartGame(string generate)
         {
-            string generate = "generate " + this.mazeName + " " + this.rows + " " + this.cols;
-            client.SendCommands(generate);
 
+            client.SendCommands(generate);
+            
         }
 
         public void SolveGame()
@@ -66,7 +66,9 @@ namespace Wpf_Client.model
             client.Notify -= HandleStart;
             client.Notify += HandeSolve;
             this.maze = Maze.FromJSON(s);
-            this.MazeAsStringProp = s;
+            this.MazeAsStringProp = this.maze.ToString();
+            this.RowsProp = Properties.Settings.Default.NumOfRows;
+            this.ColsProp = Properties.Settings.Default.NumOfCol;
         }
 
         private void HandeSolve(string s)
@@ -74,36 +76,35 @@ namespace Wpf_Client.model
             this.SolutionProp = s;
         }
 
-       /* public Maze mazeProp
-        {
-            get { return this.maze; }
-            set
-            {
-                this.maze = value;
-                NotifyPropertyChanged("Maze");
-            }
-        }*/
-
         public string MazeAsStringProp
         {
             get { return this.mazeAsString; }
             set
             {
                 this.mazeAsString = value;
-                NotifyPropertyChanged("MazeAsString");
+                NotifyPropertyChanged("MazeAsStringProp");
             }
         }
 
-        /*public string MazeAsString
+        public int RowsProp
         {
-            get { return this.mazeAsString; }
+            get { return this.rows; }
             set
             {
-                this.mazeAsString = value;
-                OnPropertyChanged("MazeAsString");
+                this.rows = value;
+                NotifyPropertyChanged("RowsProp");
             }
-        }*/
+        }
 
+        public int ColsProp
+        {
+            get { return this.cols; }
+            set
+            {
+                this.cols = value;
+                NotifyPropertyChanged("ColsProp");
+            }
+        }
 
         public String SolutionProp
         {
@@ -113,25 +114,6 @@ namespace Wpf_Client.model
                 this.solution = value;
                 NotifyPropertyChanged("Solution");
             }
-        }
-
-        //properties of SP_MenuVm
-        public int NumOfRows
-        {
-            get { return this.rows; }
-            set { this.rows = value; }
-        }
-
-        public int NumOfCol
-        {
-            get { return this.cols; }
-            set { this.cols = value; }
-        }
-
-        public string NameOfMaze
-        {
-            get { return this.mazeName; }
-            set { this.mazeName = value; }
         }
     }
 }

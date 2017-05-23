@@ -82,5 +82,41 @@ namespace Wpf_Client.Properties {
                 this["SearchAlgorithm"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string NameOfMaze {
+            get {
+                return ((string)(this["NameOfMaze"]));
+            }
+            set {
+                this["NameOfMaze"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int NumOfCol {
+            get {
+                return ((int)(this["NumOfCol"]));
+            }
+            set {
+                this["NumOfCol"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int NumOfRows {
+            get {
+                return ((int)(this["NumOfRows"]));
+            }
+            set {
+                this["NumOfRows"] = value;
+            }
+        }
     }
 }

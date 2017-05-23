@@ -65,6 +65,7 @@
     <Compile Include="model\GameModel.cs" />
     <Compile Include="model\IsettingsModel.cs" />
     <Compile Include="model\SinglePlayerModel.cs" />
+    <Compile Include="model\SP_MenuModel.cs" />
     <Compile Include="viewModel\SP_GameVm.cs" />
     <Compile Include="viewModel\SP_MenuVm.cs" />
     <Compile Include="viewModel\ViewModel.cs" />

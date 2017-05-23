@@ -68,8 +68,8 @@ namespace ClientConsole
         /// </summary>
         public void SendCommands(string commend)
         {
-            while (true)
-            {
+           while (true)
+           {
                 System.Threading.Thread.Sleep(100);
                 Console.Write("Please enter a command: ");
                 string command = commend;
@@ -87,7 +87,8 @@ namespace ClientConsole
                 {
                     Console.WriteLine(e.Message);
                 }
-            }
+               break;
+           }
         }
 
         /// <summary>
@@ -97,12 +98,6 @@ namespace ClientConsole
         {
             int port = Wpf_Client.Properties.Settings.Default.ServerPort;
             endPoint = new IPEndPoint(IPAddress.Parse(Wpf_Client.Properties.Settings.Default.ServerIP), port);
-            /*tcpClient.Connect(endPoint);
-            //Console.WriteLine("You are connected");
-            stream = tcpClient.GetStream();
-            //reader = new BinaryReader(stream);
-            writer = new BinaryWriter(stream);
-            ReadingTasks();*/
             try
             {
                 //port = int.Parse(ConfigurationManager.AppSettings["PortNum"]);
@@ -167,68 +162,5 @@ namespace ClientConsole
             tcpClient.Close();
             tcpClient = new TcpClient();
         }
-
-
-        /*
-        public void StartConnection()
-        {
-            endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3501);
-            tcpClient = new TcpClient();
-            tcpClient.Connect(endPoint);
-            Console.WriteLine("You are connected");
-            using (stream = tcpClient.GetStream())
-            using (reader = new BinaryReader(stream))
-            using (writer = new BinaryWriter(stream))
-            {
-                while (this.connected)
-                {
-                    // Sending a command to server
-                    Console.Write("Please enter a command: ");
-                    string command = Console.ReadLine();
-                    writer.Write(command);
-                    writer.Flush();
-                    Console.WriteLine("{0}", command);
-                    if (command.Contains("start") || command.Contains("join"))
-                    {
-                        Console.WriteLine("starting start multiply thread function");
-                        StartMultiPlayThread();
-                        Console.WriteLine("finished the function multiply thread");
-                    }
-                    // reading a reply from server
-                    string feedback = reader.ReadString();
-                    Console.WriteLine("{0}", feedback);
-                    if (command.Equals("close"))
-                    {
-                        this.connected = false;
-                    }
-                    //reader.ReadLine();
-                   
-                }
-            }
-            tcpClient.Close();
-        }
-        private static void StartMultiPlayThread()
-        {
-            taskCancellation = new CancellationTokenSource();
-            CancellationToken ctask = taskCancellation.Token;
-            Task multi = new Task(() =>
-            {
-                bool playing = true;
-                {
-                    while (playing)
-                    {
-                        string feedback = reader.ReadString();
-                        if (feedback.Contains("closed"))
-                            playing = false;
-                        Console.WriteLine("writing feedback for client");
-                        Console.WriteLine(feedback);
-                        Console.WriteLine("finished writing feedback");
-                        writer.Write("notified");
-                    }
-                }
-            }, ctask);
-            multi.Start();
-            multi.Wait();
-        }*/
     }
 }

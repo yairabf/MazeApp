@@ -23,57 +23,47 @@ namespace Wpf_Client.viewModel
                 };
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /*public String MazeAsString
+        /*public void NotifyPropertyChanged(string propName)
         {
-            get
-            {
-                return model.mazeProp.ToString();
-            }
-            set
-            {
-                NotifyPropertyChanged("MazeAsString");
-            }
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }*/
 
-
+       
         public string MazeAsStringProp
         {
             get { return model.MazeAsStringProp; }
             set
             {
                 model.MazeAsStringProp = value;
-                NotifyPropertyChanged("MazeAsString");
+                NotifyPropertyChanged("MazeAsStringProp");
             }
         }
 
-        /*public string MazeSolution
+        public void StartGame()
         {
-            get { return model.SolveGame(); }
-            set
-            {
-                NotifyPropertyChanged("Solution");
-            }
-        }*/
+            string generate = "generate " + Properties.Settings.Default.NameOfMaze + " " + Properties.Settings.Default.NumOfRows +
+                              " " + Properties.Settings.Default.NumOfCol;
+            this.model.StartGame(generate);
+        }
 
-        public int Rows
+
+        public int RowsProp
         {
-            get { return model.NumOfRows; }
+            get { return model.RowsProp; }
             set
             {
-                this.model.NumOfRows = value;
-                NotifyPropertyChanged("Rows");
+                this.model.RowsProp = value;
+                NotifyPropertyChanged("RowsProp");
             }
         }
 
-        public int Cols
+        public int ColsProp
         {
-            get { return model.NumOfCol; }
+            get { return model.ColsProp; }
             set
             {
-                this.model.NumOfCol = value;
-                NotifyPropertyChanged("Cols");
+                this.model.ColsProp = value;
+                NotifyPropertyChanged("ColsProp");
             }
         }
 
