@@ -18,18 +18,7 @@ namespace Wpf_Client.view
 
         public MazeBoard()
         {
-            grid = new Grid();
-            grid.HorizontalAlignment = HorizontalAlignment.Left;
-            grid.VerticalAlignment = VerticalAlignment.Top;
-            grid.Background = new SolidColorBrush(Colors.LightSteelBlue);
-            for (int i = 0; i < ColsUC; i++)
-            {
-                grid.ColumnDefinitions.Add(new ColumnDefinition());
-            }
-            for (int i = 0; i < RowsUC; i++)
-            {
-                grid.RowDefinitions.Add(new RowDefinition());
-            }
+            
             InitializeComponent();
             
 
@@ -111,11 +100,27 @@ namespace Wpf_Client.view
         }
 
         // Using a DependencyProperty as the backing store for GoalPosUC.  This enables animation, styling, binding, etc...
-     
 
+
+        private void mazeBoard_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DrawMaze();
+        }
 
         public void DrawMaze()
         {
+            grid = new Grid();
+            grid.HorizontalAlignment = HorizontalAlignment.Left;
+            grid.VerticalAlignment = VerticalAlignment.Top;
+            grid.Background = new SolidColorBrush(Colors.LightSteelBlue);
+            for (int i = 0; i < ColsUC; i++)
+            {
+                grid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+            for (int i = 0; i < RowsUC; i++)
+            {
+                grid.RowDefinitions.Add(new RowDefinition());
+            }
             string maze = MazeStringUC;
             int currentPos = 0;
             int rows = RowsUC;

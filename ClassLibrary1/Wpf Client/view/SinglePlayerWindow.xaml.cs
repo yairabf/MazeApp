@@ -23,18 +23,13 @@ namespace Wpf_Client.view
     {
 
         private SP_GameVm singlePlayerVm;
- 
+
         public SinglePlayerWindow(SinglePlayerModel model)
         {
             InitializeComponent();
             singlePlayerVm = new SP_GameVm(model);
             this.DataContext = singlePlayerVm;
 
-        }
-
-        private void mazeBoard_Loaded(object sender, RoutedEventArgs e)
-        {
-            my_mazeBoard.DrawMaze();
         }
     }
 }
