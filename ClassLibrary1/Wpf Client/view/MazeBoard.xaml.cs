@@ -1,6 +1,5 @@
 ﻿using MazeLib;
 using System;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -20,18 +19,33 @@ namespace Wpf_Client.view
 
         public MazeBoard()
         {
+            
             InitializeComponent();
+            
+
         }
 
+       /* public static readonly DependencyProperty Maze_ObjectProperty =
+            DependencyProperty.Register("Maze_Object", typeof(Maze), typeof(MazeBoard), new
+                PropertyMetadata(0));
+
+        public Maze Maze_Object
+        {
+            get { return (Maze)GetValue(Maze_ObjectProperty); }
+            set { SetValue(Maze_ObjectProperty, value); }
+        }*/
+
+
+        //hanani
+        public static readonly DependencyProperty RowsUCProperty =
+            DependencyProperty.Register("RowsUC", typeof(int), typeof(MazeBoard), new
+                PropertyMetadata(0));
 
         public int RowsUC
         {
             get { return (int)GetValue(RowsUCProperty); }
             set { SetValue(RowsUCProperty, value); }
         }
-        public static readonly DependencyProperty RowsUCProperty =
-            DependencyProperty.Register("RowsUC", typeof(int), typeof(MazeBoard));
-
 
 
         public Maze MazeObjUC
@@ -43,23 +57,26 @@ namespace Wpf_Client.view
             DependencyProperty.Register("MazeObjUC", typeof(Maze), typeof(MazeBoard));
 
 
+        public static readonly DependencyProperty MazeStringUCProperty =
+            DependencyProperty.Register("MazeStringUC", typeof(string), typeof(MazeBoard));
 
         public string MazeStringUC
         {
             get { return (string)GetValue(MazeStringUCProperty); }
             set { SetValue(MazeStringUCProperty, value); }
         }
-        public static readonly DependencyProperty MazeStringUCProperty =
-            DependencyProperty.Register("MazeStringUC", typeof(string), typeof(MazeBoard));
 
 
 
+        public static readonly DependencyProperty ColsUCProperty =
+            DependencyProperty.Register("ColsUC", typeof(int), typeof(MazeBoard), new PropertyMetadata(0));
 
         public int ColsUC
         {
             get { return (int)GetValue(ColsUCProperty); }
             set { SetValue(ColsUCProperty, value); }
         }
+
         public static readonly DependencyProperty ColsUCProperty =
             DependencyProperty.Register("ColsUC", typeof(int), typeof(MazeBoard), new PropertyMetadata(PropertiesChanged));
 
@@ -78,6 +95,7 @@ namespace Wpf_Client.view
         }
         public static readonly DependencyProperty InitialPosUCProperty =
             DependencyProperty.Register("InitialPosUC", typeof(Position), typeof(MazeBoard));
+
 
 
        
@@ -108,13 +126,29 @@ namespace Wpf_Client.view
             DependencyProperty.Register("SolutionUC", typeof(string), typeof(MazeBoard), new PropertyMetadata(SolutionReceived));
 
 
+
         private static void SolutionReceived(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((MazeBoard) d).DrawSolution();
         }
 
+        private void mazeBoard_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DrawMaze();
+        }
+
         public void DrawMaze()
         {
+          
+            grid.Background = new SolidColorBrush(Colors.LightSteelBlue);
+            for (int i = 0; i < ColsUC; i++)
+            {
+                grid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+            for (int i = 0; i < RowsUC; i++)
+            {
+                grid.RowDefinitions.Add(new RowDefinition());
+            }
             string maze = MazeStringUC;
             int currentPos = 0;
             int rows = RowsUC;
@@ -131,12 +165,12 @@ namespace Wpf_Client.view
                     rectangle.Width = recSize;
                     if (maze[currentPos].Equals('0'))
                     {
-                        Brush brush = Brushes.White;
+                        Brush brush = Brushes.Black;
                         rectangle.Fill = brush;
                     }
                     else if(maze[currentPos].Equals('1'))
                     {
-                        Brush brush = Brushes.Black;
+                        Brush brush = Brushes.White;
                         rectangle.Fill = brush;
                     }
                     //entrance
@@ -154,11 +188,10 @@ namespace Wpf_Client.view
                     currentPos++;
                     rectArray[i, j] = rectangle;
                     mazeAsChars[i, j] = maze[currentPos];
-                    myCanvas.Children.Add(rectArray[i,j]);
+                    myCanvas.Children.Add(rectangle);
                     Canvas.SetLeft(rectangle, j * recSize);
                     Canvas.SetTop(rectangle, i * recSize);
                 }
-                currentPos += 2;
             }
         }
 
