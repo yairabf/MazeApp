@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MazeLib;
+using Newtonsoft.Json.Linq;
 using Wpf_Client.model;
 
 namespace Wpf_Client.viewModel
@@ -22,12 +23,6 @@ namespace Wpf_Client.viewModel
                     NotifyPropertyChanged(e.PropertyName);
                 };
         }
-
-        /*public void NotifyPropertyChanged(string propName)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-        }*/
-
        
         public string MazeAsStringProp
         {
@@ -39,22 +34,25 @@ namespace Wpf_Client.viewModel
             }
         }
 
-        public void StartGame()
+        public string SolutionProp
         {
-            string generate = "generate " + Properties.Settings.Default.NameOfMaze + " " + Properties.Settings.Default.NumOfRows +
-                              " " + Properties.Settings.Default.NumOfCol;
-            this.model.StartGame(generate);
-        }
-
-
-        public int RowsProp
-        {
-            get { return model.RowsProp; }
+            get
+            {
+                string solution = this.model.SolutionProp;
+                if (solution != null)
+                {
+                    JObject solutionObject = JObject.Parse(solution);
+                    string solutionAsString =  solutionObject["solution"].ToString();
+                    return solutionAsString;
+                }
+                return null;
+            }
             set
             {
-                this.model.RowsProp = value;
-                NotifyPropertyChanged("RowsProp");
+                model.SolutionProp = value;
+                NotifyPropertyChanged("SolutionProp");
             }
+            
         }
 
         public int ColsProp
@@ -67,31 +65,56 @@ namespace Wpf_Client.viewModel
             }
         }
 
+        public int RowsProp
+        {
+            get { return model.RowsProp; }
+            set
+            {
+                this.model.RowsProp = value;
+                NotifyPropertyChanged("RowsProp");
+            }
+        }
+
+        public Position InitialPosProp
+        {
+            get { return this.model.InitialPosProp; }
+            set { NotifyPropertyChanged("InitialPosProp");}
+        }
+
+        public Position GoalPosProp
+        {
+            get { return this.model.GoalPosProp; }
+            set
+            {
+                NotifyPropertyChanged("GoalPosProp");
+            }
+        }
+
+        public Maze MazeObjProp
+        {
+            get {
+                    return this.model.MazeObjProp;
+                }
+            set
+            {
+                this.model.MazeObjProp = value;
+                NotifyPropertyChanged("MazeObjProp");
+            }
+        }
+
+        public void StartGame()
+        {
+            string generate = "generate " + Properties.Settings.Default.NameOfMaze + " " + Properties.Settings.Default.NumOfRows +
+                              " " + Properties.Settings.Default.NumOfCol;
+            this.model.StartGame(generate);
+        }
+
+        public void SolveGame()
+        {
+            this.model.SolveGame();
+        }
+
 
     }
 }
 
-
-
-/*
- * public String NameOfMaze
-        {
-            get { return model.NameOfMaze; }
-            set
-            {
-                model.NameOfMaze = value;
-                NotifyPropertyChanged("NameOfMaze");
-            }
-        }
-        public String MazeAsString
-        {
-            get
-            {
-                return model.mazeProp.ToString();
-            }
-            set
-            {
-                NotifyPropertyChanged("MazeAsString");
-            }
-        }
-*/

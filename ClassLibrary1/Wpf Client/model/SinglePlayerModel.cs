@@ -45,6 +45,7 @@ namespace Wpf_Client.model
         public void SolveGame()
         {
             int algorithm = Wpf_Client.Properties.Settings.Default.SearchAlgorithm;
+            //this.mazeName = Properties.Settings.Default.NameOfMaze;
             string solve = "solve " + maze.Name + " " + algorithm;
             client.SendCommands(solve);
         }
@@ -53,12 +54,6 @@ namespace Wpf_Client.model
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
-        /*protected void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }*/
-
         
 
         private void HandleStart(string s)
@@ -67,8 +62,10 @@ namespace Wpf_Client.model
             client.Notify += HandeSolve;
             this.maze = Maze.FromJSON(s);
             this.MazeAsStringProp = this.maze.ToString();
-            this.RowsProp = Properties.Settings.Default.NumOfRows;
-            this.ColsProp = Properties.Settings.Default.NumOfCol;
+            this.InitialPosProp = this.maze.InitialPos;
+            this.GoalPosProp = this.maze.GoalPos;
+            this.RowsProp = maze.Rows;
+            this.ColsProp = maze.Cols;
         }
 
         private void HandeSolve(string s)
@@ -76,15 +73,7 @@ namespace Wpf_Client.model
             this.SolutionProp = s;
         }
 
-        public string MazeAsStringProp
-        {
-            get { return this.mazeAsString; }
-            set
-            {
-                this.mazeAsString = value;
-                NotifyPropertyChanged("MazeAsStringProp");
-            }
-        }
+
 
         public int RowsProp
         {
@@ -106,13 +95,56 @@ namespace Wpf_Client.model
             }
         }
 
+        public Position InitialPosProp
+        {
+            get
+            {
+                return this.maze.InitialPos;
+            }
+            set
+            {
+                NotifyPropertyChanged("InitialPosProp");
+            }
+        }
+
+        public Position GoalPosProp
+        {
+            get { return this.maze.GoalPos; }
+            set
+            {
+                NotifyPropertyChanged("GoalPosProp");
+            }
+        }
+
+
+        public string MazeAsStringProp
+        {
+            get { return this.mazeAsString; }
+            set
+            {
+                this.mazeAsString = value;
+                NotifyPropertyChanged("MazeAsStringProp");
+            }
+        }
+
+        public Maze MazeObjProp
+        {
+            get { return this.maze; }
+            set
+            {
+                this.maze = value;
+                NotifyPropertyChanged("MazeObjProp");
+            }
+        }
+
+
         public String SolutionProp
         {
             get { return this.solution; }
             set
             {
                 this.solution = value;
-                NotifyPropertyChanged("Solution");
+                NotifyPropertyChanged("SolutionProp");
             }
         }
     }

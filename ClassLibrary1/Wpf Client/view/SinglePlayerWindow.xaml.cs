@@ -37,5 +37,22 @@ namespace Wpf_Client.view
         {
             //my_mazeBoard.DrawMaze();
         }
+
+        private void SolveButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.singlePlayerVm.SolveGame();
+        }
+
+        private void MainMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            SinglePlayerWindow win = new SinglePlayerWindow();
+            this.Close();
+            win.Show(); 
+        }
+
+        private void RestartGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            my_mazeBoard.RestartGame();
+        }
     }
 }

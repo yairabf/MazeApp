@@ -66,7 +66,7 @@ namespace Wpf_Client.viewModel
 
         public void SaveSettings()
         {
-            this.model.SaveSettings();
+            //this.model.SaveSettings();
         }
     }
 }

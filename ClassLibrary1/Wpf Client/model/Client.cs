@@ -66,18 +66,35 @@ namespace ClientConsole
         /// The first function the gets called by the program, starts the process
         /// and writes to the server.
         /// </summary>
-        public void SendCommands(string commend)
+        public void SendCommands(string command)
         {
            while (true)
            {
                 System.Threading.Thread.Sleep(100);
-                Console.Write("Please enter a command: ");
-                string command = commend;
                 if (!this.tcpClient.Connected)
                 {
-                    Connect();
+                    Connect(command);
                 }
 
+
+               break;
+           }
+        }
+
+        /// <summary>
+        /// Connects the client to the server and creates a reading thread.
+        /// </summary>
+        public void Connect(string command)
+        {
+            int port = Wpf_Client.Properties.Settings.Default.ServerPort;
+            endPoint = new IPEndPoint(IPAddress.Parse(Wpf_Client.Properties.Settings.Default.ServerIP), port);
+            try
+            {
+                //port = int.Parse(ConfigurationManager.AppSettings["PortNum"]);
+                //endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+                tcpClient.Connect(endPoint);
+                stream = tcpClient.GetStream();
+                writer = new BinaryWriter(stream);
                 try
                 {
                     writer.Write(command);
@@ -87,25 +104,6 @@ namespace ClientConsole
                 {
                     Console.WriteLine(e.Message);
                 }
-               break;
-           }
-        }
-
-        /// <summary>
-        /// Connects the client to the server and creates a reading thread.
-        /// </summary>
-        public void Connect()
-        {
-            int port = Wpf_Client.Properties.Settings.Default.ServerPort;
-            endPoint = new IPEndPoint(IPAddress.Parse(Wpf_Client.Properties.Settings.Default.ServerIP), port);
-            try
-            {
-                //port = int.Parse(ConfigurationManager.AppSettings["PortNum"]);
-                //endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
-                tcpClient.Connect(endPoint);
-                Console.WriteLine("You are connected");
-                stream = tcpClient.GetStream();
-                writer = new BinaryWriter(stream);
                 ReadingTasks();
             }
             catch (Exception e)
@@ -119,8 +117,8 @@ namespace ClientConsole
         /// </summary>
         private void ReadingTasks()
         {
-            Task listening = new Task(() =>
-            {
+            //Task listening = new Task(() =>
+            //{
                 BinaryReader reader = new BinaryReader(tcpClient.GetStream());
                 {
                     while (tcpClient.Connected)
@@ -150,8 +148,8 @@ namespace ClientConsole
                         }
                     }
                 }
-            });
-            listening.Start();
+            //});
+            //listening.Start();
         }
 
         /// <summary>

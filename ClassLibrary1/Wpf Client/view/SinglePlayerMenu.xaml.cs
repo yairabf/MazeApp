@@ -35,9 +35,7 @@ namespace Wpf_Client.view
             singlePlayerVm.SaveSettings();
             SinglePlayerWindow win = new SinglePlayerWindow();
             win.Show();
-            this.Close();
-            
-            
+            this.Close();  
         }
     }
 }
